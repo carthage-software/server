@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="kernel.default_locale">en</parameter>
+        <parameter key="kernel.enabled_locales" type="collection">
+            <parameter>en</parameter>
+            <parameter>fr</parameter>
+        </parameter>
+    </parameters>
+
+    <services>
+        <defaults autowire="true" autoconfigure="true">
+            <bind key="$debug" type="string">%kernel.debug%</bind>
+        </defaults>
+
+        <instanceof id="Carthage\Application\Shared\CommandHandler\CommandHandlerInterface">
+            <tag name="messenger.message_handler" bus="command.bus"/>
+        </instanceof>
+
+        <instanceof id="Carthage\Application\Shared\QueryHandler\QueryHandlerInterface">
+            <tag name="messenger.message_handler" bus="query.bus"/>
+        </instanceof>
+
+        <prototype namespace="Carthage\" resource="../src/Carthage/">
+            <exclude>../src/Carthage/Resources/</exclude>
+            <exclude>../src/Carthage/Application/{Shared,LogManagement}/Command/</exclude>
+            <exclude>../src/Carthage/Application/{Shared,LogManagement}/Query/</exclude>
+            <exclude>../src/Carthage/Infrastructure/Shared/Symfony/Kernel.php</exclude>
+            <exclude>../src/Carthage/Infrastructure/Shared/Symfony/Server/</exclude>
+        </prototype>
+
+        <service id="serializer.name_converter.metadata_aware" class="Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter">
+            <argument type="service" id="serializer.mapping.class_metadata_factory"/>
+            <argument type="service" id="serializer.name_converter.camel_case_to_snake_case"/>
+        </service>
+
+        <service id="Redis" class="Redis" lazy="true">
+            <call method="connect">
+                <argument>%env(REDIS_HOST)%</argument>
+                <argument>%env(int:REDIS_PORT)%</argument>
+            </call>
+            <call method="auth">
+                <argument>%env(REDIS_PASSWORD)%</argument>
+            </call>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
+>
+    <class name="Carthage\Domain\LogManagement\DataTransferObject\Log\CollectLog">
+        <property name="log">
+            <constraint name="NotNull">
+                <option name="message">log_management.log.collect_log.log.not_null</option>
+            </constraint>
+            <constraint name="Valid"/>
+        </property>
+        <property name="entries">
+            <constraint name="All">
+                <option name="constraints">
+                    <constraint name="NotNull">
+                        <option name="message">log_management.log.collect_log.entries.not_null</option>
+                    </constraint>
+                </option>
+            </constraint>
+
+            <constraint name="Valid"/>
+        </property>
+    </class>
+</constraint-mapping>

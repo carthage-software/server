@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+    <entity
+            repository-class="Carthage\Infrastructure\MetricCollection\Doctrine\Repository\Metric\MetricRepository"
+            name="Carthage\Domain\MetricCollection\Entity\Metric\Metric"
+            table="metrics"
+            inheritance-type="SINGLE_TABLE"
+    >
+        <discriminator-column name="discriminator" type="string" length="255" />
+
+        <discriminator-map>
+            <discriminator-mapping value="gauge" class="Carthage\Domain\MetricCollection\Entity\Gauge\Gauge" />
+            <discriminator-mapping value="histogram" class="Carthage\Domain\MetricCollection\Entity\Histogram\Histogram" />
+            <discriminator-mapping value="summary" class="Carthage\Domain\MetricCollection\Entity\Summary\Summary" />
+        </discriminator-map>
+
+        <unique-constraints>
+            <unique-constraint name="metric_namespace_name_discriminator_unique" columns="namespace,name,discriminator"/>
+        </unique-constraints>
+
+        <field name="namespace" type="string" column="namespace" nullable="false" />
+        <field name="name" type="string" column="name" nullable="false" />
+        <field name="description" type="string" column="description" nullable="true" />
+        <field name="unit" type="string" column="unit" nullable="true" />
+
+        <one-to-many field="dataPoints" target-entity="Carthage\Domain\MetricCollection\Entity\Metric\MetricDataPoint" mapped-by="metric" orphan-removal="true" fetch="LAZY">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+                <cascade-refresh/>
+            </cascade>
+        </one-to-many>
+    </entity>
+</doctrine-mapping>

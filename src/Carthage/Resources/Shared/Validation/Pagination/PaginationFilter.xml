@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
+>
+    <class name="Carthage\Domain\Shared\Filter">
+        <property name="page">
+            <constraint name="Positive">
+                <option name="message">shared.pagination.pagination_filter.page.positive</option>
+            </constraint>
+        </property>
+        <property name="itemsPerPage">
+            <constraint name="Positive">
+                <option name="message">shared.pagination.pagination_filter.items_per_page.positive</option>
+            </constraint>
+            <constraint name="LessThanOrEqual">
+                <option name="value">150</option>
+                <option name="message">shared.pagination.pagination_filter.items_per_page.less_than</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

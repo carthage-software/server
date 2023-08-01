@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd"
+>
+    <!-- SHOW -->
+    <route
+            id="metric:show"
+            path="/metric/{ulid}"
+            methods="GET"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Metric\ShowMetricRequestHandler::handle"
+    />
+
+    <!-- INDEX -->
+    <route
+            id="metric:index"
+            path="/metric"
+            methods="GET"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Metric\IndexMetricRequestHandler::handle"
+    />
+
+    <route
+        id="metric:namespace"
+        path="/metric/namespace"
+        methods="GET"
+        controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Metric\IndexMetricNamespaceRequestHandler::handle"
+    />
+</routes>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:symfony="http://symfony.com/schema/dic/symfony"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd
+        http://symfony.com/schema/dic/symfony https://symfony.com/schema/dic/symfony/symfony-1.0.xsd">
+    <symfony:config>
+        <symfony:messenger default-bus="command.bus" enabled="true" failure-transport="failed">
+            <symfony:routing message-class="Carthage\Application\LogManagement\Command\Log\CollectLogCommand">
+                <symfony:sender service="async" />
+            </symfony:routing>
+            <symfony:routing message-class="Carthage\Application\LogManagement\Command\CollectCommand">
+                <symfony:sender service="async" />
+            </symfony:routing>
+
+            <symfony:routing message-class="Carthage\Application\MetricCollection\Command\Summary\CollectSummaryCommand">
+                <symfony:sender service="async" />
+            </symfony:routing>
+            <symfony:routing message-class="Carthage\Application\MetricCollection\Command\Histogram\CollectHistogramCommand">
+                <symfony:sender service="async" />
+            </symfony:routing>
+            <symfony:routing message-class="Carthage\Application\MetricCollection\Command\Gauge\CollectGaugeCommand">
+                <symfony:sender service="async" />
+            </symfony:routing>
+            <symfony:routing message-class="Carthage\Application\MetricCollection\Command\CollectCommand">
+                <symfony:sender service="async" />
+            </symfony:routing>
+
+            <symfony:transport name="sync" dsn="sync://"/>
+            <symfony:transport name="async" dsn="%env(MESSENGER_TRANSPORT_DSN)%">
+                <symfony:options>
+                    <symfony:exchange name="messages" />
+                </symfony:options>
+                <symfony:retry-strategy max-retries="3" multiplier="2" delay="1000" />
+            </symfony:transport>
+            <symfony:transport name="failed" dsn="%env(MESSENGER_TRANSPORT_DSN)%">
+                <symfony:options>
+                    <symfony:exchange name="failed_messages" />
+                </symfony:options>
+                <symfony:retry-strategy max-retries="5" multiplier="2" delay="1000" />
+            </symfony:transport>
+
+            <symfony:bus name="query.bus"/>
+            <symfony:bus name="command.bus" default-middleware="allow_no_handlers" />
+        </symfony:messenger>
+    </symfony:config>
+</container>

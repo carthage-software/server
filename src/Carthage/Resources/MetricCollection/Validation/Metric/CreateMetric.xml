@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
+>
+    <class name="Carthage\Domain\MetricCollection\DataTransferObject\Metric\CreateMetric">
+        <property name="namespace">
+            <constraint name="NotBlank">
+                <option name="message">metric_collection.metric.create_metric.namespace.not_blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="charset">UTF-8</option>
+                <option name="minMessage">metric_collection.metric.create_metric.namespace.length.charset</option>
+                <option name="min">1</option>
+                <option name="minMessage">metric_collection.metric.create_metric.namespace.length.min</option>
+                <option name="max">32</option>
+                <option name="maxMessage">metric_collection.metric.create_metric.namespace.length.max</option>
+            </constraint>
+        </property>
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">metric_collection.metric.create_metric.name.not_blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="charset">UTF-8</option>
+                <option name="minMessage">metric_collection.metric.create_metric.name.length.charset</option>
+                <option name="min">1</option>
+                <option name="minMessage">metric_collection.metric.create_metric.name.length.min</option>
+                <option name="max">32</option>
+                <option name="maxMessage">metric_collection.metric.create_metric.name.length.max</option>
+            </constraint>
+        </property>
+        <property name="description">
+            <constraint name="Length">
+                <option name="charset">UTF-8</option>
+                <option name="minMessage">metric_collection.metric.create_metric.description.length.charset</option>
+                <option name="min">1</option>
+                <option name="minMessage">metric_collection.metric.create_metric.description.length.min</option>
+                <option name="max">512</option>
+                <option name="maxMessage">metric_collection.metric.create_metric.description.length.max</option>
+            </constraint>
+        </property>
+        <property name="unit">
+            <constraint name="Length">
+                <option name="charset">UTF-8</option>
+                <option name="minMessage">metric_collection.metric.create_metric.unit.length.charset</option>
+                <option name="min">1</option>
+                <option name="minMessage">metric_collection.metric.create_metric.unit.length.min</option>
+                <option name="max">32</option>
+                <option name="maxMessage">metric_collection.metric.create_metric.unit.length.max</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

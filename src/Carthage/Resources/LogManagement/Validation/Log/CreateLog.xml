@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
+>
+    <class name="Carthage\Domain\LogManagement\DataTransferObject\Log\CreateLog">
+        <property name="namespace">
+            <constraint name="NotNull">
+                <option name="message">log_management.message.create_log.namespace.not_null</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="charset">UTF-8</option>
+                <option name="charsetMessage">log_management.message.create_log.namespace.length.charset</option>
+                <option name="min">1</option>
+                <option name="minMessage">log_management.message.create_log.namespace.length.min</option>
+                <option name="max">64</option>
+                <option name="maxMessage">log_management.message.create_log.namespace.length.max</option>
+            </constraint>
+        </property>
+        <property name="level">
+            <constraint name="NotNull">
+                <option name="message">log_management.message.create_log.level.not_null</option>
+            </constraint>
+        </property>
+        <property name="template">
+            <constraint name="NotNull">
+                <option name="message">log_management.message.create_log.template.not_null</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="charset">UTF-8</option>
+                <option name="charsetMessage">log_management.message.create_log.template.length.charset</option>
+                <option name="min">1</option>
+                <option name="minMessage">log_management.message.create_log.template.length.min</option>
+                <option name="max">4096</option>
+                <option name="maxMessage">log_management.message.create_log.template.length.max</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

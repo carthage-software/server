@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
+>
+    <class name="Carthage\Domain\MetricCollection\DataTransferObject\Summary\CollectSummaryDataPoint">
+        <property name="value">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.summary.collect_summary_data_point.value.not_null</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">
+                    <value>integer</value>
+                    <value>float</value>
+                </option>
+                <option name="message">metric_collection.summary.collect_summary_data_point.value.type</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

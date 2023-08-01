@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd"
+>
+    <route
+        id="log:index"
+        path="/log"
+        methods="GET"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\IndexLogRequestHandler::handle"
+    />
+
+    <route
+        id="log:namespace"
+        path="/log/namespace"
+        methods="GET"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\IndexLogNamespaceRequestHandler::handle"
+    />
+
+    <route
+        id="log:entry:index"
+        path="/log/entry"
+        methods="GET"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\IndexLogEntryRequestHandler::handle"
+    />
+
+    <route
+        id="log:show"
+        path="/log/{ulid}"
+        methods="GET"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\ShowLogRequestHandler::handle"
+    />
+
+    <route
+        id="log:entry:show"
+        path="/log/entry/{ulid}"
+        methods="GET"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\ShowLogEntryRequestHandler::handle"
+    />
+
+    <route
+        id="log:create"
+        path="/log"
+        methods="POST"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\CreateLogRequestHandler::handle"
+    />
+
+    <route
+        id="log:entry:create"
+        path="/log/entry"
+        methods="POST"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\CreateLogEntryRequestHandler::handle"
+    />
+
+    <route
+        id="log:delete"
+        path="/log/{ulid}"
+        methods="DELETE"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\DeleteLogRequestHandler::handle"
+    />
+
+    <route
+        id="log:entry:delete"
+        path="/log/entry/{ulid}"
+        methods="DELETE"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\DeleteLogEntryRequestHandler::handle"
+    />
+
+    <route
+        id="log:collect"
+        path="/log/collect"
+        methods="POST"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\CollectLogRequestHandler::handle"
+    />
+</routes>

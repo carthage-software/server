@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
+>
+    <class name="Carthage\Domain\MetricCollection\DataTransferObject\Histogram\CollectHistogram">
+        <property name="histogram">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.histogram.collect_histogram.histogram.not_null</option>
+            </constraint>
+
+            <constraint name="Valid" />
+        </property>
+        <property name="dataPoints">
+            <constraint name="All">
+                <option name="constraints">
+                    <constraint name="NotNull">
+                        <option name="message">metric_collection.histogram.collect_histogram.data_points.not_null</option>
+                    </constraint>
+                </option>
+            </constraint>
+            <constraint name="Valid" />
+        </property>
+    </class>
+</constraint-mapping>

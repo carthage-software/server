@@ -1,0 +1,95 @@
+version: '3.4'
+
+services:
+  php:
+    build:
+      target: php_fpm_dev
+    volumes:
+      - ./:/srv/app:rw,cached
+      - ./docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
+      - /srv/app/var
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - database
+      - redis
+      - rabbitmq
+    environment:
+      APP_ENV: "dev"
+      DATABASE_NAME: "app"
+      DATABASE_URL: "postgresql://app:!ChangeMe!@database:5432/app?serverVersion=15&charset=utf8"
+      MESSENGER_TRANSPORT_DSN: "amqp://guest:guest@rabbitmq:5672/%2f/messages"
+      REDIS_HOST: "redis"
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: "!ChangeMe!"
+
+  consumer:
+    build:
+      target: php_consumer_dev
+    volumes:
+      - ./:/srv/app:rw,cached
+      - ./docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
+      - /srv/app/var
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - database
+      - redis
+      - rabbitmq
+    environment:
+      APP_ENV: "dev"
+      DATABASE_NAME: "app"
+      DATABASE_URL: "postgresql://app:!ChangeMe!@database:5432/app?serverVersion=15&charset=utf8"
+      MESSENGER_TRANSPORT_DSN: "amqp://guest:guest@rabbitmq:5672/%2f/messages"
+      REDIS_HOST: "redis"
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: "!ChangeMe!"
+
+  caddy:
+    command: [ "caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile", "--watch" ]
+    volumes:
+      - ./public:/srv/app/public:ro
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+  
+  database:
+    image: postgres:${POSTGRES_VERSION:-15}
+    environment:
+      POSTGRES_DB: "app"
+      POSTGRES_USER: "app"
+      POSTGRES_PASSWORD: "!ChangeMe!"
+    volumes:
+      - database_data:/var/lib/postgresql/data:rw
+    ports:
+      - "5432"
+
+  redis:
+    image: redis:${REDIS_VERION:-7}-alpine
+    restart: always
+    volumes:
+      - redis_data:/var/lib/redis/data:rw
+      - redis_config:/usr/local/etc/redis
+    ports:
+      - "6379"
+    environment:
+      REDIS_REQUIREPASS: "!ChangeMe!"
+
+  rabbitmq:
+    image: rabbitmq:${RABBITMQ_VERSION:-3.12}-management
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+    read_only: false
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - rabbitmq_log:/var/log/rabbitmq
+    ports:
+      - "15672"
+      - "5672"
+
+volumes:
+  database_data:
+  redis_data:
+  redis_config:
+  rabbitmq_data:
+  rabbitmq_log:

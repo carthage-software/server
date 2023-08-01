@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  php:
+    environment:
+      APP_ENV: prod
+      APP_DEBUG: 0
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_URL: ${DATABASE_URL}
+      MESSENGER_TRANSPORT_DSN: ${MESSENGER_TRANSPORT_DSN}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+
+  consumer:
+    environment:
+        APP_ENV: prod
+        APP_DEBUG: 0
+        DATABASE_NAME: ${DATABASE_NAME}
+        DATABASE_URL: ${DATABASE_URL}
+        MESSENGER_TRANSPORT_DSN: ${MESSENGER_TRANSPORT_DSN}
+        REDIS_HOST: ${REDIS_HOST}
+        REDIS_PORT: ${REDIS_PORT}
+        REDIS_PASSWORD: ${REDIS_PASSWORD}
+
+  caddy:
+      environment:
+        SERVER_NAME: :${SERVER_PORT}

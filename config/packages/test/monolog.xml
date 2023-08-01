@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:monolog="http://symfony.com/schema/dic/monolog"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd
+        http://symfony.com/schema/dic/monolog https://symfony.com/schema/dic/monolog/monolog-1.0.xsd">
+    <monolog:config>
+        <monolog:handler name="main" type="fingers_crossed" action-level="error" handler="nested" buffer-size="50">
+            <monolog:channels>
+                <monolog:channel>!event</monolog:channel>
+            </monolog:channels>
+
+            <monolog:excluded-http-code code="404" />
+            <monolog:excluded-http-code code="405" />
+        </monolog:handler>
+
+        <monolog:handler name="nested" type="stream" path="%kernel.logs_dir%/%kernel.environment%.log" level="debug" />
+    </monolog:config>
+</container>

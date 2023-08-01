@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd"
+>
+    <!-- COLLECT -->
+    <route
+            id="summary:collect"
+            path="/summary/collect"
+            methods="POST"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\CollectSummaryRequestHandler::handle"
+    />
+
+    <!-- CREATE -->
+    <route
+            id="summary:create"
+            path="/summary"
+            methods="POST"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\CreateSummaryRequestHandler::handle"
+    />
+
+    <route
+            id="summary:create-data-point"
+            path="/summary/data-point"
+            methods="POST"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\CreateSummaryDataPointRequestHandler::handle"
+    />
+
+    <!-- DELETE -->
+    <route
+            id="summary:delete"
+            path="/summary/{ulid}"
+            methods="DELETE"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\DeleteSummaryRequestHandler::handle"
+    />
+
+    <route
+            id="summary:delete-data-point"
+            path="/summary/data-point/{ulid}"
+            methods="DELETE"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\DeleteSummaryDataPointRequestHandler::handle"
+    />
+
+    <!-- SHOW -->
+    <route
+            id="summary:show"
+            path="/summary/{ulid}"
+            methods="GET"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\ShowSummaryRequestHandler::handle"
+    />
+
+    <route
+            id="summary:show-data-point"
+            path="/summary/data-point/{ulid}"
+            methods="GET"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\ShowSummaryDataPointRequestHandler::handle"
+    />
+
+    <!-- INDEX -->
+    <route
+            id="summary:index"
+            path="/summary"
+            methods="GET"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\IndexSummaryRequestHandler::handle"
+    />
+
+    <route
+            id="summary:index-data-point"
+            path="/summary/data-point"
+            methods="GET"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\IndexSummaryDataPointRequestHandler::handle"
+    />
+</routes>

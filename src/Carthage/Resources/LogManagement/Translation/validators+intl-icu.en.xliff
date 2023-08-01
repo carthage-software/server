@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="log_management.message.create_log.namespace.not_null">
+                <source>log_management.message.create_log.namespace.not_null</source>
+                <target>Log namespace must not be null.</target>
+            </trans-unit>
+            <trans-unit id="log_management.message.create_log.namespace.length.charset">
+                <source>log_management.message.create_log.namespace.length.charset</source>
+                <target>Log namespace must use accepted characters.</target>
+            </trans-unit>
+            <trans-unit id="log_management.message.create_log.namespace.length.min">
+                <source>log_management.message.create_log.namespace.length.min</source>
+                <target>Log namespace must be at least {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="log_management.message.create_log.namespace.length.max">
+                <source>log_management.message.create_log.namespace.length.max</source>
+                <target>Log namespace must be at most {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="log_management.message.create_log.level.not_null">
+                <source>log_management.message.create_log.level.not_null</source>
+                <target>Log level must not be null.</target>
+            </trans-unit>
+            <trans-unit id="log_management.message.create_log.template.not_null">
+                <source>log_management.message.create_log.template.not_null</source>
+                <target>Log template must not be null.</target>
+            </trans-unit>
+            <trans-unit id="log_management.message.create_log.template.length.charset">
+                <source>log_management.message.create_log.template.length.charset</source>
+                <target>Log template must use accepted characters.</target>
+            </trans-unit>
+            <trans-unit id="log_management.message.create_log.template.length.min">
+                <source>log_management.message.create_log.template.length.min</source>
+                <target>Log template must be at least {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="log_management.message.create_log.template.length.max">
+                <source>log_management.message.create_log.template.length.max</source>
+                <target>Log template must be at most {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="log_management.log.collect_log_entry.source.not_null">
+                <source>log_management.log.collect_log_entry.source.not_null</source>
+                <target>Log entry source must not be null.</target>
+            </trans-unit>
+            <trans-unit id="log_management.log.collect_log_entry.source.length.charset">
+                <source>log_management.log.collect_log_entry.source.length.charset</source>
+                <target>Log entry source must use accepted characters.</target>
+            </trans-unit>
+            <trans-unit id="log_management.log.collect_log_entry.source.length.min">
+                <source>log_management.log.collect_log_entry.source.length.min</source>
+                <target>Log entry source must be at least {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="log_management.log.collect_log_entry.source.length.max">
+                <source>log_management.log.collect_log_entry.source.length.max</source>
+                <target>Log entry source must be at most {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="log_management.log.collect_log_entry.context.not_null">
+                <source>log_management.log.collect_log_entry.context.not_null</source>
+                <target>Log entry context must not be null.</target>
+            </trans-unit>
+            <trans-unit id="log_management.log.collect_log_entry.attributes.not_null">
+                <source>log_management.log.collect_log_entry.attributes.not_null</source>
+                <target>Log entry attributes must not be null.</target>
+            </trans-unit>
+            <trans-unit id="log_management.log.collect_log_entry.tags.not_null">
+                <source>log_management.log.collect_log_entry.tags.not_null</source>
+                <target>Log entry tags must not be null.</target>
+            </trans-unit>
+            <trans-unit id="log_management.log.collect_log_entry.occurred_at.not_null">
+                <source>log_management.log.collect_log_entry.occurred_at.not_null</source>
+                <target>Log entry occurred at must not be null.</target>
+            </trans-unit>
+            <trans-unit id="log_management.log.create_log_entry.log.not_null">
+                <source>log_management.log.create_log_entry.log.not_null</source>
+                <target>Log entry log must not be null.</target>
+            </trans-unit>
+            <trans-unit id="log_management.log.collect_log.log.not_null">
+                <source>log_management.log.collect_log.log.not_null</source>
+                <target>Log must not be null.</target>
+            </trans-unit>
+            <trans-unit id="log_management.log.collect_log.entries.not_null">
+                <source>log_management.log.collect_log.entries.not_null</source>
+                <target>Log entries must not be null.</target>
+            </trans-unit>
+            <trans-unit id="log_management.collect.collect_logs.not_null">
+                <source>log_management.collect.collect_logs.not_null</source>
+                <target>Collect logs must not be null.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

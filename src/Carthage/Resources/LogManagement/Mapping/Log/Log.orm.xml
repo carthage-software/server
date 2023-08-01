@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+    <entity
+            repository-class="Carthage\Infrastructure\LogManagement\Doctrine\Repository\Log\LogRepository"
+            name="Carthage\Domain\LogManagement\Entity\Log\Log"
+            table="logs"
+    >
+        <unique-constraints>
+            <unique-constraint name="message_namespace_level_template_unique" columns="namespace,level,template"/>
+        </unique-constraints>
+
+        <field name="namespace" type="string" column="namespace" nullable="false" />
+        <field name="level" type="integer" column="level" nullable="false" enum-type="Carthage\Domain\LogManagement\Enum\Log\Level" />
+        <field name="template" type="text" column="template" nullable="false"/>
+        <field name="firstEntryOccurredAt" type="datetime_immutable" column="first_entry_occurred_at" nullable="true"/>
+        <field name="lastEntryOccurredAt" type="datetime_immutable" column="last_entry_occurred_at" nullable="true"/>
+
+        <one-to-many field="entries" target-entity="Carthage\Domain\LogManagement\Entity\Log\LogEntry" mapped-by="log" orphan-removal="true" fetch="LAZY">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+                <cascade-refresh/>
+            </cascade>
+        </one-to-many>
+    </entity>
+</doctrine-mapping>

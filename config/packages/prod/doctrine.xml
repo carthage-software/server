@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:doctrine="http://symfony.com/schema/dic/doctrine"
+           xmlns:symfony="http://symfony.com/schema/dic/symfony"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd
+            http://symfony.com/schema/dic/symfony https://symfony.com/schema/dic/symfony/symfony-1.0.xsd
+            http://symfony.com/schema/dic/doctrine https://symfony.com/schema/dic/doctrine/doctrine-1.0.xsd">
+    <doctrine:config>
+        <doctrine:orm auto-generate-proxy-classes="false" proxy-dir="%kernel.build_dir%/doctrine/orm/Proxies">
+            <doctrine:query-cache-driver type="pool" pool="doctrine.system_cache_pool" />
+            <doctrine:result-cache-driver type="pool" pool="doctrine.result_cache_pool" />
+        </doctrine:orm>
+    </doctrine:config>
+
+    <symfony:config>
+        <symfony:cache>
+            <symfony:pool name="doctrine.result_cache_pool" adapter="cache.app" />
+            <symfony:pool name="doctrine.system_cache_pool" adapter="cache.system" />
+        </symfony:cache>
+    </symfony:config>
+</container>

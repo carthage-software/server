@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
+>
+    <class name="Carthage\Domain\MetricCollection\DataTransferObject\Metric\CollectMetricDataPoint">
+        <property name="source">
+            <constraint name="NotBlank">
+                <option name="message">metric_collection.metric.collect_metric_data_point.source.not_blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="charset">UTF-8</option>
+                <option name="minMessage">metric_collection.metric.collect_metric_data_point.source.length.charset</option>
+                <option name="min">1</option>
+                <option name="minMessage">metric_collection.metric.collect_metric_data_point.source.length.min</option>
+                <option name="max">128</option>
+                <option name="maxMessage">metric_collection.metric.collect_metric_data_point.source.length.max</option>
+            </constraint>
+        </property>
+        <property name="startAt">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.metric.collect_metric_data_point.start_at.not_null</option>
+            </constraint>
+        </property>
+        <property name="endAt">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.metric.collect_metric_data_point.end_at.not_null</option>
+            </constraint>
+        </property>
+        <property name="attributes">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.metric.collect_metric_data_point.attributes.not_null</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

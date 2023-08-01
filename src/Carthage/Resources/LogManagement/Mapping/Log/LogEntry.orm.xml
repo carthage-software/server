@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+    <entity
+            repository-class="Carthage\Infrastructure\LogManagement\Doctrine\Repository\Log\LogEntryRepository"
+            name="Carthage\Domain\LogManagement\Entity\Log\LogEntry"
+            table="log_entries"
+    >
+        <field name="source" type="string" column="source" nullable="false"/>
+        <field name="context" type="json" column="context" nullable="false">
+            <options>
+                <option name="jsonb">true</option>
+                <option name="default">{}</option>
+            </options>
+        </field>
+        <field name="attributes" type="json" column="attributes" nullable="false">
+            <options>
+                <option name="jsonb">true</option>
+                <option name="default">{}</option>
+            </options>
+        </field>
+        <field name="tags" type="json" column="tags" nullable="false">
+            <options>
+                <option name="jsonb">true</option>
+                <option name="default">[]</option>
+            </options>
+        </field>
+        <field name="occurredAt" type="datetime_immutable" column="occurred_at" nullable="false"/>
+
+        <many-to-one field="log" target-entity="Carthage\Domain\LogManagement\Entity\Log\Log" inversed-by="entries" fetch="LAZY">
+            <join-columns>
+                <join-column name="log_id" referenced-column-name="id" nullable="false"/>
+            </join-columns>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

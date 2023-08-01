@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<psalm
+    totallyTyped="true"
+    forbidEcho="true"
+    strictBinaryOperands="true"
+    phpVersion="8.2"
+    rememberPropertyAssignmentsAfterCall="false"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config /vendor/vimeo/psalm/config.xsd"
+    findUnusedBaselineEntry="true"
+    findUnusedCode="false"
+    findUnusedVariablesAndParams="true"
+    findUnusedPsalmSuppress="true"
+    allowInternalNamedArgumentCalls="false"
+    allowNamedArgumentCalls="false"
+    disableSuppressAll="true"
+    ensureArrayStringOffsetsExist="true"
+    ignoreInternalFunctionFalseReturn="false"
+    ignoreInternalFunctionNullReturn="false"
+    includePhpVersionsInErrorBaseline="true"
+    limitMethodComplexity="true"
+    disableVarParsing="true"
+    maxShapedArraySize="20"
+    inferPropertyTypesFromConstructor="false"
+    restrictReturnTypes="true"
+    sealAllProperties="true"
+>
+    <projectFiles>
+        <file name="./bin/console" />
+        <file name="./public/index.php" />
+
+        <directory name="./config"/>
+        <directory name="./src"/>
+        <directory name="./tests"/>
+        <ignoreFiles>
+            <directory name="./vendor"/>
+            <directory name="./var"/>
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <DuplicateFunction errorLevel="suppress"/>
+        <LessSpecificReturnType errorLevel="error"/>
+        <DeprecatedMethod errorLevel="error"/>
+        <DeprecatedProperty errorLevel="error"/>
+        <DeprecatedClass errorLevel="error"/>
+        <DeprecatedConstant errorLevel="error"/>
+        <DeprecatedInterface errorLevel="error"/>
+        <DeprecatedTrait errorLevel="error"/>
+        <ForbiddenCode errorLevel="error"/>
+        <InternalMethod errorLevel="error"/>
+        <InternalProperty errorLevel="error"/>
+        <InternalClass errorLevel="error"/>
+        <MissingClosureReturnType errorLevel="error"/>
+        <MissingReturnType errorLevel="error"/>
+        <MissingPropertyType errorLevel="error"/>
+        <InvalidDocblock errorLevel="error"/>
+        <PropertyNotSetInConstructor errorLevel="error"/>
+        <MissingConstructor errorLevel="error"/>
+        <MissingClosureParamType errorLevel="error"/>
+        <MissingParamType errorLevel="error"/>
+        <DocblockTypeContradiction errorLevel="error"/>
+        <RawObjectIteration errorLevel="error"/>
+        <InvalidStringClass errorLevel="error"/>
+        <UnresolvableInclude errorLevel="error"/>
+    </issueHandlers>
+
+    <plugins>
+        <pluginClass class="Psl\Psalm\Plugin"/>
+        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin"/>
+        <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+    </plugins>
+</psalm>

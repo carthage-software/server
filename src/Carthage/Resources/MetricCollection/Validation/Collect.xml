@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
+>
+    <class name="Carthage\Domain\MetricCollection\DataTransferObject\Collect">
+        <property name="collectGauges">
+            <constraint name="All">
+                <option name="constraints">
+                    <constraint name="NotNull">
+                        <option name="message">metric_collection.collect.collect_gauges.not_null</option>
+                    </constraint>
+                </option>
+            </constraint>
+
+            <constraint name="Valid" />
+        </property>
+
+        <property name="collectHistograms">
+            <constraint name="All">
+                <option name="constraints">
+                    <constraint name="NotNull">
+                        <option name="message">metric_collection.collect.collect_histograms.not_null</option>
+                    </constraint>
+                </option>
+            </constraint>
+
+            <constraint name="Valid" />
+        </property>
+
+        <property name="collectSummaries">
+            <constraint name="All">
+                <option name="constraints">
+                    <constraint name="NotNull">
+                        <option name="message">metric_collection.collect.collect_summaries.not_null</option>
+                    </constraint>
+                </option>
+            </constraint>
+
+            <constraint name="Valid" />
+        </property>
+    </class>
+</constraint-mapping>

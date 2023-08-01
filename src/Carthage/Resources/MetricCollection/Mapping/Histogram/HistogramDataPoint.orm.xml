@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+    <entity repository-class="Carthage\Infrastructure\MetricCollection\Doctrine\Repository\Gauge\GaugeDataPointRepository" name="Carthage\Domain\MetricCollection\Entity\Histogram\HistogramDataPoint">
+        <field name="lowerBound" type="float" column="lower_bound" nullable="false"/>
+        <field name="upperBound" type="float" column="upper_bound" nullable="false"/>
+        <field name="count" type="integer" column="count" nullable="false"/>
+        <field name="summation" type="float" column="summation" nullable="false"/>
+        <field name="minimum" type="float" column="minimum" nullable="false"/>
+        <field name="maximum" type="float" column="maximum" nullable="false"/>
+        <field name="bucketCounts" type="json" column="bucket_counts" nullable="false">
+            <options>
+                <option name="jsonb">true</option>
+                <option name="default">{}</option>
+            </options>
+        </field>
+        <field name="bucketBoundaries" type="json" column="bucket_boundaries" nullable="false">
+            <options>
+                <option name="jsonb">true</option>
+                <option name="default">{}</option>
+            </options>
+        </field>
+    </entity>
+</doctrine-mapping>

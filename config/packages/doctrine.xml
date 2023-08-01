@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container  xmlns="http://symfony.com/schema/dic/services"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:doctrine="http://symfony.com/schema/dic/doctrine"
+            xsi:schemaLocation="
+                http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd
+                http://symfony.com/schema/dic/doctrine https://symfony.com/schema/dic/doctrine/doctrine-1.0.xsd
+            "
+>
+    <doctrine:config>
+        <doctrine:dbal use-savepoints="true" url="%env(resolve:DATABASE_URL)%" dbname="%env(resolve:DATABASE_NAME)%" />
+        <doctrine:orm auto-generate-proxy-classes="true" naming-strategy="doctrine.orm.naming_strategy.underscore_number_aware" auto-mapping="true" validate-xml-mapping="true">
+            <!-- Shared -->
+            <doctrine:mapping name="Shared" type="xml" dir="%kernel.project_dir%/src/Carthage/Resources/Shared/Mapping/" prefix="Carthage\Domain\Shared\Entity" alias="Shared"/>
+
+            <!-- LogManagement -->
+            <doctrine:mapping name="Log" type="xml" dir="%kernel.project_dir%/src/Carthage/Resources/LogManagement/Mapping/Log/" prefix="Carthage\Domain\LogManagement\Entity\Log" alias="Log"/>
+
+            <!-- MetricCollection -->
+            <doctrine:mapping name="Metric" type="xml" dir="%kernel.project_dir%/src/Carthage/Resources/MetricCollection/Mapping/Metric/" prefix="Carthage\Domain\MetricCollection\Entity\Metric" alias="Metric"/>
+            <doctrine:mapping name="Gauge" type="xml" dir="%kernel.project_dir%/src/Carthage/Resources/MetricCollection/Mapping/Gauge/" prefix="Carthage\Domain\MetricCollection\Entity\Gauge" alias="Gauge"/>
+            <doctrine:mapping name="Histogram" type="xml" dir="%kernel.project_dir%/src/Carthage/Resources/MetricCollection/Mapping/Histogram/" prefix="Carthage\Domain\MetricCollection\Entity\Histogram" alias="Histogram"/>
+            <doctrine:mapping name="Summary" type="xml" dir="%kernel.project_dir%/src/Carthage/Resources/MetricCollection/Mapping/Summary/" prefix="Carthage\Domain\MetricCollection\Entity\Summary" alias="Summary"/>
+        </doctrine:orm>
+    </doctrine:config>
+</container>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd"
+>
+    <!-- COLLECT -->
+    <route
+            id="histogram:collect"
+            path="/histogram/collect"
+            methods="POST"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\CollectHistogramRequestHandler::handle"
+    />
+
+    <!-- CREATE -->
+    <route
+            id="histogram:create"
+            path="/histogram"
+            methods="POST"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\CreateHistogramRequestHandler::handle"
+    />
+
+    <route
+            id="histogram:create-data-point"
+            path="/histogram/data-point"
+            methods="POST"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\CreateHistogramDataPointRequestHandler::handle"
+    />
+
+    <!-- DELETE -->
+    <route
+            id="histogram:delete"
+            path="/histogram/{ulid}"
+            methods="DELETE"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\DeleteHistogramRequestHandler::handle"
+    />
+    
+    <route
+            id="histogram:delete-data-point"
+            path="/histogram/data-point/{ulid}"
+            methods="DELETE"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\DeleteHistogramDataPointRequestHandler::handle"
+    />
+    
+    <!-- SHOW -->
+    <route
+            id="histogram:show"
+            path="/histogram/{ulid}"
+            methods="GET"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\ShowHistogramRequestHandler::handle"
+    />
+    
+    <route
+            id="histogram:show-data-point"
+            path="/histogram/data-point/{ulid}"
+            methods="GET"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\ShowHistogramDataPointRequestHandler::handle"
+    />
+    
+    <!-- INDEX -->
+    <route
+            id="histogram:index"
+            path="/histogram"
+            methods="GET"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\IndexHistogramRequestHandler::handle"
+    />
+    
+    <route
+            id="histogram:index-data-point"
+            path="/histogram/data-point"
+            methods="GET"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\IndexHistogramDataPointRequestHandler::handle"
+    />
+</routes>

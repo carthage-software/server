@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
+>
+    <class name="Carthage\Domain\MetricCollection\DataTransferObject\Histogram\CreateHistogram">
+        <property name="temporality">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.histogram.create_histogram.temporality.not_null</option>
+            </constraint>
+
+            <constraint name="Type">
+                <option name="type">
+                    <value>Carthage\Domain\MetricCollection\Enum\Metric\Temporality</value>
+                </option>
+                <option name="message">metric_collection.histogram.create_histogram.temporality.type</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

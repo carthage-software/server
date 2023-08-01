@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+    <entity
+        repository-class="Carthage\Infrastructure\MetricCollection\Doctrine\Repository\Metric\MetricDataPointRepository"
+        name="Carthage\Domain\MetricCollection\Entity\Metric\MetricDataPoint"
+        table="metric_data_points"
+        inheritance-type="SINGLE_TABLE"
+    >
+        <discriminator-column name="discriminator" type="string" length="255" />
+
+        <discriminator-map>
+            <discriminator-mapping value="gauge_data_point" class="Carthage\Domain\MetricCollection\Entity\Gauge\GaugeDataPoint" />
+            <discriminator-mapping value="histogram_data_point" class="Carthage\Domain\MetricCollection\Entity\Histogram\HistogramDataPoint" />
+            <discriminator-mapping value="summary_data_point" class="Carthage\Domain\MetricCollection\Entity\Summary\SummaryDataPoint" />
+        </discriminator-map>
+
+        <field name="source" type="string" column="source" nullable="false"/>
+        <field name="startAt" type="datetime_immutable" column="start_at" nullable="false"/>
+        <field name="endAt" type="datetime_immutable" column="end_at" nullable="false"/>
+        <field name="attributes" type="json" column="attributes" nullable="false">
+            <options>
+                <option name="jsonb">true</option>
+                <option name="default">{}</option>
+            </options>
+        </field>
+
+        <many-to-one field="metric" target-entity="Carthage\Domain\MetricCollection\Entity\Metric\Metric" inversed-by="dataPoints" fetch="LAZY">
+            <join-columns>
+                <join-column name="metric_id" referenced-column-name="id" nullable="false"/>
+            </join-columns>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

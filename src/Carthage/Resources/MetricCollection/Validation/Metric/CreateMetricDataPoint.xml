@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
+>
+    <class name="Carthage\Domain\MetricCollection\DataTransferObject\Metric\CreateMetricDataPoint">
+        <property name="metric">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.metric.create_metric_data_point.metric.not_null</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

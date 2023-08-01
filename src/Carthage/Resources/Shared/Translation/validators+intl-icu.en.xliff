@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="shared.pagination.pagination_filter.page.positive">
+                   <source>shared.pagination.pagination_filter.page.positive</source>
+                   <target>The page number must be a positive number.</target>
+            </trans-unit>
+            <trans-unit id="shared.pagination.pagination_filter.items_per_page.positive">
+                <source>shared.pagination.pagination_filter.items_per_page.positive</source>
+                <target>The number of items per page must be a positive number.</target>
+            </trans-unit>
+            <trans-unit id="shared.pagination.pagination_filter.items_per_page.less_than">
+                <source>shared.pagination.pagination_filter.items_per_page.less_than</source>
+                <target>The number of items per page must be less than or equal to {value}.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

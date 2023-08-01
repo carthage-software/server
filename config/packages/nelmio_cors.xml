@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:cors="http://example.org/schema/dic/nelmio_cors"
+           xsi:schemaLocation="
+                http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd
+                http://example.org/schema/dic/nelmio_cors https://example.org/schema/dic/nelmio_cors/nelmio_cors-1.0.xsd
+           "
+>
+    <cors:config>
+        <cors:defaults origin-regex="true" max-age="3600">
+            <cors:allow-origin>
+                <cors:value-0>%env(CORS_ALLOW_ORIGIN)%</cors:value-0>
+            </cors:allow-origin>
+
+            <cors:allow-methods>
+                <cors:value-0>OPTIONS</cors:value-0>
+                <cors:value-1>GET</cors:value-1>
+                <cors:value-2>HEAD</cors:value-2>
+                <cors:value-3>POST</cors:value-3>
+                <cors:value-4>PUT</cors:value-4>
+                <cors:value-5>PATCH</cors:value-5>
+                <cors:value-6>DELETE</cors:value-6>
+            </cors:allow-methods>
+
+            <cors:allow-headers>
+                <cors:value-0>Authorization</cors:value-0>
+                <cors:value-1>Content-Type</cors:value-1>
+                <cors:value-2>Cache-Control</cors:value-2>
+            </cors:allow-headers>
+
+            <cors:expose-headers>
+                <cors:value-0>Link</cors:value-0>
+            </cors:expose-headers>
+        </cors:defaults>
+
+        <cors:paths>
+            <cors:path path="^/" />
+        </cors:paths>
+    </cors:config>
+</container>

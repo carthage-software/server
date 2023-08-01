@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
+>
+    <class name="Carthage\Domain\MetricCollection\DataTransferObject\Histogram\CreateHistogramDataPoint">
+        <property name="lowerBound">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.histogram.create_histogram_data_point.lower_bound.not_null</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">
+                    <value>integer</value>
+                    <value>float</value>
+                </option>
+                <option name="message">metric_collection.histogram.create_histogram_data_point.lower_bound.type</option>
+            </constraint>
+        </property>
+        <property name="upperBound">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.histogram.create_histogram_data_point.upper_bound.not_null</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">
+                    <value>integer</value>
+                    <value>float</value>
+                </option>
+                <option name="message">metric_collection.histogram.create_histogram_data_point.upper_bound.type</option>
+            </constraint>
+        </property>
+        <property name="count">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.histogram.create_histogram_data_point.count.not_null</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">
+                    <value>integer</value>
+                </option>
+                <option name="message">metric_collection.histogram.create_histogram_data_point.count.type</option>
+            </constraint>
+        </property>
+        <property name="summation">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.histogram.create_histogram_data_point.summation.not_null</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">
+                    <value>integer</value>
+                    <value>float</value>
+                </option>
+                <option name="message">metric_collection.histogram.create_histogram_data_point.summation.type</option>
+            </constraint>
+        </property>
+        <property name="minimum">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.histogram.create_histogram_data_point.minimum.not_null</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">
+                    <value>integer</value>
+                    <value>float</value>
+                </option>
+                <option name="message">metric_collection.histogram.create_histogram_data_point.minimum.type</option>
+            </constraint>
+        </property>
+        <property name="maximum">
+            <constraint name="NotNull">
+                <option name="message">metric_collection.histogram.create_histogram_data_point.maximum.not_null</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">
+                    <value>integer</value>
+                    <value>float</value>
+                </option>
+                <option name="message">metric_collection.histogram.create_histogram_data_point.maximum.type</option>
+            </constraint>
+        </property>
+        <property name="bucketCounts">
+            <constraint name="All">
+                <option name="constraints">
+                    <constraint name="NotNull">
+                        <option name="message">metric_collection.histogram.create_histogram_data_point.bucket_counts.not_null</option>
+                    </constraint>
+                    <constraint name="Type">
+                        <option name="type">
+                            <value>integer</value>
+                        </option>
+                        <option name="message">metric_collection.histogram.create_histogram_data_point.bucket_counts.type</option>
+                    </constraint>
+                </option>
+            </constraint>
+        </property>
+        <property name="bucketBoundaries">
+            <constraint name="All">
+                <option name="constraints">
+                    <constraint name="NotNull">
+                        <option name="message">metric_collection.histogram.create_histogram_data_point.bucket_boundaries.not_null</option>
+                    </constraint>
+                    <constraint name="Type">
+                        <option name="type">
+                            <value>integer</value>
+                            <value>float</value>
+                        </option>
+                        <option name="message">metric_collection.histogram.create_histogram_data_point.bucket_boundaries.type</option>
+                    </constraint>
+                </option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

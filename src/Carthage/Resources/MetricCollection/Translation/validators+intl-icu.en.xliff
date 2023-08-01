@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="metric_collection.metric.create_metric.namespace.not_blank">
+                <source>metric_collection.metric.create_metric.namespace.not_blank</source>
+                <target>Metric namespace should not be blank.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.namespace.length.charset">
+                <source>metric_collection.metric.create_metric.namespace.length.charset</source>
+                <target>Metric namespace must use accepted characters.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.namespace.length.min">
+                <source>metric_collection.metric.create_metric.namespace.length.min</source>
+                <target>Metric namespace must be at least {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.namespace.length.max">
+                <source>metric_collection.metric.create_metric.namespace.length.max</source>
+                <target>Metric namespace must not exceed {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.name.not_blank">
+                <source>metric_collection.metric.create_metric.name.not_blank</source>
+                <target>Metric name should not be blank.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.name.length.charset">
+                <source>metric_collection.metric.create_metric.name.length.charset</source>
+                <target>Metric name must use accepted characters.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.name.length.min">
+                <source>metric_collection.metric.create_metric.name.length.min</source>
+                <target>Metric name must be at least {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.name.length.max">
+                <source>metric_collection.metric.create_metric.name.length.max</source>
+                <target>Metric name must not exceed {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.description.length.charset">
+                <source>metric_collection.metric.create_metric.description.length.charset</source>
+                <target>Metric description must use accepted characters.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.description.length.min">
+                <source>metric_collection.metric.create_metric.description.length.min</source>
+                <target>Metric description must be at least {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.description.length.max">
+                <source>metric_collection.metric.create_metric.description.length.max</source>
+                <target>Metric description must not exceed {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.unit.length.charset">
+                <source>metric_collection.metric.create_metric.unit.length.charset</source>
+                <target>Metric unit must use accepted characters.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.unit.length.min">
+                <source>metric_collection.metric.create_metric.unit.length.min</source>
+                <target>Metric unit must be at least {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric.unit.length.max">
+                <source>metric_collection.metric.create_metric.unit.length.max</source>
+                <target>Metric unit must not exceed {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.collect_metric_data_point.source.not_blank">
+                <source>metric_collection.metric.collect_metric_data_point.source.not_blank</source>
+                <target>Metric data point source should not be blank.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.collect_metric_data_point.source.length.charset">
+                <source>metric_collection.metric.collect_metric_data_point.source.length.charset</source>
+                <target>Metric data point source must use accepted characters.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.collect_metric_data_point.source.length.min">
+                <source>metric_collection.metric.collect_metric_data_point.source.length.min</source>
+                <target>Metric data point source must be at least {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.collect_metric_data_point.source.length.max">
+                <source>metric_collection.metric.collect_metric_data_point.source.length.max</source>
+                <target>Metric data point source must not exceed {limit} character(s) long.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.collect_metric_data_point.start_at.not_null">
+                <source>metric_collection.metric.collect_metric_data_point.start_at.not_null</source>
+                <target>Metric data point start date should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.collect_metric_data_point.end_at.not_null">
+                <source>metric_collection.metric.collect_metric_data_point.end_at.not_null</source>
+                <target>Metric data point end date should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.collect_metric_data_point.attributes.not_null">
+                <source>metric_collection.metric.collect_metric_data_point.attributes.not_null</source>
+                <target>Metric data point attributes should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.metric.create_metric_data_point.metric.not_null">
+                <source>metric_collection.metric.create_metric_data_point.metric.not_null</source>
+                <target>Metric data point metric should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.gauge.collect_gauge_data_point.value.not_null">
+                <source>metric_collection.gauge.collect_gauge_data_point.value.not_null</source>
+                <target>Gauge data point value should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.gauge.collect_gauge_data_point.value.type">
+                <source>metric_collection.gauge.collect_gauge_data_point.value.type</source>
+                <target>Gauge data point value should be of type {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.gauge.create_gauge_data_point.value.not_null">
+                <source>metric_collection.gauge.collect_gauge_data_point.value.not_null</source>
+                <target>Gauge data point value should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.gauge.create_gauge_data_point.value.type">
+                <source>metric_collection.gauge.collect_gauge_data_point.value.type</source>
+                <target>Gauge data point value should be of type {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.gauge.collect_gauge.gauge.not_null">
+                <source>metric_collection.gauge.collect_gauge.gauge.not_null</source>
+                <target>Gauge should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.gauge.collect_gauge.data_points.not_null">
+                <source>metric_collection.gauge.collect_gauge.data_points.not_null</source>
+                <target>Gauge data points should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.summary.collect_summary_data_point.value.not_null">
+                <source>metric_collection.summary.collect_summary_data_point.value.not_null</source>
+                <target>Summary data point value should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.summary.collect_summary_data_point.value.type">
+                <source>metric_collection.summary.collect_summary_data_point.value.type</source>
+                <target>Summary data point value should be of type {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.summary.create_summary_data_point.value.not_null">
+                <source>metric_collection.summary.collect_summary_data_point.value.not_null</source>
+                <target>Summary data point value should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.summary.create_summary_data_point.value.type">
+                <source>metric_collection.summary.collect_summary_data_point.value.type</source>
+                <target>Summary data point value should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.summary.create_summary.temporality.not_null">
+                <source>metric_collection.summary.create_summary.temporality.not_null</source>
+                <target>Summary temporality should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.summary.create_summary.temporality.type">
+                <source>metric_collection.summary.create_summary.temporality.type</source>
+                <target>Summary temporality should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.summary.collect_summary.summary.not_null">
+                <source>metric_collection.summary.collect_summary.summary.not_null</source>
+                <target>Summary should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.summary.collect_summary.data_points.not_null">
+                <source>metric_collection.summary.collect_summary.data_points.not_null</source>
+                <target>Summary data points should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram.histogram.not_null">
+                <source>metric_collection.histogram.collect_histogram.histogram.not_null</source>
+                <target>Histogram should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram.data_points.not_null">
+                <source>metric_collection.histogram.collect_histogram.data_points.not_null</source>
+                <target>Histogram data points should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.lower_bound.not_null">
+                <source>metric_collection.histogram.collect_histogram_data_point.lower_bound.not_null</source>
+                <target>Histogram data point lower bound should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.lower_bound.type">
+                <source>metric_collection.histogram.collect_histogram_data_point.lower_bound.type</source>
+                <target>Histogram data point lower bound should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.upper_bound.not_null">
+                <source>metric_collection.histogram.collect_histogram_data_point.upper_bound.not_null</source>
+                <target>Histogram data point upper bound should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.upper_bound.type">
+                <source>metric_collection.histogram.collect_histogram_data_point.upper_bound.type</source>
+                <target>Histogram data point upper bound should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.count.not_null">
+                <source>metric_collection.histogram.collect_histogram_data_point.count.not_null</source>
+                <target>Histogram data point count should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.count.type">
+                <source>metric_collection.histogram.collect_histogram_data_point.count.type</source>
+                <target>Histogram data point count should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.summation.not_null">
+                <source>metric_collection.histogram.collect_histogram_data_point.summation.not_null</source>
+                <target>Histogram data point summation should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.summation.type">
+                <source>metric_collection.histogram.collect_histogram_data_point.summation.type</source>
+                <target>Histogram data point summation should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.minimum.not_null">
+                <source>metric_collection.histogram.collect_histogram_data_point.minimum.not_null</source>
+                <target>Histogram data point minimum should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.minimum.type">
+                <source>metric_collection.histogram.collect_histogram_data_point.minimum.type</source>
+                <target>Histogram data point minimum should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.maximum.not_null">
+                <source>metric_collection.histogram.collect_histogram_data_point.maximum.not_null</source>
+                <target>Histogram data point maximum should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.maximum.type">
+                <source>metric_collection.histogram.collect_histogram_data_point.maximum.type</source>
+                <target>Histogram data point maximum should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.bucket_counts.not_null">
+                <source>metric_collection.histogram.collect_histogram_data_point.bucket_counts.not_null</source>
+                <target>Histogram data point bucket counts should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.bucket_counts.type">
+                <source>metric_collection.histogram.collect_histogram_data_point.bucket_counts.type</source>
+                <target>Histogram data point bucket counts should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.bucket_boundaries.not_null">
+                <source>metric_collection.histogram.collect_histogram_data_point.bucket_boundaries.not_null</source>
+                <target>Histogram data point bucket boundaries should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.collect_histogram_data_point.bucket_boundaries.type">
+                <source>metric_collection.histogram.collect_histogram_data_point.bucket_boundaries.type</source>
+                <target>Histogram data point bucket boundaries should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram.temporality.not_null">
+                <source>metric_collection.histogram.create_histogram.temporality.not_null</source>
+                <target>Histogram temporality should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram.temporality.type">
+                <source>metric_collection.histogram.create_histogram.temporality.type</source>
+                <target>Histogram temporality should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.lower_bound.not_null">
+                <source>metric_collection.histogram.create_histogram_data_point.lower_bound.not_null</source>
+                <target>Histogram data point lower bound should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.lower_bound.type">
+                <source>metric_collection.histogram.create_histogram_data_point.lower_bound.type</source>
+                <target>Histogram data point lower bound should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.upper_bound.not_null">
+                <source>metric_collection.histogram.create_histogram_data_point.upper_bound.not_null</source>
+                <target>Histogram data point upper bound should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.upper_bound.type">
+                <source>metric_collection.histogram.create_histogram_data_point.upper_bound.type</source>
+                <target>Histogram data point upper bound should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.count.not_null">
+                <source>metric_collection.histogram.create_histogram_data_point.count.not_null</source>
+                <target>Histogram data point count should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.count.type">
+                <source>metric_collection.histogram.create_histogram_data_point.count.type</source>
+                <target>Histogram data point count should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.summation.not_null">
+                <source>metric_collection.histogram.create_histogram_data_point.summation.not_null</source>
+                <target>Histogram data point summation should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.summation.type">
+                <source>metric_collection.histogram.create_histogram_data_point.summation.type</source>
+                <target>Histogram data point summation should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.minimum.not_null">
+                <source>metric_collection.histogram.create_histogram_data_point.minimum.not_null</source>
+                <target>Histogram data point minimum should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.minimum.type">
+                <source>metric_collection.histogram.create_histogram_data_point.minimum.type</source>
+                <target>Histogram data point minimum should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.maximum.not_null">
+                <source>metric_collection.histogram.create_histogram_data_point.maximum.not_null</source>
+                <target>Histogram data point maximum should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.maximum.type">
+                <source>metric_collection.histogram.create_histogram_data_point.maximum.type</source>
+                <target>Histogram data point maximum should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.bucket_counts.not_null">
+                <source>metric_collection.histogram.create_histogram_data_point.bucket_counts.not_null</source>
+                <target>Histogram data point bucket counts should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.bucket_counts.type">
+                <source>metric_collection.histogram.create_histogram_data_point.bucket_counts.type</source>
+                <target>Histogram data point bucket counts should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.bucket_boundaries.not_null">
+                <source>metric_collection.histogram.create_histogram_data_point.bucket_boundaries.not_null</source>
+                <target>Histogram data point bucket boundaries should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.histogram.create_histogram_data_point.bucket_boundaries.type">
+                <source>metric_collection.histogram.create_histogram_data_point.bucket_boundaries.type</source>
+                <target>Histogram data point bucket boundaries should be of type: {type}.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.collect.collect_gauges.not_null">
+                <source>metric_collection.collect.collect_gauges.not_null</source>
+                <target>Gauges should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.collect.collect_histograms.not_null">
+                <source>metric_collection.collect.collect_histograms.not_null</source>
+                <target>Histograms should not be null.</target>
+            </trans-unit>
+            <trans-unit id="metric_collection.collect.collect_summaries.not_null">
+                <source>metric_collection.collect.collect_summaries.not_null</source>
+                <target>Summaries should not be null.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

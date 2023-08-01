@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
+>
+    <class name="Carthage\Domain\LogManagement\DataTransferObject\Log\CollectLogEntry">
+        <property name="source">
+            <constraint name="NotNull">
+                <option name="message">log_management.log.collect_log_entry.source.not_null</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="charset">UTF-8</option>
+                <option name="charsetMessage">log_management.log.collect_log_entry.source.length.charset</option>
+                <option name="min">1</option>
+                <option name="minMessage">log_management.log.collect_log_entry.source.length.min</option>
+                <option name="max">128</option>
+                <option name="maxMessage">log_management.log.collect_log_entry.source.length.max</option>
+            </constraint>
+        </property>
+        <property name="context">
+            <constraint name="NotNull">
+                <option name="message">log_management.log.collect_log_entry.context.not_null</option>
+            </constraint>
+        </property>
+        <property name="attributes">
+            <constraint name="NotNull">
+                <option name="message">log_management.log.collect_log_entry.attributes.not_null</option>
+            </constraint>
+        </property>
+        <property name="tags">
+            <constraint name="NotNull">
+                <option name="message">log_management.log.collect_log_entry.tags.not_null</option>
+            </constraint>
+        </property>
+        <property name="occurredAt">
+            <constraint name="NotNull">
+                <option name="message">log_management.log.collect_log_entry.occurred_at.not_null</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>
+
