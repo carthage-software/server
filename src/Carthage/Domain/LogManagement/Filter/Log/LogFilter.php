@@ -63,15 +63,15 @@ final class LogFilter extends PaginationFilter
         // do not use `createdAt` for `from` and `to`.
         if (null !== $this->from) {
             $expressions[] = Criteria\Expression\Composition::or(
-                Criteria\Expression\Comparison::greaterThanOrEqual('lastRecordedAt', $this->from),
-                Criteria\Expression\Comparison::greaterThanOrEqual('firstRecordedAt', $this->from),
+                Criteria\Expression\Comparison::greaterThanOrEqual('lastEntryOccurredAt', $this->from),
+                Criteria\Expression\Comparison::greaterThanOrEqual('firstEntryOccurredAt', $this->from),
             );
         }
 
         if (null !== $this->to) {
             $expressions[] = Criteria\Expression\Composition::or(
-                Criteria\Expression\Comparison::lessThanOrEqual('lastRecordedAt', $this->to),
-                Criteria\Expression\Comparison::lessThanOrEqual('firstRecordedAt', $this->to),
+                Criteria\Expression\Comparison::lessThanOrEqual('lastEntryOccurredAt', $this->to),
+                Criteria\Expression\Comparison::lessThanOrEqual('firstEntryOccurredAt', $this->to),
             );
         }
 
