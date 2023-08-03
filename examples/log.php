@@ -18,7 +18,7 @@ for ($i = 1; $i <= 200; ++$i) {
         new Monolog\Processor\ProcessIdProcessor(),
         new Monolog\Processor\TagProcessor(['php', 'symfony', 'monolog']),
     ];
-   
+
     foreach (['default', 'event', 'deprecations'] as $channel) {
         $logger = new Monolog\Logger($channel, [$handler], $processors);
 
@@ -26,7 +26,7 @@ for ($i = 1; $i <= 200; ++$i) {
         $logger->error('Exception! oh no! (' . $i . ')', ['exception' => new Exception('Oh noes!')]);
 
         foreach (Monolog\Level::cases() as $level) {
-            $logger->log($level, 'Order #{order} has been deliveried!', ['order' => '1234567890']);
+            $logger->log($level, 'Order #{order} has been delivered!', ['order' => '1234567890']);
         }
     }
 }

@@ -25,6 +25,13 @@
     />
 
     <route
+        id="log:entry:tag"
+        path="/log/entry/tag"
+        methods="GET"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\IndexLogEntryTagRequestHandler::handle"
+    />
+
+    <route
         id="log:show"
         path="/log/{ulid}"
         methods="GET"

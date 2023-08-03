@@ -12,4 +12,8 @@ use Carthage\Domain\Shared\Repository\EntityRepositoryInterface;
  */
 interface LogEntryRepositoryInterface extends EntityRepositoryInterface
 {
+    /**
+     * @return list<non-empty-string>
+     */
+    public function findAllTags(): array;
 }
