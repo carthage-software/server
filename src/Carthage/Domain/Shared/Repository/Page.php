@@ -40,10 +40,7 @@ final readonly class Page implements Countable, IteratorAggregate
     public function getPrevious(): ?int
     {
         if ($this->hasPrevious()) {
-            $previous = $this->page - 1;
-            $last = (int) Math\ceil($this->totalItems / $this->itemsPerPage);
-
-            return Math\minva($previous, $last);
+            return $this->page - 1;
         }
 
         return null;
@@ -51,7 +48,7 @@ final readonly class Page implements Countable, IteratorAggregate
 
     public function hasNext(): bool
     {
-        return $this->page < (int) Math\ceil($this->totalItems / $this->itemsPerPage);
+        return $this->page < $this->getLast();
     }
 
     public function getNext(): ?int
@@ -70,7 +67,7 @@ final readonly class Page implements Countable, IteratorAggregate
 
     public function getLast(): int
     {
-        return (int) Math\ceil($this->totalItems / $this->itemsPerPage);
+        return Math\maxva(1, (int) Math\ceil($this->totalItems / $this->itemsPerPage));
     }
 
     public function count(): int
