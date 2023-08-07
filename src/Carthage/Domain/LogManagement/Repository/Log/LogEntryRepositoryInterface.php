@@ -16,4 +16,9 @@ interface LogEntryRepositoryInterface extends EntityRepositoryInterface
      * @return list<non-empty-string>
      */
     public function findAllTags(): array;
+
+    /**
+     * @return list<non-empty-string>
+     */
+    public function findAllSources(): array;
 }

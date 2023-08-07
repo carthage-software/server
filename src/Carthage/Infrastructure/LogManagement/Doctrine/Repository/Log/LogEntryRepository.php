@@ -35,11 +35,33 @@ final class LogEntryRepository extends EntityRepository implements LogEntryRepos
         $table = $this->getClassMetadata()->getTableName();
         $table = $connection->quoteIdentifier($table);
 
+        /** @var array<array-key, array{row: non-empty-string}> $result */
         $result = $connection
             ->executeQuery("SELECT DISTINCT jsonb_array_elements_text(tags) AS tag FROM $table ORDER BY tag ASC")
             ->fetchAllAssociative()
         ;
 
         return Vec\map($result, static fn (array $row): string => $row['tag']);
+    }
+
+    /**
+     * @throws Exception
+     *
+     * @return list<non-empty-string>
+     */
+    public function findAllSources(): array
+    {
+        $connection = $this->getEntityManager()->getConnection();
+
+        $table = $this->getClassMetadata()->getTableName();
+        $table = $connection->quoteIdentifier($table);
+
+        /** @var array<array-key, array{row: non-empty-string}> $result */
+        $result = $connection
+            ->executeQuery("SELECT DISTINCT source FROM $table ORDER BY source ASC")
+            ->fetchAllAssociative()
+        ;
+
+        return Vec\map($result, static fn (array $row): string => $row['source']);
     }
 }
