@@ -10,7 +10,7 @@ use DateTimeImmutable;
 final class CreateLogEntry extends CollectLogEntry
 {
     /**
-     * The unique identifier of the associated log.
+     * The identity of the associated log.
      */
     public Identity $logIdentity;
 

@@ -23,7 +23,7 @@ final class NotFoundException extends DomainException implements ExceptionInterf
     /**
      * Creates a new NotFoundException for the case when attempting to delete a non-existent log.
      *
-     * @param Identity $logIdentity the identifier of the log
+     * @param Identity $logIdentity the identity of the log
      */
     public static function whenDeletingNonExistentLog(Identity $logIdentity): self
     {
@@ -33,7 +33,7 @@ final class NotFoundException extends DomainException implements ExceptionInterf
     /**
      * Creates a new NotFoundException for the case when attempting to create an entry for a non-existent log.
      *
-     * @param Identity $logIdentity the identifier of the log
+     * @param Identity $logIdentity the identity of the log
      */
     public static function whenCreatingEntryForNonExistentLog(Identity $logIdentity): self
     {
@@ -43,7 +43,7 @@ final class NotFoundException extends DomainException implements ExceptionInterf
     /**
      * Creates a new NotFoundException for the case when attempting to delete a non-existent log entry.
      *
-     * @param Identity $logEntryIdentity the identifier of the log entry
+     * @param Identity $logEntryIdentity the identity of the log entry
      */
     public static function whenDeletingNonExistentLogEntry(Identity $logEntryIdentity): self
     {
