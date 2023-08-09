@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Carthage\Domain\MetricCollection\DataTransferObject\Gauge;
 
 use Carthage\Domain\MetricCollection\DataTransferObject\Metric\CreateMetricDataPoint;
+use Carthage\Domain\Shared\Entity\Identity;
 use DateTimeImmutable;
-use Symfony\Component\Uid\Ulid;
 
 final class CreateGaugeDataPoint extends CreateMetricDataPoint
 {
@@ -22,9 +22,9 @@ final class CreateGaugeDataPoint extends CreateMetricDataPoint
      * @param int|float $value the value of the data point
      * @param array<string, mixed> $attributes the additional attributes of the data point
      */
-    public function __construct(Ulid $gauge, string $source, DateTimeImmutable $startAt, DateTimeImmutable $endAt, int|float $value, array $attributes = [])
+    public function __construct(Identity $gaugeIdentity, string $source, DateTimeImmutable $startAt, DateTimeImmutable $endAt, int|float $value, array $attributes = [])
     {
-        parent::__construct($gauge, $source, $startAt, $endAt, $attributes);
+        parent::__construct($gaugeIdentity, $source, $startAt, $endAt, $attributes);
 
         $this->value = $value;
     }

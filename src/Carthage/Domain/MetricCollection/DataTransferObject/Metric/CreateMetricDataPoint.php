@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Carthage\Domain\MetricCollection\DataTransferObject\Metric;
 
+use Carthage\Domain\Shared\Entity\Identity;
 use DateTimeImmutable;
-use Symfony\Component\Uid\Ulid;
 
 abstract class CreateMetricDataPoint extends CollectMetricDataPoint
 {
     /**
-     * @var Ulid the unique identifier of the metric
+     * @var Identity the identity of the metric
      */
-    public Ulid $metric;
+    public Identity $metricIdentity;
 
     /**
      * @param non-empty-string $source the source from which this data point was generated
@@ -20,10 +20,10 @@ abstract class CreateMetricDataPoint extends CollectMetricDataPoint
      * @param DateTimeImmutable $endAt the end timestamp of the data point
      * @param array<string, mixed> $attributes the additional attributes of the data point
      */
-    public function __construct(Ulid $metric, string $source, DateTimeImmutable $startAt, DateTimeImmutable $endAt, array $attributes = [])
+    public function __construct(Identity $metricIdentity, string $source, DateTimeImmutable $startAt, DateTimeImmutable $endAt, array $attributes = [])
     {
         parent::__construct($source, $startAt, $endAt, $attributes);
 
-        $this->metric = $metric;
+        $this->metricIdentity = $metricIdentity;
     }
 }

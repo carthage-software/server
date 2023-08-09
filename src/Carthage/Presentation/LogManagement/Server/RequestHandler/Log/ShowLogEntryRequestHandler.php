@@ -6,12 +6,12 @@ namespace Carthage\Presentation\LogManagement\Server\RequestHandler\Log;
 
 use Carthage\Application\LogManagement\Query\Log\GetLogEntryQuery;
 use Carthage\Application\Shared\QueryBusInterface;
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Presentation\Shared\Server\HttpStatus;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Symfony\Component\Uid\Ulid;
 
 final readonly class ShowLogEntryRequestHandler implements RequestHandlerInterface
 {
@@ -23,10 +23,10 @@ final readonly class ShowLogEntryRequestHandler implements RequestHandlerInterfa
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        /** @var Ulid $logEntryId */
-        $logEntryId = $request->getAttribute('ulid');
+        /** @var Identity $logEntryIdentity */
+        $logEntryIdentity = $request->getAttribute('identity');
 
-        $logEntryResource = $this->queryBus->ask(GetLogEntryQuery::withId($logEntryId));
+        $logEntryResource = $this->queryBus->ask(GetLogEntryQuery::withIdentity($logEntryIdentity));
         if (null === $logEntryResource) {
             return $this->responseFactory->createResponse(HttpStatus::NotFound);
         }

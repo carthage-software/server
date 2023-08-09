@@ -20,8 +20,8 @@ final readonly class DeleteGaugeDataPointCommandHandler implements CommandHandle
 
     public function __invoke(DeleteGaugeDataPointCommand $command): void
     {
-        $this->gaugeDataPointService->deleteGaugeDataPoint($command->gaugeDataPointId);
+        $this->gaugeDataPointService->deleteGaugeDataPoint($command->gaugeDataPointIdentity);
 
-        $this->eventDispatcher->dispatch(new GaugeDataPointDeletedEvent($command->gaugeDataPointId));
+        $this->eventDispatcher->dispatch(new GaugeDataPointDeletedEvent($command->gaugeDataPointIdentity));
     }
 }

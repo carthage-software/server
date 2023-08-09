@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Carthage\Domain\LogManagement\Exception\Log;
 
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Domain\Shared\Exception\ExceptionInterface;
 use DomainException;
 use Psl\Str;
-use Symfony\Component\Uid\Ulid;
 
 final class NotFoundException extends DomainException implements ExceptionInterface
 {
@@ -23,30 +23,30 @@ final class NotFoundException extends DomainException implements ExceptionInterf
     /**
      * Creates a new NotFoundException for the case when attempting to delete a non-existent log.
      *
-     * @param Ulid $logId the identifier of the log
+     * @param Identity $logIdentity the identifier of the log
      */
-    public static function whenDeletingNonExistentLog(Ulid $logId): self
+    public static function whenDeletingNonExistentLog(Identity $logIdentity): self
     {
-        return new self(Str\format(self::DELETE_LOG_NOT_FOUND_MESSAGE, $logId->toBase32()));
+        return new self(Str\format(self::DELETE_LOG_NOT_FOUND_MESSAGE, $logIdentity->value));
     }
 
     /**
      * Creates a new NotFoundException for the case when attempting to create an entry for a non-existent log.
      *
-     * @param Ulid $logId the identifier of the log
+     * @param Identity $logIdentity the identifier of the log
      */
-    public static function whenCreatingEntryForNonExistentLog(Ulid $logId): self
+    public static function whenCreatingEntryForNonExistentLog(Identity $logIdentity): self
     {
-        return new self(Str\format(self::CREATE_LOG_ENTRY_FOR_LOG_NOT_FOUND_MESSAGE, $logId->toBase32()));
+        return new self(Str\format(self::CREATE_LOG_ENTRY_FOR_LOG_NOT_FOUND_MESSAGE, $logIdentity->value));
     }
 
     /**
      * Creates a new NotFoundException for the case when attempting to delete a non-existent log entry.
      *
-     * @param Ulid $logEntryId the identifier of the log entry
+     * @param Identity $logEntryIdentity the identifier of the log entry
      */
-    public static function whenDeletingNonExistentLogEntry(Ulid $logEntryId): self
+    public static function whenDeletingNonExistentLogEntry(Identity $logEntryIdentity): self
     {
-        return new self(Str\format(self::DELETE_LOG_ENTRY_NOT_FOUND_MESSAGE, $logEntryId->toBase32()));
+        return new self(Str\format(self::DELETE_LOG_ENTRY_NOT_FOUND_MESSAGE, $logEntryIdentity->value));
     }
 }

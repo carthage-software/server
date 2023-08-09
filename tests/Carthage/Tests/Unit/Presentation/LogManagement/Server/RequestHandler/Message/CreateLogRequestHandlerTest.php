@@ -15,22 +15,19 @@ use Carthage\Domain\Shared\Criteria\Expression\Comparison;
 use Carthage\Domain\Shared\Criteria\Expression\Composition;
 use Carthage\Domain\Shared\Criteria\Expression\Enum\ComparisonOperator;
 use Carthage\Domain\Shared\Criteria\Expression\Enum\CompositionOperator;
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Presentation\LogManagement\Server\RequestHandler\Log\CreateLogRequestHandler;
 use Carthage\Presentation\Shared\Server\HttpStatus;
 use Carthage\Presentation\Shared\Server\RequestMapperInterface;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;
 use DateTimeImmutable;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psl\Type;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Symfony\Component\Uid\Ulid;
 
-#[CoversClass(CreateLogRequestHandler::class)]
-#[CoversClass(CreateLog::class)]
 final class CreateLogRequestHandlerTest extends TestCase
 {
     /**
@@ -58,7 +55,7 @@ final class CreateLogRequestHandlerTest extends TestCase
                 static fn (CreateLogCommand $command) => self::assertSame($createLog, $command->createLog)
             );
 
-        $logResource = new LogResource(new Ulid(), $createLog->namespace, $createLog->level, $createLog->template, null, null, new DateTimeImmutable(), new DateTimeImmutable());
+        $logResource = new LogResource(new Identity('a'), $createLog->namespace, $createLog->level, $createLog->template, null, null, new DateTimeImmutable(), new DateTimeImmutable());
         $queryBus->expects(self::once())
             ->method('ask')
             ->with(self::isInstanceOf(GetLogQuery::class))

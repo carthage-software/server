@@ -79,12 +79,12 @@ abstract class FunctionalTestCase extends WebTestCase
             $collection = $this->get('/'.$resource);
             $data = Json\typed($collection->getContent() ?: '', Type\shape([
                 'items' => Type\vec(Type\shape([
-                    '@id' => Type\non_empty_string(),
+                    '@identity' => Type\non_empty_string(),
                 ], true)),
             ], true));
 
             foreach ($data['items'] as $item) {
-                $this->delete('/'.$resource.'/'.$item['@id']);
+                $this->delete('/'.$resource.'/'.$item['@identity']);
             }
         } while ([] !== $data['items']);
     }

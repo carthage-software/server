@@ -39,7 +39,7 @@ final readonly class CreateHistogramDataPointRequestHandler implements RequestHa
 
         $histogramDataPointResource = Type\instance_of(HistogramDataPointResource::class)->assert(
             $this->queryBus->ask(GetHistogramDataPointQuery::mostRecentForHistogramFromSource(
-                $createHistogramDataPoint->metric,
+                $createHistogramDataPoint->metricIdentity,
                 $createHistogramDataPoint->source,
             )),
         );

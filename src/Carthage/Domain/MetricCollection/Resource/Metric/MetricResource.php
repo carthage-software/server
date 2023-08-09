@@ -11,11 +11,11 @@ use Carthage\Domain\MetricCollection\Entity\Summary\Summary;
 use Carthage\Domain\MetricCollection\Resource\Gauge\GaugeResource;
 use Carthage\Domain\MetricCollection\Resource\Histogram\HistogramResource;
 use Carthage\Domain\MetricCollection\Resource\Summary\SummaryResource;
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Domain\Shared\Resource\ItemResourceInterface;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Psl\Type;
-use Symfony\Component\Uid\Ulid;
 
 /**
  * The MetricResource class represents a metric in the system, designed for serialization.
@@ -33,7 +33,7 @@ abstract readonly class MetricResource implements ItemResourceInterface
      * @param non-empty-string|null $unit - The unit of the metric
      */
     public function __construct(
-        public Ulid $id,
+        public Identity $identity,
         public string $namespace,
         public string $name,
         public ?string $description,
@@ -61,9 +61,9 @@ abstract readonly class MetricResource implements ItemResourceInterface
     /**
      * {@inheritDoc}
      */
-    public function getIdentity(): Ulid
+    public function getIdentity(): Identity
     {
-        return $this->id;
+        return $this->identity;
     }
 
     /**
@@ -77,7 +77,7 @@ abstract readonly class MetricResource implements ItemResourceInterface
     /**
      * @return array{
      *      "@type": non-empty-string,
-     *      "@id": string,
+     *      "@identity": non-empty-string,
      *      "namespace": non-empty-string,
      *      "name": non-empty-string,
      *      "description": non-empty-string|null,
@@ -90,7 +90,7 @@ abstract readonly class MetricResource implements ItemResourceInterface
     {
         return [
             '@type' => $this->getType(),
-            '@id' => $this->id->toBase32(),
+            '@identity' => $this->identity->value,
             'namespace' => $this->namespace,
             'name' => $this->name,
             'description' => $this->description,

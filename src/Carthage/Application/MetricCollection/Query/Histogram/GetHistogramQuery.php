@@ -7,7 +7,7 @@ namespace Carthage\Application\MetricCollection\Query\Histogram;
 use Carthage\Application\Shared\Query\QueryInterface;
 use Carthage\Domain\MetricCollection\Resource\Histogram\HistogramResource;
 use Carthage\Domain\Shared\Criteria;
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 /**
  * @implements QueryInterface<null|HistogramResource>
@@ -24,10 +24,10 @@ final class GetHistogramQuery implements QueryInterface
         return new self($criteria);
     }
 
-    public static function withId(Ulid $histogramId): self
+    public static function withIdentity(Identity $histogramIdentity): self
     {
         return self::with(Criteria\Criteria::create(
-            Criteria\Expression\Comparison::equal('id', $histogramId),
+            Criteria\Expression\Comparison::equal('id', $histogramIdentity),
         ));
     }
 

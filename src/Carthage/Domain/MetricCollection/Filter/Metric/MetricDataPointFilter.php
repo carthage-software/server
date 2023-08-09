@@ -6,13 +6,13 @@ namespace Carthage\Domain\MetricCollection\Filter\Metric;
 
 use Carthage\Domain\Shared\Criteria;
 use Carthage\Domain\Shared\Criteria\Enum\OrderDirection;
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Domain\Shared\Filter\PaginationFilter;
 use DateTimeImmutable;
-use Symfony\Component\Uid\Ulid;
 
 abstract class MetricDataPointFilter extends PaginationFilter
 {
-    public null|Ulid $metric = null;
+    public null|Identity $metricIdentity = null;
 
     /**
      * @var non-empty-string|null The source from which this data point was generated. Null if not provided.
@@ -41,8 +41,8 @@ abstract class MetricDataPointFilter extends PaginationFilter
     {
         $expressions = [];
 
-        if (null !== $this->metric) {
-            $expressions[] = Criteria\Expression\Comparison::equal('metric', $this->metric);
+        if (null !== $this->metricIdentity) {
+            $expressions[] = Criteria\Expression\Comparison::equal('metric', $this->metricIdentity);
         }
 
         if (null !== $this->source) {

@@ -30,7 +30,7 @@ final readonly class GaugeResource extends MetricResource
     /**
      * @return array{
      *      "@type": non-empty-string,
-     *      "@id": string,
+     *      "@identity": non-empty-string,
      *      "namespace": non-empty-string,
      *      "name": non-empty-string,
      *      "description": non-empty-string|null,

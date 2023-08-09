@@ -9,7 +9,7 @@ use Carthage\Domain\MetricCollection\Entity\Gauge\GaugeDataPoint;
 use Carthage\Domain\MetricCollection\Exception\Gauge\NotFoundException;
 use Carthage\Domain\MetricCollection\Repository\Gauge\GaugeDataPointRepositoryInterface;
 use Carthage\Domain\MetricCollection\Repository\Gauge\GaugeRepositoryInterface;
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 final readonly class GaugeDataPointService
 {
@@ -21,9 +21,9 @@ final readonly class GaugeDataPointService
 
     public function createGaugeDataPoint(CreateGaugeDataPoint $createGaugeDataPoint): GaugeDataPoint
     {
-        $gauge = $this->gaugeRepository->findOne($createGaugeDataPoint->metric);
+        $gauge = $this->gaugeRepository->findOne($createGaugeDataPoint->metricIdentity);
         if (null === $gauge) {
-            throw NotFoundException::whenCreatingGaugeDataPointForNonExistingGauge($createGaugeDataPoint->metric);
+            throw NotFoundException::whenCreatingGaugeDataPointForNonExistingGauge($createGaugeDataPoint->metricIdentity);
         }
 
         $gaugeDataPoint = new GaugeDataPoint(
@@ -42,11 +42,11 @@ final readonly class GaugeDataPointService
         return $gaugeDataPoint;
     }
 
-    public function deleteGaugeDataPoint(Ulid $gaugeDataPointId): void
+    public function deleteGaugeDataPoint(Identity $gaugeDataPointIdentity): void
     {
-        $gaugeDataPoint = $this->gaugeDataPointRepository->findOne($gaugeDataPointId);
+        $gaugeDataPoint = $this->gaugeDataPointRepository->findOne($gaugeDataPointIdentity);
         if (null === $gaugeDataPoint) {
-            throw NotFoundException::whenDeletingNonExistingGaugeDataPoint($gaugeDataPointId);
+            throw NotFoundException::whenDeletingNonExistingGaugeDataPoint($gaugeDataPointIdentity);
         }
 
         $this->gaugeDataPointRepository->remove($gaugeDataPoint);

@@ -9,7 +9,7 @@ use Carthage\Domain\LogManagement\Entity\Log\Log;
 use Carthage\Domain\LogManagement\Exception\Log\ConflictException;
 use Carthage\Domain\LogManagement\Exception\Log\NotFoundException;
 use Carthage\Domain\LogManagement\Repository\Log\LogRepositoryInterface;
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 /**
  * Service for log operations.
@@ -46,11 +46,11 @@ final readonly class LogService
     /**
      * @throws NotFoundException when the log does not exist
      */
-    public function deleteLog(Ulid $logId): void
+    public function deleteLog(Identity $logIdentity): void
     {
-        $log = $this->logRepository->findOne($logId);
+        $log = $this->logRepository->findOne($logIdentity);
         if (null === $log) {
-            throw NotFoundException::whenDeletingNonExistentLog($logId);
+            throw NotFoundException::whenDeletingNonExistentLog($logIdentity);
         }
 
         $this->logRepository->remove($log);

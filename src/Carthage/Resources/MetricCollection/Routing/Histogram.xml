@@ -29,33 +29,33 @@
     <!-- DELETE -->
     <route
             id="histogram:delete"
-            path="/histogram/{ulid}"
+            path="/histogram/{identity}"
             methods="DELETE"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\DeleteHistogramRequestHandler::handle"
     />
-    
+
     <route
             id="histogram:delete-data-point"
-            path="/histogram/data-point/{ulid}"
+            path="/histogram/data-point/{identity}"
             methods="DELETE"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\DeleteHistogramDataPointRequestHandler::handle"
     />
-    
+
     <!-- SHOW -->
     <route
             id="histogram:show"
-            path="/histogram/{ulid}"
+            path="/histogram/{identity}"
             methods="GET"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\ShowHistogramRequestHandler::handle"
     />
-    
+
     <route
             id="histogram:show-data-point"
-            path="/histogram/data-point/{ulid}"
+            path="/histogram/data-point/{identity}"
             methods="GET"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\ShowHistogramDataPointRequestHandler::handle"
     />
-    
+
     <!-- INDEX -->
     <route
             id="histogram:index"
@@ -63,7 +63,7 @@
             methods="GET"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram\IndexHistogramRequestHandler::handle"
     />
-    
+
     <route
             id="histogram:index-data-point"
             path="/histogram/data-point"

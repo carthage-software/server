@@ -24,10 +24,10 @@ final readonly class DeleteLogCommandHandler implements CommandHandlerInterface
      */
     public function __invoke(DeleteLogCommand $command): void
     {
-        $this->logService->deleteLog($command->logId);
+        $this->logService->deleteLog($command->logIdentity);
 
         $this->eventDispatcher->dispatch(
-            new LogDeletedEvent($command->logId),
+            new LogDeletedEvent($command->logIdentity),
         );
     }
 }

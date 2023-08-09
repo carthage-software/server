@@ -29,14 +29,14 @@
     <!-- DELETE -->
     <route
             id="summary:delete"
-            path="/summary/{ulid}"
+            path="/summary/{identity}"
             methods="DELETE"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\DeleteSummaryRequestHandler::handle"
     />
 
     <route
             id="summary:delete-data-point"
-            path="/summary/data-point/{ulid}"
+            path="/summary/data-point/{identity}"
             methods="DELETE"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\DeleteSummaryDataPointRequestHandler::handle"
     />
@@ -44,14 +44,14 @@
     <!-- SHOW -->
     <route
             id="summary:show"
-            path="/summary/{ulid}"
+            path="/summary/{identity}"
             methods="GET"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\ShowSummaryRequestHandler::handle"
     />
 
     <route
             id="summary:show-data-point"
-            path="/summary/data-point/{ulid}"
+            path="/summary/data-point/{identity}"
             methods="GET"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary\ShowSummaryDataPointRequestHandler::handle"
     />

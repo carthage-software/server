@@ -9,7 +9,7 @@ use Carthage\Domain\MetricCollection\Entity\Histogram\Histogram;
 use Carthage\Domain\MetricCollection\Exception\Histogram\ConflictException;
 use Carthage\Domain\MetricCollection\Exception\Histogram\NotFoundException;
 use Carthage\Domain\MetricCollection\Repository\Histogram\HistogramRepositoryInterface;
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 final readonly class HistogramService
 {
@@ -38,11 +38,11 @@ final readonly class HistogramService
         return $histogram;
     }
 
-    public function deleteHistogram(Ulid $histogramId): void
+    public function deleteHistogram(Identity $histogramIdentity): void
     {
-        $histogram = $this->histogramRepository->findOne($histogramId);
+        $histogram = $this->histogramRepository->findOne($histogramIdentity);
         if (null === $histogram) {
-            throw NotFoundException::whenDeletingNonExistingHistogram($histogramId);
+            throw NotFoundException::whenDeletingNonExistingHistogram($histogramIdentity);
         }
 
         $this->histogramRepository->remove($histogram);

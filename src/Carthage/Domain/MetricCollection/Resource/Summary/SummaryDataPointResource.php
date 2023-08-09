@@ -6,8 +6,8 @@ namespace Carthage\Domain\MetricCollection\Resource\Summary;
 
 use Carthage\Domain\MetricCollection\Entity\Summary\SummaryDataPoint;
 use Carthage\Domain\MetricCollection\Resource\Metric\MetricDataPointResource;
+use Carthage\Domain\Shared\Entity\Identity;
 use DateTimeImmutable;
-use Symfony\Component\Uid\Ulid;
 
 /**
  * The SummaryDataPointResource class represents a summary metric data point in the system, designed for serialization.
@@ -24,9 +24,9 @@ final readonly class SummaryDataPointResource extends MetricDataPointResource
      * @param non-empty-string $source - The source of the summary data point
      * @param array<string, mixed> $attributes - The attributes of the summary data point
      */
-    public function __construct(Ulid $id, Ulid $metric, string $source, DateTimeImmutable $startAt, DateTimeImmutable $endAt, int|float $value, array $attributes, DateTimeImmutable $createdAt, DateTimeImmutable $updatedAt)
+    public function __construct(Identity $identity, Identity $metricIdentity, string $source, DateTimeImmutable $startAt, DateTimeImmutable $endAt, int|float $value, array $attributes, DateTimeImmutable $createdAt, DateTimeImmutable $updatedAt)
     {
-        parent::__construct($id, $metric, $source, $startAt, $endAt, $attributes, $createdAt, $updatedAt);
+        parent::__construct($identity, $metricIdentity, $source, $startAt, $endAt, $attributes, $createdAt, $updatedAt);
 
         $this->value = $value;
     }
@@ -49,8 +49,8 @@ final readonly class SummaryDataPointResource extends MetricDataPointResource
     /**
      * @return array{
      *     "@type": non-empty-string,
-     *     "@id": string,
-     *     "metric": string,
+     *     "@identity": non-empty-string,
+     *     "metric_identity": non-empty-string,
      *     "source": non-empty-string,
      *     "start_at": non-empty-string,
      *     "end_at": non-empty-string,

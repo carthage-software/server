@@ -7,8 +7,8 @@ namespace Carthage\Domain\MetricCollection\Resource\Histogram;
 use Carthage\Domain\MetricCollection\Entity\Histogram\Histogram;
 use Carthage\Domain\MetricCollection\Enum\Metric\Temporality;
 use Carthage\Domain\MetricCollection\Resource\Metric\MetricResource;
+use Carthage\Domain\Shared\Entity\Identity;
 use DateTimeImmutable;
-use Symfony\Component\Uid\Ulid;
 
 /**
  * The HistogramResource class represents a histogram metric in the system, designed for serialization.
@@ -28,7 +28,7 @@ final readonly class HistogramResource extends MetricResource
      * @param non-empty-string|null $unit - The unit of the histogram
      */
     public function __construct(
-        Ulid $id,
+        Identity $identity,
         string $namespace,
         string $name,
         ?string $description,
@@ -37,7 +37,7 @@ final readonly class HistogramResource extends MetricResource
         DateTimeImmutable $createdAt,
         DateTimeImmutable $updatedAt,
     ) {
-        parent::__construct($id, $namespace, $name, $description, $unit, $createdAt, $updatedAt);
+        parent::__construct($identity, $namespace, $name, $description, $unit, $createdAt, $updatedAt);
 
         $this->temporality = $temporality;
     }
@@ -59,7 +59,7 @@ final readonly class HistogramResource extends MetricResource
     /**
      * @return array{
      *      "@type": non-empty-string,
-     *      "@id": string,
+     *      "@identity": non-empty-string,
      *      "namespace": non-empty-string,
      *      "name": non-empty-string,
      *      "description": non-empty-string|null,

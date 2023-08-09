@@ -20,10 +20,10 @@ final readonly class DeleteHistogramCommandHandler implements CommandHandlerInte
 
     public function __invoke(DeleteHistogramCommand $command): void
     {
-        $this->histogramService->deleteHistogram($command->histogramId);
+        $this->histogramService->deleteHistogram($command->histogramIdentity);
 
         $this->eventDispatcher->dispatch(
-            new HistogramDeletedEvent($command->histogramId)
+            new HistogramDeletedEvent($command->histogramIdentity)
         );
     }
 }

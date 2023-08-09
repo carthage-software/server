@@ -6,12 +6,12 @@ namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary;
 
 use Carthage\Application\MetricCollection\Query\Summary\GetSummaryDataPointQuery;
 use Carthage\Application\Shared\QueryBusInterface;
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Presentation\Shared\Server\HttpStatus;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Symfony\Component\Uid\Ulid;
 
 final readonly class ShowSummaryDataPointRequestHandler implements RequestHandlerInterface
 {
@@ -23,10 +23,10 @@ final readonly class ShowSummaryDataPointRequestHandler implements RequestHandle
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        /** @var Ulid $summaryDataPointId */
-        $summaryDataPointId = $request->getAttribute('ulid');
+        /** @var Identity $summaryDataPointIdentity */
+        $summaryDataPointIdentity = $request->getAttribute('identity');
 
-        $sumDataPointResource = $this->queryBus->ask(GetSummaryDataPointQuery::withId($summaryDataPointId));
+        $sumDataPointResource = $this->queryBus->ask(GetSummaryDataPointQuery::withIdentity($summaryDataPointIdentity));
         if (null === $sumDataPointResource) {
             return $this->responseFactory->createResponse(HttpStatus::NotFound);
         }

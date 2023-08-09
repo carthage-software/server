@@ -4,9 +4,9 @@
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
 >
     <class name="Carthage\Domain\LogManagement\DataTransferObject\Log\CreateLogEntry">
-        <property name="log">
+        <property name="logIdentity">
             <constraint name="NotNull">
-                <option name="message">log_management.log.create_log_entry.log.not_null</option>
+                <option name="message">log_management.log.create_log_entry.log_identity.not_null</option>
             </constraint>
         </property>
     </class>

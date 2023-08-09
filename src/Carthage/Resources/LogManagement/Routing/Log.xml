@@ -40,14 +40,14 @@
 
     <route
         id="log:show"
-        path="/log/{ulid}"
+        path="/log/{identity}"
         methods="GET"
         controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\ShowLogRequestHandler::handle"
     />
 
     <route
         id="log:entry:show"
-        path="/log/entry/{ulid}"
+        path="/log/entry/{identity}"
         methods="GET"
         controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\ShowLogEntryRequestHandler::handle"
     />
@@ -68,14 +68,14 @@
 
     <route
         id="log:delete"
-        path="/log/{ulid}"
+        path="/log/{identity}"
         methods="DELETE"
         controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\DeleteLogRequestHandler::handle"
     />
 
     <route
         id="log:entry:delete"
-        path="/log/entry/{ulid}"
+        path="/log/entry/{identity}"
         methods="DELETE"
         controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\DeleteLogEntryRequestHandler::handle"
     />

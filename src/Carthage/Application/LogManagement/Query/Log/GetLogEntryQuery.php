@@ -7,7 +7,7 @@ namespace Carthage\Application\LogManagement\Query\Log;
 use Carthage\Application\Shared\Query\QueryInterface;
 use Carthage\Domain\LogManagement\Resource\Log\LogEntryResource;
 use Carthage\Domain\Shared\Criteria;
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 /**
  * @implements QueryInterface<null|LogEntryResource>
@@ -19,10 +19,10 @@ final class GetLogEntryQuery implements QueryInterface
     ) {
     }
 
-    public static function withId(Ulid $logEntryId): self
+    public static function withIdentity(Identity $logEntryIdentity): self
     {
         return self::with(Criteria\Criteria::create(
-            Criteria\Expression\Comparison::equal('id', $logEntryId),
+            Criteria\Expression\Comparison::equal('id', $logEntryIdentity),
         ));
     }
 
@@ -34,11 +34,11 @@ final class GetLogEntryQuery implements QueryInterface
     /**
      * @param non-empty-string $source
      */
-    public static function mostRecentForLogFromSource(Ulid $logId, string $source): self
+    public static function mostRecentForLogFromSource(Identity $logIdentity, string $source): self
     {
         return self::with(Criteria\Criteria::create(
             Criteria\Expression\Composition::and(
-                Criteria\Expression\Comparison::equal('log', $logId),
+                Criteria\Expression\Comparison::equal('log', $logIdentity),
                 Criteria\Expression\Comparison::equal('source', $source),
             ),
         )->orderBy('createdAt', Criteria\Enum\OrderDirection::Descending));

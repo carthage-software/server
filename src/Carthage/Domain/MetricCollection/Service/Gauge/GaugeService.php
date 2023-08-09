@@ -9,7 +9,7 @@ use Carthage\Domain\MetricCollection\Entity\Gauge\Gauge;
 use Carthage\Domain\MetricCollection\Exception\Gauge\ConflictException;
 use Carthage\Domain\MetricCollection\Exception\Gauge\NotFoundException;
 use Carthage\Domain\MetricCollection\Repository\Gauge\GaugeRepositoryInterface;
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 final readonly class GaugeService
 {
@@ -37,11 +37,11 @@ final readonly class GaugeService
         return $gauge;
     }
 
-    public function deleteGauge(Ulid $gaugeId): void
+    public function deleteGauge(Identity $gaugeIdentity): void
     {
-        $gauge = $this->gaugeRepository->findOne($gaugeId);
+        $gauge = $this->gaugeRepository->findOne($gaugeIdentity);
         if (null === $gauge) {
-            throw NotFoundException::whenDeletingNonExistingGauge($gaugeId);
+            throw NotFoundException::whenDeletingNonExistingGauge($gaugeIdentity);
         }
 
         $this->gaugeRepository->remove($gauge);

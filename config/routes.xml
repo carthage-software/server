@@ -2,16 +2,16 @@
 <routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd">
     <!-- Shared -->
     <import resource="../src/Carthage/Resources/Shared/Routing/" type="directory" name-prefix="shared:">
-        <requirement key="ulid">[0-7][0-9A-HJKMNP-TV-Z]{25}</requirement>
+        <requirement key="identity">[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}</requirement>
     </import>
 
     <!-- Log Management -->
     <import resource="../src/Carthage/Resources/LogManagement/Routing/" type="directory" name-prefix="log-management:" prefix="/log-management">
-        <requirement key="ulid">[0-7][0-9A-HJKMNP-TV-Z]{25}</requirement>
+        <requirement key="identity">[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}</requirement>
     </import>
 
     <!-- Metric Collection -->
     <import resource="../src/Carthage/Resources/MetricCollection/Routing/" type="directory" name-prefix="metric-collection:" prefix="/metric-collection">
-        <requirement key="ulid">[0-7][0-9A-HJKMNP-TV-Z]{25}</requirement>
+        <requirement key="identity">[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}</requirement>
     </import>
 </routes>

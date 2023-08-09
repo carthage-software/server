@@ -6,12 +6,12 @@ namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge;
 
 use Carthage\Application\MetricCollection\Command\Gauge\DeleteGaugeDataPointCommand;
 use Carthage\Application\Shared\CommandBusInterface;
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Presentation\Shared\Server\HttpStatus;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Symfony\Component\Uid\Ulid;
 
 final readonly class DeleteGaugeDataPointRequestHandler implements RequestHandlerInterface
 {
@@ -23,10 +23,10 @@ final readonly class DeleteGaugeDataPointRequestHandler implements RequestHandle
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        /** @var Ulid $gaugeDataPointId */
-        $gaugeDataPointId = $request->getAttribute('ulid');
+        /** @var Identity $gaugeDataPointIdentity */
+        $gaugeDataPointIdentity = $request->getAttribute('identity');
 
-        $this->commandBus->dispatch(new DeleteGaugeDataPointCommand($gaugeDataPointId));
+        $this->commandBus->dispatch(new DeleteGaugeDataPointCommand($gaugeDataPointIdentity));
 
         return $this->responseFactory->createResponse(HttpStatus::NoContent);
     }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Carthage\Domain\MetricCollection\Exception\Gauge;
 
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Domain\Shared\Exception\ExceptionInterface;
 use DomainException;
 use Psl\Str;
-use Symfony\Component\Uid\Ulid;
 
 final class NotFoundException extends DomainException implements ExceptionInterface
 {
@@ -23,24 +23,24 @@ final class NotFoundException extends DomainException implements ExceptionInterf
     /**
      * Creates a new NotFoundException for the case when attempting to create a data point for a non-existing gauge.
      */
-    public static function whenCreatingGaugeDataPointForNonExistingGauge(Ulid $gaugeId): self
+    public static function whenCreatingGaugeDataPointForNonExistingGauge(Identity $gaugeIdentity): self
     {
-        return new self(Str\format(self::CREATING_DATA_POINT_FOR_NON_EXISTING_GAUGE, $gaugeId->toBase32()));
+        return new self(Str\format(self::CREATING_DATA_POINT_FOR_NON_EXISTING_GAUGE, $gaugeIdentity->value));
     }
 
     /**
      * Creates a new NotFoundException for the case when attempting to delete a non-existing gauge.
      */
-    public static function whenDeletingNonExistingGauge(Ulid $gaugeId): self
+    public static function whenDeletingNonExistingGauge(Identity $gaugeIdentity): self
     {
-        return new self(Str\format(self::DELETE_NON_EXISTING_GAUGE, $gaugeId->toBase32()));
+        return new self(Str\format(self::DELETE_NON_EXISTING_GAUGE, $gaugeIdentity->value));
     }
 
     /**
      * Creates a new NotFoundException for the case when attempting to delete a non-existing gauge data point.
      */
-    public static function whenDeletingNonExistingGaugeDataPoint(Ulid $gaugeDataPointId): self
+    public static function whenDeletingNonExistingGaugeDataPoint(Identity $gaugeDataPointIdentity): self
     {
-        return new self(Str\format(self::DELETE_NON_EXISTING_GAUGE_DATA_POINT, $gaugeDataPointId->toBase32()));
+        return new self(Str\format(self::DELETE_NON_EXISTING_GAUGE_DATA_POINT, $gaugeDataPointIdentity->value));
     }
 }

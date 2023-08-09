@@ -6,6 +6,7 @@ namespace Carthage\Infrastructure\Shared\Doctrine\Repository;
 
 use Carthage\Domain\Shared\Criteria\Criteria;
 use Carthage\Domain\Shared\Entity\Entity;
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Domain\Shared\Filter\FilterInterface;
 use Carthage\Domain\Shared\Repository\EntityRepositoryInterface;
 use Carthage\Domain\Shared\Repository\Page;
@@ -14,7 +15,6 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\QueryException;
-use Symfony\Component\Uid\Ulid;
 
 use function count;
 
@@ -28,10 +28,10 @@ abstract class EntityRepository extends ServiceEntityRepository implements Entit
     /**
      * @return T|null
      */
-    public function findOne(Ulid $id): ?Entity
+    public function findOne(Identity $identity): ?Entity
     {
         return $this->findOneBy([
-            'id' => $id->toRfc4122(),
+            'id' => $identity->value,
         ]);
     }
 

@@ -9,7 +9,7 @@ use Carthage\Domain\MetricCollection\Entity\Summary\SummaryDataPoint;
 use Carthage\Domain\MetricCollection\Exception\Summary\NotFoundException;
 use Carthage\Domain\MetricCollection\Repository\Summary\SummaryDataPointRepositoryInterface;
 use Carthage\Domain\MetricCollection\Repository\Summary\SummaryRepositoryInterface;
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 final readonly class SummaryDataPointService
 {
@@ -21,9 +21,9 @@ final readonly class SummaryDataPointService
 
     public function createSummaryDataPoint(CreateSummaryDataPoint $createSummaryDataPoint): SummaryDataPoint
     {
-        $summary = $this->summaryRepository->findOne($createSummaryDataPoint->metric);
+        $summary = $this->summaryRepository->findOne($createSummaryDataPoint->metricIdentity);
         if (null === $summary) {
-            throw NotFoundException::whenCreatingSummaryDataPointForNonExistingSummary($createSummaryDataPoint->metric);
+            throw NotFoundException::whenCreatingSummaryDataPointForNonExistingSummary($createSummaryDataPoint->metricIdentity);
         }
 
         $sumDataPoint = new SummaryDataPoint(
@@ -42,11 +42,11 @@ final readonly class SummaryDataPointService
         return $sumDataPoint;
     }
 
-    public function deleteSummaryDataPoint(Ulid $summaryDataPointId): void
+    public function deleteSummaryDataPoint(Identity $summaryDataPointIdentity): void
     {
-        $summaryDataPoint = $this->summaryDataPointRepository->findOne($summaryDataPointId);
+        $summaryDataPoint = $this->summaryDataPointRepository->findOne($summaryDataPointIdentity);
         if (null === $summaryDataPoint) {
-            throw NotFoundException::whenDeletingNonExistingSummaryDataPoint($summaryDataPointId);
+            throw NotFoundException::whenDeletingNonExistingSummaryDataPoint($summaryDataPointIdentity);
         }
 
         $this->summaryDataPointRepository->remove($summaryDataPoint);

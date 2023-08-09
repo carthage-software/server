@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Carthage\Tests\Unit\Domain\Shared\Entity;
 
 use Carthage\Domain\Shared\Entity\Entity;
+use Carthage\Domain\Shared\Entity\Identity;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Uid\Ulid;
 
 final class EntityTest extends TestCase
 {
@@ -23,10 +23,11 @@ final class EntityTest extends TestCase
     {
         $entity = new class() extends Entity {};
 
-        $id = Ulid::fromString('00000000000000000000000000');
+        $id = new Identity('foo');
 
         $entity->id = $id;
 
         self::assertSame($id, $entity->getIdentity());
+        self::assertSame($id, $entity->id);
     }
 }

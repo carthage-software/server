@@ -9,7 +9,7 @@ use Carthage\Domain\MetricCollection\Entity\Summary\Summary;
 use Carthage\Domain\MetricCollection\Exception\Summary\ConflictException;
 use Carthage\Domain\MetricCollection\Exception\Summary\NotFoundException;
 use Carthage\Domain\MetricCollection\Repository\Summary\SummaryRepositoryInterface;
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 final readonly class SummaryService
 {
@@ -38,11 +38,11 @@ final readonly class SummaryService
         return $summary;
     }
 
-    public function deleteSummary(Ulid $summaryId): void
+    public function deleteSummary(Identity $summaryIdentity): void
     {
-        $summary = $this->summaryRepository->findOne($summaryId);
+        $summary = $this->summaryRepository->findOne($summaryIdentity);
         if (null === $summary) {
-            throw NotFoundException::whenDeletingNonExistingSummary($summaryId);
+            throw NotFoundException::whenDeletingNonExistingSummary($summaryIdentity);
         }
 
         $this->summaryRepository->remove($summary);

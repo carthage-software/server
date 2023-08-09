@@ -6,10 +6,10 @@ namespace Carthage\Domain\LogManagement\Resource\Log;
 
 use Carthage\Domain\LogManagement\Entity\Log\Log;
 use Carthage\Domain\LogManagement\Enum\Log\Level;
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Domain\Shared\Resource\ItemResourceInterface;
 use DateTimeImmutable;
 use DateTimeInterface;
-use Symfony\Component\Uid\Ulid;
 
 final class LogResource implements ItemResourceInterface
 {
@@ -20,7 +20,7 @@ final class LogResource implements ItemResourceInterface
      * @param non-empty-string $template - The template for formatting the message
      */
     public function __construct(
-        public Ulid $id,
+        public Identity $identity,
         public string $namespace,
         public Level $level,
         public string $template,
@@ -48,9 +48,9 @@ final class LogResource implements ItemResourceInterface
     /**
      * {@inheritDoc}
      */
-    public function getIdentity(): Ulid
+    public function getIdentity(): Identity
     {
-        return $this->id;
+        return $this->identity;
     }
 
     /**
@@ -64,7 +64,7 @@ final class LogResource implements ItemResourceInterface
     /**
      * @return array{
      *      "@type": non-empty-string,
-     *      "@id": string,
+     *      "@identity": non-empty-string,
      *      "namespace": non-empty-string,
      *      "level": array{
      *          "name": non-empty-string,
@@ -81,7 +81,7 @@ final class LogResource implements ItemResourceInterface
     {
         return [
             '@type' => $this->getType(),
-            '@id' => $this->id->toBase32(),
+            '@identity' => $this->identity->value,
             'namespace' => $this->namespace,
             'level' => $this->level->jsonSerialize(),
             'template' => $this->template,

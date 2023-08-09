@@ -20,10 +20,10 @@ final readonly class DeleteHistogramDataPointCommandHandler implements CommandHa
 
     public function __invoke(DeleteHistogramDataPointCommand $command): void
     {
-        $this->histogramDataPointService->deleteHistogramDataPoint($command->histogramDataPointId);
+        $this->histogramDataPointService->deleteHistogramDataPoint($command->histogramDataPointIdentity);
 
         $this->eventDispatcher->dispatch(
-            new HistogramDataPointDeletedEvent($command->histogramDataPointId)
+            new HistogramDataPointDeletedEvent($command->histogramDataPointIdentity)
         );
     }
 }

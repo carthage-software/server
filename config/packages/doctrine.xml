@@ -8,7 +8,9 @@
             "
 >
     <doctrine:config>
-        <doctrine:dbal use-savepoints="true" url="%env(resolve:DATABASE_URL)%" dbname="%env(resolve:DATABASE_NAME)%" />
+        <doctrine:dbal use-savepoints="true" url="%env(resolve:DATABASE_URL)%" dbname="%env(resolve:DATABASE_NAME)%">
+            <doctrine:type name="identity" class="Carthage\Infrastructure\Shared\Doctrine\Types\IdentityType" />
+        </doctrine:dbal>
         <doctrine:orm auto-generate-proxy-classes="true" naming-strategy="doctrine.orm.naming_strategy.underscore_number_aware" auto-mapping="true" validate-xml-mapping="true">
             <!-- Shared -->
             <doctrine:mapping name="Shared" type="xml" dir="%kernel.project_dir%/src/Carthage/Resources/Shared/Mapping/" prefix="Carthage\Domain\Shared\Entity" alias="Shared"/>

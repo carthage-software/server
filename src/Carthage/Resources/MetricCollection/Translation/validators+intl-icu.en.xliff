@@ -86,8 +86,8 @@
                 <source>metric_collection.metric.collect_metric_data_point.attributes.not_null</source>
                 <target>Metric data point attributes should not be null.</target>
             </trans-unit>
-            <trans-unit id="metric_collection.metric.create_metric_data_point.metric.not_null">
-                <source>metric_collection.metric.create_metric_data_point.metric.not_null</source>
+            <trans-unit id="metric_collection.metric.create_metric_data_point.metric_identity.not_null">
+                <source>metric_collection.metric.create_metric_data_point.metric_identity.not_null</source>
                 <target>Metric data point metric should not be null.</target>
             </trans-unit>
             <trans-unit id="metric_collection.gauge.collect_gauge_data_point.value.not_null">

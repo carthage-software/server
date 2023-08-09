@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Carthage\Domain\LogManagement\Resource\Log;
 
 use Carthage\Domain\LogManagement\Entity\Log\LogEntry;
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Domain\Shared\Resource\ItemResourceInterface;
 use DateTimeImmutable;
 use DateTimeInterface;
-use Symfony\Component\Uid\Ulid;
 
 final class LogEntryResource implements ItemResourceInterface
 {
@@ -21,8 +21,8 @@ final class LogEntryResource implements ItemResourceInterface
      * @param list<non-empty-string> $tags
      */
     public function __construct(
-        public Ulid $id,
-        public Ulid $log,
+        public Identity $identity,
+        public Identity $logIdentity,
         public string $source,
         public array $context,
         public array $attributes,
@@ -51,9 +51,9 @@ final class LogEntryResource implements ItemResourceInterface
     /**
      * {@inheritDoc}
      */
-    public function getIdentity(): Ulid
+    public function getIdentity(): Identity
     {
-        return $this->id;
+        return $this->identity;
     }
 
     /**
@@ -69,8 +69,8 @@ final class LogEntryResource implements ItemResourceInterface
      *
      * @return array{
      *      "@type": non-empty-string,
-     *      "@id": string,
-     *      "log": string,
+     *      "@identity": non-empty-string,
+     *      "log_identity": non-empty-string,
      *      "source": non-empty-string,
      *      "context": array<string, mixed>,
      *      "attributes": array<string, mixed>,
@@ -84,8 +84,8 @@ final class LogEntryResource implements ItemResourceInterface
     {
         return [
             '@type' => $this->getType(),
-            '@id' => $this->id->toBase32(),
-            'log' => $this->log->toBase32(),
+            '@identity' => $this->identity->value,
+            'log_identity' => $this->logIdentity->value,
             'source' => $this->source,
             'context' => $this->context,
             'attributes' => $this->attributes,

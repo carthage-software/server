@@ -6,16 +6,16 @@ namespace Carthage\Domain\LogManagement\Filter\Log;
 
 use Carthage\Domain\Shared\Criteria;
 use Carthage\Domain\Shared\Criteria\Enum\OrderDirection;
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Domain\Shared\Filter\PaginationFilter;
 use DateTimeImmutable;
-use Symfony\Component\Uid\Ulid;
 
 final class LogEntryFilter extends PaginationFilter
 {
     /**
-     * @var Ulid|null the unique identifier of the log to filter by
+     * @var Identity|null the identity of the log to filter by
      */
-    public ?Ulid $log = null;
+    public ?Identity $logIdentity = null;
 
     /**
      * @var string|null the source to filter by
@@ -40,8 +40,8 @@ final class LogEntryFilter extends PaginationFilter
     public function getCriteria(): Criteria\Criteria
     {
         $expressions = [];
-        if (null !== $this->log) {
-            $expressions[] = Criteria\Expression\Comparison::equal('log', $this->log);
+        if (null !== $this->logIdentity) {
+            $expressions[] = Criteria\Expression\Comparison::equal('log', $this->logIdentity);
         }
 
         if (null !== $this->source) {

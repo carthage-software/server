@@ -6,8 +6,8 @@ namespace Carthage\Domain\MetricCollection\Resource\Gauge;
 
 use Carthage\Domain\MetricCollection\Entity\Gauge\GaugeDataPoint;
 use Carthage\Domain\MetricCollection\Resource\Metric\MetricDataPointResource;
+use Carthage\Domain\Shared\Entity\Identity;
 use DateTimeImmutable;
-use Symfony\Component\Uid\Ulid;
 
 /**
  * The GaugeDataPointResource class represents a gauge metric data point in the system, designed for serialization.
@@ -24,9 +24,9 @@ final readonly class GaugeDataPointResource extends MetricDataPointResource
      * @param non-empty-string $source - The source of the gauge data point
      * @param array<string, mixed> $attributes - The attributes of the gauge data point
      */
-    public function __construct(Ulid $id, Ulid $metric, string $source, DateTimeImmutable $startAt, DateTimeImmutable $endAt, int|float $value, array $attributes, DateTimeImmutable $createdAt, DateTimeImmutable $updatedAt)
+    public function __construct(Identity $identity, Identity $metricIdentity, string $source, DateTimeImmutable $startAt, DateTimeImmutable $endAt, int|float $value, array $attributes, DateTimeImmutable $createdAt, DateTimeImmutable $updatedAt)
     {
-        parent::__construct($id, $metric, $source, $startAt, $endAt, $attributes, $createdAt, $updatedAt);
+        parent::__construct($identity, $metricIdentity, $source, $startAt, $endAt, $attributes, $createdAt, $updatedAt);
 
         $this->value = $value;
     }
@@ -49,8 +49,8 @@ final readonly class GaugeDataPointResource extends MetricDataPointResource
     /**
      * @return array{
      *     "@type": non-empty-string,
-     *     "@id": string,
-     *     "metric": string,
+     *     "@identity": non-empty-string,
+     *     "metric_identity": non-empty-string,
      *     "source": non-empty-string,
      *     "start_at": non-empty-string,
      *     "end_at": non-empty-string,

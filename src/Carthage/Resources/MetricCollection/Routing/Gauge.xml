@@ -29,33 +29,33 @@
     <!-- DELETE -->
     <route
             id="gauge:delete"
-            path="/gauge/{ulid}"
+            path="/gauge/{identity}"
             methods="DELETE"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\DeleteGaugeRequestHandler::handle"
     />
-    
+
     <route
             id="gauge:delete-data-point"
-            path="/gauge/data-point/{ulid}"
+            path="/gauge/data-point/{identity}"
             methods="DELETE"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\DeleteGaugeDataPointRequestHandler::handle"
     />
-    
+
     <!-- SHOW -->
     <route
             id="gauge:show"
-            path="/gauge/{ulid}"
+            path="/gauge/{identity}"
             methods="GET"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\ShowGaugeRequestHandler::handle"
     />
-    
+
     <route
             id="gauge:show-data-point"
-            path="/gauge/data-point/{ulid}"
+            path="/gauge/data-point/{identity}"
             methods="GET"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\ShowGaugeDataPointRequestHandler::handle"
     />
-    
+
     <!-- INDEX -->
     <route
             id="gauge:index"
@@ -63,7 +63,7 @@
             methods="GET"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\IndexGaugeRequestHandler::handle"
     />
-    
+
     <route
             id="gauge:index-data-point"
             path="/gauge/data-point"

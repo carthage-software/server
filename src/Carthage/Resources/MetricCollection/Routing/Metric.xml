@@ -6,7 +6,7 @@
     <!-- SHOW -->
     <route
             id="metric:show"
-            path="/metric/{ulid}"
+            path="/metric/{identity}"
             methods="GET"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Metric\ShowMetricRequestHandler::handle"
     />

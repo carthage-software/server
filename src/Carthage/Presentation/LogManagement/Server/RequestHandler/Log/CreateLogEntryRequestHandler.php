@@ -39,7 +39,7 @@ final readonly class CreateLogEntryRequestHandler implements RequestHandlerInter
 
         $logEntryResource = Type\instance_of(LogEntryResource::class)->assert(
             $this->queryBus->ask(GetLogEntryQuery::mostRecentForLogFromSource(
-                $createLogEntry->log,
+                $createLogEntry->logIdentity,
                 $createLogEntry->source,
             )),
         );

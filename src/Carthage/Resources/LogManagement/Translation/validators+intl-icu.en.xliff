@@ -71,7 +71,7 @@
                 <target>Log entry occurred at must not be null.</target>
             </trans-unit>
             <trans-unit id="log_management.log.create_log_entry.log.not_null">
-                <source>log_management.log.create_log_entry.log.not_null</source>
+                <source>log_management.log.create_log_entry.log_identity.not_null</source>
                 <target>Log entry log must not be null.</target>
             </trans-unit>
             <trans-unit id="log_management.log.collect_log.log.not_null">

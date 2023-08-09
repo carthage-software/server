@@ -6,11 +6,10 @@ namespace Carthage\Domain\Shared\Entity;
 
 use DateTimeImmutable;
 use Psl;
-use Symfony\Component\Uid\Ulid;
 
 abstract class Entity
 {
-    public ?Ulid $id = null;
+    public ?Identity $id = null;
 
     public DateTimeImmutable $createdAt;
     public DateTimeImmutable $updatedAt;
@@ -24,7 +23,7 @@ abstract class Entity
     /**
      * @throws Psl\Exception\InvariantViolationException if the identity is not set
      */
-    public function getIdentity(): Ulid
+    public function getIdentity(): Identity
     {
         Psl\invariant(null !== $this->id, 'Attempted to get the identity of an entity that has not been persisted.');
 

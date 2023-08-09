@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:symfony="http://symfony.com/schema/dic/symfony"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd
+        http://symfony.com/schema/dic/symfony https://symfony.com/schema/dic/symfony/symfony-1.0.xsd">
+    <symfony:config>
+        <symfony:messenger default-bus="command.bus" enabled="true" failure-transport="failed">
+            <symfony:routing message-class="Carthage\Application\LogManagement\Command\Log\CollectLogCommand">
+                <symfony:sender service="async" />
+            </symfony:routing>
+            <symfony:routing message-class="Carthage\Application\LogManagement\Command\CollectCommand">
+                <symfony:sender service="async" />
+            </symfony:routing>
+        </symfony:messenger>
+    </symfony:config>
+</container>

@@ -9,7 +9,7 @@ use Carthage\Domain\LogManagement\Entity\Log\LogEntry;
 use Carthage\Domain\LogManagement\Exception\Log\NotFoundException;
 use Carthage\Domain\LogManagement\Repository\Log\LogEntryRepositoryInterface;
 use Carthage\Domain\LogManagement\Repository\Log\LogRepositoryInterface;
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 /**
  * Service for log entry operations.
@@ -27,9 +27,9 @@ final readonly class LogEntryService
      */
     public function createLogEntry(CreateLogEntry $createRecord): LogEntry
     {
-        $log = $this->logRepository->findOne($createRecord->log);
+        $log = $this->logRepository->findOne($createRecord->logIdentity);
         if (null === $log) {
-            throw NotFoundException::whenCreatingEntryForNonExistentLog($createRecord->log);
+            throw NotFoundException::whenCreatingEntryForNonExistentLog($createRecord->logIdentity);
         }
 
         $logEntry = $log->addLogEntry($createRecord->source, $createRecord->context, $createRecord->attributes, $createRecord->tags, $createRecord->occurredAt);
@@ -42,11 +42,11 @@ final readonly class LogEntryService
     /**
      * @throws NotFoundException when the log entry does not exist
      */
-    public function deleteLogEntry(Ulid $logEntryId): void
+    public function deleteLogEntry(Identity $logEntryIdentity): void
     {
-        $logEntry = $this->logEntryRepository->findOne($logEntryId);
+        $logEntry = $this->logEntryRepository->findOne($logEntryIdentity);
         if (null === $logEntry) {
-            throw NotFoundException::whenDeletingNonExistentLogEntry($logEntryId);
+            throw NotFoundException::whenDeletingNonExistentLogEntry($logEntryIdentity);
         }
 
         $this->logEntryRepository->remove($logEntry);

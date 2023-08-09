@@ -4,9 +4,9 @@
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd"
 >
     <class name="Carthage\Domain\MetricCollection\DataTransferObject\Metric\CreateMetricDataPoint">
-        <property name="metric">
+        <property name="metricIdentity">
             <constraint name="NotNull">
-                <option name="message">metric_collection.metric.create_metric_data_point.metric.not_null</option>
+                <option name="message">metric_collection.metric.create_metric_data_point.metric_identity.not_null</option>
             </constraint>
         </property>
     </class>

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Carthage\Domain\MetricCollection\Resource\Metric;
 
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Domain\Shared\Resource\ItemResourceInterface;
 use DateTimeImmutable;
 use DateTimeInterface;
-use Symfony\Component\Uid\Ulid;
 
 /**
  * The MetricDataPointResource class represents a metric data point in the system, designed for serialization.
@@ -23,8 +23,8 @@ abstract readonly class MetricDataPointResource implements ItemResourceInterface
      * @param array<string, mixed> $attributes - The attributes of the metric data point
      */
     public function __construct(
-        public Ulid $id,
-        public Ulid $metric,
+        public Identity $identity,
+        public Identity $metricIdentityIdentity,
         public string $source,
         public DateTimeImmutable $startAt,
         public DateTimeImmutable $endAt,
@@ -37,9 +37,9 @@ abstract readonly class MetricDataPointResource implements ItemResourceInterface
     /**
      * {@inheritDoc}
      */
-    public function getIdentity(): Ulid
+    public function getIdentity(): Identity
     {
-        return $this->id;
+        return $this->identity;
     }
 
     /**
@@ -53,8 +53,8 @@ abstract readonly class MetricDataPointResource implements ItemResourceInterface
     /**
      * @return array{
      *     "@type": non-empty-string,
-     *     "@id": string,
-     *     "metric": string,
+     *     "@identity": non-empty-string,
+     *     "metric_identity": non-empty-string,
      *     "source": non-empty-string,
      *     "start_at": non-empty-string,
      *     "end_at": non-empty-string,
@@ -67,8 +67,8 @@ abstract readonly class MetricDataPointResource implements ItemResourceInterface
     {
         return [
             '@type' => $this->getType(),
-            '@id' => $this->getIdentity()->toBase32(),
-            'metric' => $this->metric->toBase32(),
+            '@identity' => $this->getIdentity()->value,
+            'metric_identity' => $this->metricIdentityIdentity->value,
             'source' => $this->source,
             'start_at' => $this->startAt->format(DateTimeInterface::RFC3339_EXTENDED),
             'end_at' => $this->endAt->format(DateTimeInterface::RFC3339_EXTENDED),

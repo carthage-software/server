@@ -6,12 +6,12 @@ namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge;
 
 use Carthage\Application\MetricCollection\Query\Gauge\GetGaugeDataPointQuery;
 use Carthage\Application\Shared\QueryBusInterface;
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Presentation\Shared\Server\HttpStatus;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Symfony\Component\Uid\Ulid;
 
 final readonly class ShowGaugeDataPointRequestHandler implements RequestHandlerInterface
 {
@@ -23,10 +23,10 @@ final readonly class ShowGaugeDataPointRequestHandler implements RequestHandlerI
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        /** @var Ulid $gaugeDataPointId */
-        $gaugeDataPointId = $request->getAttribute('ulid');
+        /** @var Identity $gaugeDataPointIdentity */
+        $gaugeDataPointIdentity = $request->getAttribute('identity');
 
-        $gaugeDataPointResource = $this->queryBus->ask(GetGaugeDataPointQuery::withId($gaugeDataPointId));
+        $gaugeDataPointResource = $this->queryBus->ask(GetGaugeDataPointQuery::withIdentity($gaugeDataPointIdentity));
         if (null === $gaugeDataPointResource) {
             return $this->responseFactory->createResponse(HttpStatus::NotFound);
         }

@@ -8,7 +8,7 @@ use Carthage\Application\Shared\Query\QueryInterface;
 use Carthage\Domain\LogManagement\Enum\Log\Level;
 use Carthage\Domain\LogManagement\Resource\Log\LogResource;
 use Carthage\Domain\Shared\Criteria;
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 /**
  * @implements QueryInterface<null|LogResource>
@@ -25,10 +25,10 @@ final class GetLogQuery implements QueryInterface
         return new self($criteria);
     }
 
-    public static function withId(Ulid $logId): self
+    public static function withIdentity(Identity $logIdentity): self
     {
         return self::with(Criteria\Criteria::create(
-            Criteria\Expression\Comparison::equal('id', $logId),
+            Criteria\Expression\Comparison::equal('id', $logIdentity),
         ));
     }
 

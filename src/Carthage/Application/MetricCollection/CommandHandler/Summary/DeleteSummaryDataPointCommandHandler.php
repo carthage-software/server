@@ -20,8 +20,8 @@ final readonly class DeleteSummaryDataPointCommandHandler implements CommandHand
 
     public function __invoke(DeleteSummaryDataPointCommand $command): void
     {
-        $this->summaryDataPointService->deleteSummaryDataPoint($command->summaryDataPointId);
+        $this->summaryDataPointService->deleteSummaryDataPoint($command->summaryDataPointIdentity);
 
-        $this->eventDispatcher->dispatch(new SummaryDataPointDeletedEvent($command->summaryDataPointId));
+        $this->eventDispatcher->dispatch(new SummaryDataPointDeletedEvent($command->summaryDataPointIdentity));
     }
 }

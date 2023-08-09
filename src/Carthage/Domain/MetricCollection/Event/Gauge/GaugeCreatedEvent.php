@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Carthage\Domain\MetricCollection\Event\Gauge;
 
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 final class GaugeCreatedEvent
 {
     public function __construct(
-        public Ulid $gaugeId,
+        public Identity $gaugeIdentity,
     ) {
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container  xmlns="http://symfony.com/schema/dic/services"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:doctrine="http://symfony.com/schema/dic/doctrine"
+            xsi:schemaLocation="
+                http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd
+                http://symfony.com/schema/dic/doctrine https://symfony.com/schema/dic/doctrine/doctrine-1.0.xsd
+            "
+>
+    <doctrine:config>
+        <doctrine:dbal use-savepoints="true" url="%env(resolve:DATABASE_URL)%" dbname="%env(resolve:DATABASE_NAME)%" />
+        <doctrine:orm validate-xml-mapping="true">
+            <doctrine:mapping
+                name="Log"
+                alias="Log"
+                prefix="Carthage\Domain\LogManagement\Entity\Log"
+                dir="%kernel.project_dir%/src/Carthage/Resources/LogManagement/Mapping/Log/"
+                type="xml"
+            />
+        </doctrine:orm>
+    </doctrine:config>
+</container>

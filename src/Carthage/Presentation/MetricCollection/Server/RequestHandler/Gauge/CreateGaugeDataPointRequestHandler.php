@@ -39,7 +39,7 @@ final readonly class CreateGaugeDataPointRequestHandler implements RequestHandle
 
         $gaugeDataPointResource = Type\instance_of(GaugeDataPointResource::class)->assert(
             $this->queryBus->ask(GetGaugeDataPointQuery::mostRecentForGaugeFromSource(
-                $createGaugeDataPoint->metric,
+                $createGaugeDataPoint->metricIdentity,
                 $createGaugeDataPoint->source,
             )),
         );

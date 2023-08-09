@@ -6,8 +6,8 @@ namespace Carthage\Domain\Shared\Repository;
 
 use Carthage\Domain\Shared\Criteria\Criteria;
 use Carthage\Domain\Shared\Entity\Entity;
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Domain\Shared\Filter\FilterInterface;
-use Symfony\Component\Uid\Ulid;
 
 /**
  * @template T of Entity
@@ -17,7 +17,7 @@ interface EntityRepositoryInterface
     /**
      * @return T|null
      */
-    public function findOne(Ulid $id): ?Entity;
+    public function findOne(Identity $identity): ?Entity;
 
     /**
      * @return T|null

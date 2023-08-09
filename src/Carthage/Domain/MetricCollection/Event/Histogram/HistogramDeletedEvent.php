@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Carthage\Domain\MetricCollection\Event\Histogram;
 
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 final class HistogramDeletedEvent
 {
     public function __construct(
-        public Ulid $histogramId
+        public Identity $histogramIdentity
     ) {
     }
 }

@@ -20,8 +20,8 @@ final readonly class DeleteSummaryCommandHandler implements CommandHandlerInterf
 
     public function __invoke(DeleteSummaryCommand $command): void
     {
-        $this->summaryService->deleteSummary($command->summaryId);
+        $this->summaryService->deleteSummary($command->summaryIdentity);
 
-        $this->eventDispatcher->dispatch(new SummaryDeletedEvent($command->summaryId));
+        $this->eventDispatcher->dispatch(new SummaryDeletedEvent($command->summaryIdentity));
     }
 }

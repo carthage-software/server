@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Carthage\Domain\MetricCollection\DataTransferObject\Histogram;
 
 use Carthage\Domain\MetricCollection\DataTransferObject\Metric\CreateMetricDataPoint;
+use Carthage\Domain\Shared\Entity\Identity;
 use DateTimeImmutable;
-use Symfony\Component\Uid\Ulid;
 
 final class CreateHistogramDataPoint extends CreateMetricDataPoint
 {
@@ -66,9 +66,9 @@ final class CreateHistogramDataPoint extends CreateMetricDataPoint
      * @param list<int|float> $bucketBoundaries the bucket boundaries of the histogram data point
      * @param array<string, mixed> $attributes Additional attributes for the data point. Default is an empty array.
      */
-    public function __construct(Ulid $histogram, string $source, DateTimeImmutable $startAt, DateTimeImmutable $endAt, int|float $lowerBound, int|float $upperBound, int $count, int|float $summation, int|float $minimum, int|float $maximum, array $bucketCounts, array $bucketBoundaries, array $attributes = [])
+    public function __construct(Identity $histogramIdentity, string $source, DateTimeImmutable $startAt, DateTimeImmutable $endAt, int|float $lowerBound, int|float $upperBound, int $count, int|float $summation, int|float $minimum, int|float $maximum, array $bucketCounts, array $bucketBoundaries, array $attributes = [])
     {
-        parent::__construct($histogram, $source, $startAt, $endAt, $attributes);
+        parent::__construct($histogramIdentity, $source, $startAt, $endAt, $attributes);
 
         $this->lowerBound = $lowerBound;
         $this->upperBound = $upperBound;

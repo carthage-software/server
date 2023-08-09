@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Carthage\Tests\Unit\Domain\LogManagement\DataTransferObject\Log;
 
 use Carthage\Domain\LogManagement\DataTransferObject\Log\CreateLogEntry;
+use Carthage\Domain\Shared\Entity\Identity;
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Uid\Ulid;
 
 final class CreateLogEntryTest extends TestCase
 {
@@ -19,11 +19,11 @@ final class CreateLogEntryTest extends TestCase
      * @param list<non-empty-string> $tags
      */
     #[DataProvider('provideData')]
-    public function testConstruct(Ulid $message, string $source, array $context, array $extra, array $tags, DateTimeImmutable $occurredAt): void
+    public function testConstruct(Identity $logIdentity, string $source, array $context, array $extra, array $tags, DateTimeImmutable $occurredAt): void
     {
-        $dto = new CreateLogEntry($message, $source, $context, $extra, $tags, $occurredAt);
+        $dto = new CreateLogEntry($logIdentity, $source, $context, $extra, $tags, $occurredAt);
 
-        self::assertSame($message, $dto->log);
+        self::assertSame($logIdentity, $dto->logIdentity);
         self::assertSame($source, $dto->source);
         self::assertSame($context, $dto->context);
         self::assertSame($extra, $dto->attributes);
@@ -32,12 +32,12 @@ final class CreateLogEntryTest extends TestCase
     }
 
     /**
-     * @return iterable<array{Ulid, non-empty-string, array<string, mixed>, array<string, mixed>, list<non-empty-string>, DateTimeImmutable}>
+     * @return iterable<array{Identity, non-empty-string, array<string, mixed>, array<string, mixed>, list<non-empty-string>, DateTimeImmutable}>
      */
     public static function provideData(): iterable
     {
-        yield [new Ulid(), 'localhost', [], [], [], new DateTimeImmutable()];
-        yield [new Ulid(), 'www1.aws', ['foo' => 'bar'], ['bar' => 'baz'], ['foo', 'bar'], new DateTimeImmutable()];
-        yield [new Ulid(), 'staging.www2.aws', ['foo' => 'bar'], ['bar' => 'baz'], ['foo', 'bar'], new DateTimeImmutable()];
+        yield [new Identity('a'), 'localhost', [], [], [], new DateTimeImmutable()];
+        yield [new Identity('b'), 'www1.aws', ['foo' => 'bar'], ['bar' => 'baz'], ['foo', 'bar'], new DateTimeImmutable()];
+        yield [new Identity('c'), 'staging.www2.aws', ['foo' => 'bar'], ['bar' => 'baz'], ['foo', 'bar'], new DateTimeImmutable()];
     }
 }

@@ -6,8 +6,8 @@ namespace Carthage\Domain\MetricCollection\Resource\Histogram;
 
 use Carthage\Domain\MetricCollection\Entity\Histogram\HistogramDataPoint;
 use Carthage\Domain\MetricCollection\Resource\Metric\MetricDataPointResource;
+use Carthage\Domain\Shared\Entity\Identity;
 use DateTimeImmutable;
-use Symfony\Component\Uid\Ulid;
 
 /**
  * The HistogramDataPointResource class represents a histogram metric data point in the system, designed for serialization.
@@ -34,8 +34,8 @@ final readonly class HistogramDataPointResource extends MetricDataPointResource
      * @param array<int, int|float> $bucketBoundaries - The bucket boundaries of the histogram data point
      */
     public function __construct(
-        Ulid $id,
-        Ulid $metric,
+        Identity $identity,
+        Identity $metricIdentity,
         string $source,
         DateTimeImmutable $startAt,
         DateTimeImmutable $endAt,
@@ -51,7 +51,7 @@ final readonly class HistogramDataPointResource extends MetricDataPointResource
         DateTimeImmutable $createdAt,
         DateTimeImmutable $updatedAt,
     ) {
-        parent::__construct($id, $metric, $source, $startAt, $endAt, $attributes, $createdAt, $updatedAt);
+        parent::__construct($identity, $metricIdentity, $source, $startAt, $endAt, $attributes, $createdAt, $updatedAt);
 
         $this->lowerBound = $lowerBound;
         $this->upperBound = $upperBound;
@@ -88,8 +88,8 @@ final readonly class HistogramDataPointResource extends MetricDataPointResource
     /**
      * @return array{
      *     "@type": non-empty-string,
-     *     "@id": string,
-     *     "metric": string,
+     *     "@identity": non-empty-string,
+     *     "metric_identity": non-empty-string,
      *     "source": non-empty-string,
      *     "start_at": non-empty-string,
      *     "end_at": non-empty-string,

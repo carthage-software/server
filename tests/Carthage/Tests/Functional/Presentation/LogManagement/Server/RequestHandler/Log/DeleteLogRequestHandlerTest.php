@@ -26,10 +26,10 @@ final class DeleteLogRequestHandlerTest extends FunctionalTestCase
         self::assertResponseFormatSame('json');
 
         $data = Json\typed($this->browser->getResponse()->getContent() ?: '', Type\shape([
-            '@id' => Type\non_empty_string(),
+            '@identity' => Type\non_empty_string(),
         ], allow_unknown_fields: true));
 
-        $this->delete('/log-management/log/'.$data['@id']);
+        $this->delete('/log-management/log/'.$data['@identity']);
 
         self::assertResponseIsSuccessful();
     }

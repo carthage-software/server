@@ -39,7 +39,7 @@ final readonly class CreateSummaryDataPointRequestHandler implements RequestHand
 
         $summaryDataPointResource = Type\instance_of(SummaryDataPointResource::class)->assert(
             $this->queryBus->ask(GetSummaryDataPointQuery::mostRecentForSummaryFromSource(
-                $createSummaryDataPoint->metric,
+                $createSummaryDataPoint->metricIdentity,
                 $createSummaryDataPoint->source,
             )),
         );

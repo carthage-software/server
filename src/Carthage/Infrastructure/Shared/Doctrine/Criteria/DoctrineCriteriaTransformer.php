@@ -11,13 +11,13 @@ use Carthage\Domain\Shared\Criteria\Expression\Composition;
 use Carthage\Domain\Shared\Criteria\Expression\Enum\ComparisonOperator;
 use Carthage\Domain\Shared\Criteria\Expression\Enum\CompositionOperator;
 use Carthage\Domain\Shared\Criteria\Expression\ExpressionInterface;
+use Carthage\Domain\Shared\Entity\Identity;
 use Doctrine\Common\Collections\Criteria as DoctrineCriteria;
 use Doctrine\Common\Collections\Expr\Comparison as DoctrineComparison;
 use Doctrine\Common\Collections\Expr\CompositeExpression as DoctrineComposition;
 use InvalidArgumentException;
 use Psl\Dict;
 use Psl\Vec;
-use Symfony\Component\Uid\Ulid;
 
 final readonly class DoctrineCriteriaTransformer
 {
@@ -85,8 +85,8 @@ final readonly class DoctrineCriteriaTransformer
 
     private static function transformValue(mixed $value): mixed
     {
-        if ($value instanceof Ulid) {
-            return $value->toRfc4122();
+        if ($value instanceof Identity) {
+            return $value->value;
         }
 
         return $value;

@@ -7,7 +7,7 @@ namespace Carthage\Application\MetricCollection\Query\Metric;
 use Carthage\Application\Shared\Query\QueryInterface;
 use Carthage\Domain\MetricCollection\Resource\Metric\MetricResource;
 use Carthage\Domain\Shared\Criteria;
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 /**
  * @implements QueryInterface<null|MetricResource>
@@ -24,10 +24,10 @@ final class GetMetricQuery implements QueryInterface
         return new self($criteria);
     }
 
-    public static function withId(Ulid $metricId): self
+    public static function withIdentity(Identity $metricIdentity): self
     {
         return self::with(Criteria\Criteria::create(
-            Criteria\Expression\Comparison::equal('id', $metricId),
+            Criteria\Expression\Comparison::equal('id', $metricIdentity),
         ));
     }
 }

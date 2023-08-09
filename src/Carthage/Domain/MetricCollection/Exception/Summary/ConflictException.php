@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Carthage\Domain\MetricCollection\Exception\Summary;
 
+use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Domain\Shared\Exception\ExceptionInterface;
 use DomainException;
 use Psl\Str;
-use Symfony\Component\Uid\Ulid;
 
 final class ConflictException extends DomainException implements ExceptionInterface
 {
@@ -24,8 +24,8 @@ final class ConflictException extends DomainException implements ExceptionInterf
      * @param non-empty-string $name the name of the summary
      * @param non-empty-string $namespace the namespace of the summary
      */
-    public static function whenCreatingSummaryThatAlreadyExists(string $name, string $namespace, Ulid $summaryId): self
+    public static function whenCreatingSummaryThatAlreadyExists(string $name, string $namespace, Identity $summaryIdentity): self
     {
-        return new self(Str\format(self::CREATE_SUMMARY_ALREADY_EXISTS_MESSAGE, $name, $namespace, $summaryId->toBase32()));
+        return new self(Str\format(self::CREATE_SUMMARY_ALREADY_EXISTS_MESSAGE, $name, $namespace, $summaryIdentity->value));
     }
 }

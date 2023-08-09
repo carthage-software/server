@@ -9,7 +9,7 @@ use Carthage\Domain\MetricCollection\Entity\Histogram\HistogramDataPoint;
 use Carthage\Domain\MetricCollection\Exception\Histogram\NotFoundException;
 use Carthage\Domain\MetricCollection\Repository\Histogram\HistogramDataPointRepositoryInterface;
 use Carthage\Domain\MetricCollection\Repository\Histogram\HistogramRepositoryInterface;
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 final readonly class HistogramDataPointService
 {
@@ -21,9 +21,9 @@ final readonly class HistogramDataPointService
 
     public function createHistogramDataPoint(CreateHistogramDataPoint $createHistogramDataPoint): HistogramDataPoint
     {
-        $histogram = $this->histogramRepository->findOne($createHistogramDataPoint->metric);
+        $histogram = $this->histogramRepository->findOne($createHistogramDataPoint->metricIdentity);
         if (null === $histogram) {
-            throw NotFoundException::whenCreatingHistogramDataPointForNonExistingHistogram($createHistogramDataPoint->metric);
+            throw NotFoundException::whenCreatingHistogramDataPointForNonExistingHistogram($createHistogramDataPoint->metricIdentity);
         }
 
         $histogramDataPoint = new HistogramDataPoint(
@@ -49,11 +49,11 @@ final readonly class HistogramDataPointService
         return $histogramDataPoint;
     }
 
-    public function deleteHistogramDataPoint(Ulid $histogramDataPointId): void
+    public function deleteHistogramDataPoint(Identity $histogramDataPointIdentity): void
     {
-        $histogramDataPoint = $this->histogramDataPointRepository->findOne($histogramDataPointId);
+        $histogramDataPoint = $this->histogramDataPointRepository->findOne($histogramDataPointIdentity);
         if (null === $histogramDataPoint) {
-            throw NotFoundException::whenDeletingNonExistingHistogramDataPoint($histogramDataPointId);
+            throw NotFoundException::whenDeletingNonExistingHistogramDataPoint($histogramDataPointIdentity);
         }
 
         $this->histogramDataPointRepository->remove($histogramDataPoint);

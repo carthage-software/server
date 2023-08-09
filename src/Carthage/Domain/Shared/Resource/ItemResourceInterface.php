@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Carthage\Domain\Shared\Resource;
 
-use Symfony\Component\Uid\Ulid;
+use Carthage\Domain\Shared\Entity\Identity;
 
 interface ItemResourceInterface extends ResourceInterface
 {
     /**
      * Gets the ID of the RecordResource.
      */
-    public function getIdentity(): Ulid;
+    public function getIdentity(): Identity;
 }
