@@ -63,15 +63,14 @@ services:
       - "5432"
 
   redis:
-    image: redis:${REDIS_VERION:-7}-alpine
+    image: redis:${REDIS_VERSION:-7}-alpine
     restart: always
     volumes:
       - redis_data:/var/lib/redis/data:rw
       - redis_config:/usr/local/etc/redis
+    command: redis-server --requirepass "!ChangeMe!"
     ports:
       - "6379"
-    environment:
-      REDIS_REQUIREPASS: "!ChangeMe!"
 
   rabbitmq:
     image: rabbitmq:${RABBITMQ_VERSION:-3.12}-management

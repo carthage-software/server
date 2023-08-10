@@ -5,10 +5,17 @@ declare(strict_types=1);
 namespace Carthage\Infrastructure\LogManagement\Doctrine\Repository\Log;
 
 use Carthage\Domain\LogManagement\Entity\Log\LogEntry;
+use Carthage\Domain\LogManagement\Enum\Log\Statistics\Frequency;
 use Carthage\Domain\LogManagement\Repository\Log\LogEntryRepositoryInterface;
+use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogEntryFrequencyCount;
+use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogEntrySourceFrequency;
+use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogEntryTagDistribution;
 use Carthage\Infrastructure\Shared\Doctrine\Repository\EntityRepository;
-use Doctrine\DBAL\Exception;
+use DateTimeImmutable;
+use Doctrine\DBAL\Exception as DatabaseException;
 use Doctrine\Persistence\ManagerRegistry;
+use Exception;
+use Psl\Type;
 use Psl\Vec;
 use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
@@ -24,11 +31,11 @@ final class LogEntryRepository extends EntityRepository implements LogEntryRepos
     }
 
     /**
-     * @throws Exception
+     * @throws DatabaseException
      *
      * @return list<non-empty-string>
      */
-    public function findAllTags(): array
+    public function getUniqueTagsFromLogEntries(): array
     {
         $connection = $this->getEntityManager()->getConnection();
 
@@ -45,11 +52,11 @@ final class LogEntryRepository extends EntityRepository implements LogEntryRepos
     }
 
     /**
-     * @throws Exception
+     * @throws DatabaseException
      *
      * @return list<non-empty-string>
      */
-    public function findAllSources(): array
+    public function getUniqueSourcesFromLogEntries(): array
     {
         $connection = $this->getEntityManager()->getConnection();
 
@@ -63,5 +70,100 @@ final class LogEntryRepository extends EntityRepository implements LogEntryRepos
         ;
 
         return Vec\map($result, static fn (array $row): string => $row['source']);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @throws DatabaseException
+     */
+    public function getMostFrequentSources(): array
+    {
+        $connection = $this->getEntityManager()->getConnection();
+
+        $table = $this->getClassMetadata()->getTableName();
+        $table = $connection->quoteIdentifier($table);
+
+        $query = "
+            WITH total AS (
+                SELECT COUNT(*) AS total_count FROM $table
+            )
+            SELECT source, COUNT(source) AS count, (COUNT(source) * 100.0 / total.total_count) AS percentage
+            FROM $table, total
+            GROUP BY source, total.total_count
+            ORDER BY count DESC
+        ";
+
+        /** @var array<array-key, array{source: non-empty-string, count: string, percentage: string}> $result */
+        $result = $connection->executeQuery($query)->fetchAllAssociative();
+
+        return Vec\map($result, static fn (array $row): LogEntrySourceFrequency => new LogEntrySourceFrequency(
+            Type\non_empty_string()->coerce($row['source']),
+            Type\positive_int()->coerce($row['count']),
+            Type\float()->coerce($row['percentage']),
+        ));
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @throws DatabaseException
+     *
+     * @return list<LogEntryTagDistribution>
+     */
+    public function getTagDistribution(): array
+    {
+        $connection = $this->getEntityManager()->getConnection();
+
+        $table = $this->getClassMetadata()->getTableName();
+        $table = $connection->quoteIdentifier($table);
+
+        /** @var array<array-key, array{tag: string, count: string}> $result */
+        $result = $connection
+            ->executeQuery("SELECT tag, COUNT(tag) AS count FROM (SELECT jsonb_array_elements_text(tags) AS tag FROM $table) AS subquery GROUP BY tag ORDER BY count DESC")
+            ->fetchAllAssociative()
+        ;
+
+        return Vec\map($result, static fn (array $row): LogEntryTagDistribution => new LogEntryTagDistribution(
+            Type\non_empty_string()->coerce($row['tag']),
+            Type\positive_int()->coerce($row['count']),
+        ));
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @throws DatabaseException
+     * @throws Exception
+     *
+     * @return list<LogEntryFrequencyCount>
+     */
+    public function getLogEntryCountByFrequency(Frequency $frequency): array
+    {
+        $connection = $this->getEntityManager()->getConnection();
+
+        $table = $this->getClassMetadata()->getTableName();
+        $table = $connection->quoteIdentifier($table);
+
+        $interval = match ($frequency) {
+            Frequency::Hourly => 'hour',
+            Frequency::Daily => 'day',
+            Frequency::Weekly => 'week',
+            Frequency::Monthly => 'month',
+            Frequency::Quarterly => 'quarter',
+            Frequency::Yearly => 'year',
+        };
+
+        /** @var array<array-key, array{date: string, count: string}> $result */
+        $result = $connection->executeQuery("SELECT date_trunc(:interval, occurred_at) AS date, COUNT(*) AS count FROM $table GROUP BY date ORDER BY date ASC", [
+            'interval' => $interval,
+        ])->fetchAllAssociative();
+
+        return Vec\map($result, static fn (array $row): LogEntryFrequencyCount => new LogEntryFrequencyCount(
+            new DateTimeImmutable(
+                Type\non_empty_string()->coerce($row['date']),
+            ),
+            Type\positive_int()->coerce($row['count']),
+        ));
     }
 }

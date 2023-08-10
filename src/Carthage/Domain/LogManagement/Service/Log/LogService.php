@@ -26,7 +26,7 @@ final readonly class LogService
      */
     public function createLog(CreateLog $createLog): Log
     {
-        $log = $this->logRepository->findByLevelAndTemplateInNamespace(
+        $log = $this->logRepository->findLogByLevelTemplateAndNamespace(
             $createLog->level,
             $createLog->template,
             $createLog->namespace,

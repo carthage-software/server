@@ -23,7 +23,7 @@ final readonly class GetLogEntrySourceCollectionQueryHandler implements QueryHan
      */
     public function __invoke(GetLogEntrySourceCollectionQuery $query): CollectionResourceInterface
     {
-        $sources = $this->logEntryRepository->findAllSources();
+        $sources = $this->logEntryRepository->getUniqueSourcesFromLogEntries();
 
         return SimpleCollectionResource::fromItems($sources, LogEntrySourceResource::fromSource(...));
     }

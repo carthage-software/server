@@ -23,7 +23,7 @@ final readonly class GetLogNamespaceCollectionQueryHandler implements QueryHandl
      */
     public function __invoke(GetLogNamespaceCollectionQuery $query): CollectionResourceInterface
     {
-        $namespaces = $this->logRepository->findAllNamespaces();
+        $namespaces = $this->logRepository->getUniqueNamespacesFromLogs();
 
         return SimpleCollectionResource::fromItems($namespaces, LogNamespaceResource::fromNamespace(...));
     }

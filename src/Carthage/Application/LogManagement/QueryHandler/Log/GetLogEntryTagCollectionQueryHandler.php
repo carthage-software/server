@@ -23,7 +23,7 @@ final readonly class GetLogEntryTagCollectionQueryHandler implements QueryHandle
      */
     public function __invoke(GetLogEntryTagCollectionQuery $query): CollectionResourceInterface
     {
-        $tags = $this->logEntryRepository->findAllTags();
+        $tags = $this->logEntryRepository->getUniqueTagsFromLogEntries();
 
         return SimpleCollectionResource::fromItems($tags, LogEntryTagResource::fromTag(...));
     }

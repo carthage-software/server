@@ -73,7 +73,7 @@ enum Level: int implements JsonSerializable
      *
      * @return array{
      *      "name": non-empty-string,
-     *      "value": int,
+     *      "value": positive-int
      *  }
      */
     public function jsonSerialize(): array

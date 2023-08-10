@@ -24,7 +24,7 @@ final readonly class LogCollector
 
     public function collectLog(CollectLog $collectLog): void
     {
-        $log = $this->logRepository->findByLevelAndTemplateInNamespace(
+        $log = $this->logRepository->findLogByLevelTemplateAndNamespace(
             $collectLog->log->level,
             $collectLog->log->template,
             $collectLog->log->namespace,

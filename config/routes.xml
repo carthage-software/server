@@ -8,6 +8,7 @@
     <!-- Log Management -->
     <import resource="../src/Carthage/Resources/LogManagement/Routing/" type="directory" name-prefix="log-management:" prefix="/log-management">
         <requirement key="identity">[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}</requirement>
+        <requirement key="frequency">hourly|daily|weekly|monthly|quarterly|yearly</requirement>
     </import>
 
     <!-- Metric Collection -->
