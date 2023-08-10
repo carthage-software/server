@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge;
 
-use Carthage\Application\MetricCollection\Query\Gauge\GetGaugeDataPointQuery;
+use Carthage\Application\MetricCollection\Query\Gauge\GetGaugeQuery;
 use Carthage\Application\Shared\QueryBusInterface;
 use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Presentation\Shared\Server\HttpStatus;
@@ -13,7 +13,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final readonly class ShowGaugeDataPointRequestHandler implements RequestHandlerInterface
+final readonly class GetGaugeRequestHandler implements RequestHandlerInterface
 {
     public function __construct(
         private QueryBusInterface $queryBus,
@@ -23,14 +23,14 @@ final readonly class ShowGaugeDataPointRequestHandler implements RequestHandlerI
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        /** @var Identity $gaugeDataPointIdentity */
-        $gaugeDataPointIdentity = $request->getAttribute('identity');
+        /** @var Identity $gaugeIdentity */
+        $gaugeIdentity = $request->getAttribute('identity');
 
-        $gaugeDataPointResource = $this->queryBus->ask(GetGaugeDataPointQuery::withIdentity($gaugeDataPointIdentity));
-        if (null === $gaugeDataPointResource) {
+        $gaugeResource = $this->queryBus->ask(GetGaugeQuery::withIdentity($gaugeIdentity));
+        if (null === $gaugeResource) {
             return $this->responseFactory->createResponse(HttpStatus::NotFound);
         }
 
-        return $this->responseFactory->createResourceResponse($gaugeDataPointResource);
+        return $this->responseFactory->createResourceResponse($gaugeResource);
     }
 }

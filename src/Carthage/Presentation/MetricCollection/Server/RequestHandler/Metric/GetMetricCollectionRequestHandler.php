@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge;
+namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Metric;
 
-use Carthage\Application\MetricCollection\Query\Gauge\GetGaugeDataPointCollectionQuery;
+use Carthage\Application\MetricCollection\Query\Metric\GetMetricCollectionQuery;
 use Carthage\Application\Shared\QueryBusInterface;
-use Carthage\Domain\MetricCollection\Filter\Gauge\GaugeDataPointFilter;
+use Carthage\Domain\MetricCollection\Filter\Metric\MetricFilter;
 use Carthage\Presentation\Shared\Server\RequestMapperInterface;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final readonly class IndexGaugeDataPointRequestHandler implements RequestHandlerInterface
+final readonly class GetMetricCollectionRequestHandler implements RequestHandlerInterface
 {
     public function __construct(
         private RequestMapperInterface $requestMapper,
@@ -24,10 +24,10 @@ final readonly class IndexGaugeDataPointRequestHandler implements RequestHandler
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $filter = $this->requestMapper->mapQueryString($request, GaugeDataPointFilter::class) ?? new GaugeDataPointFilter();
+        $metricFilter = $this->requestMapper->mapQueryString($request, MetricFilter::class) ?? new MetricFilter();
 
-        $gaugeDataPointResources = $this->queryBus->ask(new GetGaugeDataPointCollectionQuery($filter));
+        $metricResources = $this->queryBus->ask(new GetMetricCollectionQuery($metricFilter));
 
-        return $this->responseFactory->createResourceResponse($gaugeDataPointResources);
+        return $this->responseFactory->createResourceResponse($metricResources);
     }
 }

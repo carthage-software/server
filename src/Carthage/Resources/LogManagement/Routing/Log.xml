@@ -4,84 +4,84 @@
         xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd"
 >
     <route
-        id="log:index"
+        id="log:get-log-collection"
         path="/log"
         methods="GET"
-        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\IndexLogRequestHandler::handle"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\GetLogCollectionRequestHandler::handle"
     />
 
     <route
-        id="log:namespace"
+        id="log:get-log-namespace-collection"
         path="/log/namespace"
         methods="GET"
-        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\IndexLogNamespaceRequestHandler::handle"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\GetLogNamespaceCollectionRequestHandler::handle"
     />
 
     <route
-        id="log:entry:index"
+        id="log:get-log-entry-collection"
         path="/log/entry"
         methods="GET"
-        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\IndexLogEntryRequestHandler::handle"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\GetLogEntryCollectionRequestHandler::handle"
     />
 
     <route
-        id="log:entry:tag"
+        id="log:get-log-entry-tag-collection"
         path="/log/entry/tag"
         methods="GET"
-        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\IndexLogEntryTagRequestHandler::handle"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\GetLogEntryTagCollectionRequestHandler::handle"
     />
 
     <route
-        id="log:entry:source"
+        id="log:get-log-entry-source-collection"
         path="/log/entry/source"
         methods="GET"
-        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\IndexLogEntrySourceRequestHandler::handle"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\GetLogEntrySourceCollectionRequestHandler::handle"
     />
 
     <route
-        id="log:show"
+        id="log:get-log"
         path="/log/{identity}"
         methods="GET"
-        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\ShowLogRequestHandler::handle"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\GetLogRequestHandler::handle"
     />
 
     <route
-        id="log:entry:show"
+        id="log:get-log-entry"
         path="/log/entry/{identity}"
         methods="GET"
-        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\ShowLogEntryRequestHandler::handle"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\GetLogEntryRequestHandler::handle"
     />
 
     <route
-        id="log:create"
+        id="log:create-log"
         path="/log"
         methods="POST"
         controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\CreateLogRequestHandler::handle"
     />
 
     <route
-        id="log:entry:create"
+        id="log:create-log-entry"
         path="/log/entry"
         methods="POST"
         controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\CreateLogEntryRequestHandler::handle"
     />
 
     <route
-        id="log:delete"
+        id="log:delete-log"
         path="/log/{identity}"
         methods="DELETE"
         controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\DeleteLogRequestHandler::handle"
     />
 
     <route
-        id="log:entry:delete"
+        id="log:delete-log-entry"
         path="/log/entry/{identity}"
         methods="DELETE"
         controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\DeleteLogEntryRequestHandler::handle"
     />
 
     <route
-        id="log:collect"
+        id="log:collect-log"
         path="/log/collect"
         methods="POST"
         controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\CollectLogRequestHandler::handle"

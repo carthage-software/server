@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Carthage\Presentation\LogManagement\Server\RequestHandler\Log;
+namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram;
 
-use Carthage\Application\LogManagement\Query\Log\GetLogCollectionQuery;
+use Carthage\Application\MetricCollection\Query\Histogram\GetHistogramCollectionQuery;
 use Carthage\Application\Shared\QueryBusInterface;
-use Carthage\Domain\LogManagement\Filter\Log\LogFilter;
+use Carthage\Domain\MetricCollection\Filter\Histogram\HistogramFilter;
 use Carthage\Presentation\Shared\Server\RequestMapperInterface;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final readonly class IndexLogRequestHandler implements RequestHandlerInterface
+final readonly class GetHistogramCollectionRequestHandler implements RequestHandlerInterface
 {
     public function __construct(
         private RequestMapperInterface $requestMapper,
@@ -24,12 +24,10 @@ final readonly class IndexLogRequestHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $logFilter = $this->requestMapper->mapQueryString($request, LogFilter::class)
-            ?? new LogFilter()
-        ;
+        $filter = $this->requestMapper->mapQueryString($request, HistogramFilter::class) ?? new HistogramFilter();
 
-        $logResourceCollection = $this->queryBus->ask(new GetLogCollectionQuery($logFilter));
+        $histogramResources = $this->queryBus->ask(new GetHistogramCollectionQuery($filter));
 
-        return $this->responseFactory->createResourceResponse($logResourceCollection);
+        return $this->responseFactory->createResourceResponse($histogramResources);
     }
 }

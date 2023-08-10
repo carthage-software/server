@@ -6,11 +6,11 @@ namespace Carthage\Tests\Unit\Presentation\LogManagement\Server\RequestHandler\M
 
 use Carthage\Application\LogManagement\Command\Log\CreateLogCommand;
 use Carthage\Application\LogManagement\Query\Log\GetLogQuery;
+use Carthage\Application\LogManagement\Resource\Log\LogResource;
 use Carthage\Application\Shared\CommandBusInterface;
 use Carthage\Application\Shared\QueryBusInterface;
 use Carthage\Domain\LogManagement\DataTransferObject\Log\CreateLog;
 use Carthage\Domain\LogManagement\Enum\Log\Level;
-use Carthage\Domain\LogManagement\Resource\Log\LogResource;
 use Carthage\Domain\Shared\Criteria\Expression\Comparison;
 use Carthage\Domain\Shared\Criteria\Expression\Composition;
 use Carthage\Domain\Shared\Criteria\Expression\Enum\ComparisonOperator;

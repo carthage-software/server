@@ -13,7 +13,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final readonly class IndexHistogramDataPointRequestHandler implements RequestHandlerInterface
+final readonly class GetHistogramDataPointCollectionRequestHandler implements RequestHandlerInterface
 {
     public function __construct(
         private RequestMapperInterface $requestMapper,

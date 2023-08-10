@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Carthage\Presentation\LogManagement\Server\RequestHandler\Log;
+namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge;
 
-use Carthage\Application\LogManagement\Query\Log\GetLogEntryCollectionQuery;
+use Carthage\Application\MetricCollection\Query\Gauge\GetGaugeCollectionQuery;
 use Carthage\Application\Shared\QueryBusInterface;
-use Carthage\Domain\LogManagement\Filter\Log\LogEntryFilter;
+use Carthage\Domain\MetricCollection\Filter\Gauge\GaugeFilter;
 use Carthage\Presentation\Shared\Server\RequestMapperInterface;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final readonly class IndexLogEntryRequestHandler implements RequestHandlerInterface
+final readonly class GetGaugeCollectionRequestHandler implements RequestHandlerInterface
 {
     public function __construct(
         private RequestMapperInterface $requestMapper,
@@ -24,12 +24,10 @@ final readonly class IndexLogEntryRequestHandler implements RequestHandlerInterf
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $logEntryFilter = $this->requestMapper->mapQueryString($request, LogEntryFilter::class)
-            ?? new LogEntryFilter()
-        ;
+        $filter = $this->requestMapper->mapQueryString($request, GaugeFilter::class) ?? new GaugeFilter();
 
-        $logEntryResourceCollection = $this->queryBus->ask(new GetLogEntryCollectionQuery($logEntryFilter));
+        $gaugeResources = $this->queryBus->ask(new GetGaugeCollectionQuery($filter));
 
-        return $this->responseFactory->createResourceResponse($logEntryResourceCollection);
+        return $this->responseFactory->createResourceResponse($gaugeResources);
     }
 }

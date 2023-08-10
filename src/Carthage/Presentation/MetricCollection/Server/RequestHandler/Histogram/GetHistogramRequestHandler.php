@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Metric;
+namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram;
 
-use Carthage\Application\MetricCollection\Query\Metric\GetMetricQuery;
+use Carthage\Application\MetricCollection\Query\Histogram\GetHistogramQuery;
 use Carthage\Application\Shared\QueryBusInterface;
 use Carthage\Domain\Shared\Entity\Identity;
 use Carthage\Presentation\Shared\Server\HttpStatus;
@@ -13,7 +13,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final readonly class ShowMetricRequestHandler implements RequestHandlerInterface
+final readonly class GetHistogramRequestHandler implements RequestHandlerInterface
 {
     public function __construct(
         private QueryBusInterface $queryBus,
@@ -23,14 +23,14 @@ final readonly class ShowMetricRequestHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        /** @var Identity $metricIdentity */
-        $metricIdentity = $request->getAttribute('identity');
+        /** @var Identity $histogramIdentity */
+        $histogramIdentity = $request->getAttribute('identity');
 
-        $metricResource = $this->queryBus->ask(GetMetricQuery::withIdentity($metricIdentity));
-        if (null === $metricResource) {
+        $histogramResource = $this->queryBus->ask(GetHistogramQuery::withIdentity($histogramIdentity));
+        if (null === $histogramResource) {
             return $this->responseFactory->createResponse(HttpStatus::NotFound);
         }
 
-        return $this->responseFactory->createResourceResponse($metricResource);
+        return $this->responseFactory->createResourceResponse($histogramResource);
     }
 }

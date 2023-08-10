@@ -3,26 +3,24 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd"
 >
-    <!-- SHOW -->
     <route
-            id="metric:show"
+            id="metric:get-metric"
             path="/metric/{identity}"
             methods="GET"
-            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Metric\ShowMetricRequestHandler::handle"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Metric\GetMetricRequestHandler::handle"
     />
 
-    <!-- INDEX -->
     <route
-            id="metric:index"
+            id="metric:get-metric-collection"
             path="/metric"
             methods="GET"
-            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Metric\IndexMetricRequestHandler::handle"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Metric\GetMetricCollectionRequestHandler::handle"
     />
 
     <route
-        id="metric:namespace"
+        id="metric:get-metric-namespace-collection"
         path="/metric/namespace"
         methods="GET"
-        controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Metric\IndexMetricNamespaceRequestHandler::handle"
+        controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Metric\GetMetricNamespaceCollectionRequestHandler::handle"
     />
 </routes>

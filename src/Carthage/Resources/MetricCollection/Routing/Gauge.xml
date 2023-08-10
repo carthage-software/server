@@ -3,71 +3,66 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd"
 >
-    <!-- COLLECT -->
     <route
-            id="gauge:collect"
+            id="gauge:collect-gauge"
             path="/gauge/collect"
             methods="POST"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\CollectGaugeRequestHandler::handle"
     />
 
-    <!-- CREATE -->
     <route
-            id="gauge:create"
+            id="gauge:create-gauge"
             path="/gauge"
             methods="POST"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\CreateGaugeRequestHandler::handle"
     />
 
     <route
-            id="gauge:create-data-point"
+            id="gauge:create-gauge-data-point"
             path="/gauge/data-point"
             methods="POST"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\CreateGaugeDataPointRequestHandler::handle"
     />
 
-    <!-- DELETE -->
     <route
-            id="gauge:delete"
+            id="gauge:delete-gauge"
             path="/gauge/{identity}"
             methods="DELETE"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\DeleteGaugeRequestHandler::handle"
     />
 
     <route
-            id="gauge:delete-data-point"
+            id="gauge:delete-gauge-data-point"
             path="/gauge/data-point/{identity}"
             methods="DELETE"
             controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\DeleteGaugeDataPointRequestHandler::handle"
     />
 
-    <!-- SHOW -->
     <route
-            id="gauge:show"
+            id="gauge:get-gauge"
             path="/gauge/{identity}"
             methods="GET"
-            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\ShowGaugeRequestHandler::handle"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\GetGaugeRequestHandler::handle"
     />
 
     <route
-            id="gauge:show-data-point"
+            id="gauge:get-gauge-data-point"
             path="/gauge/data-point/{identity}"
             methods="GET"
-            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\ShowGaugeDataPointRequestHandler::handle"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\GetGaugeDataPointRequestHandler::handle"
     />
 
-    <!-- INDEX -->
     <route
-            id="gauge:index"
+            id="gauge:get-gauge-collection"
             path="/gauge"
             methods="GET"
-            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\IndexGaugeRequestHandler::handle"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\GetGaugeCollectionRequestHandler::handle"
     />
 
     <route
-            id="gauge:index-data-point"
+            id="gauge:get-gauge-data-point-collection"
             path="/gauge/data-point"
             methods="GET"
-            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\IndexGaugeDataPointRequestHandler::handle"
+            controller="Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge\GetGaugeDataPointCollectionRequestHandler::handle"
     />
 </routes>
