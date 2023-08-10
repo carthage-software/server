@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Carthage\Application\MetricCollection\QueryHandler\Summary;
 
 use Carthage\Application\MetricCollection\Query\Summary\GetSummaryDataPointCollectionQuery;
+use Carthage\Application\MetricCollection\Resource\Summary\SummaryDataPointResource;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
+use Carthage\Application\Shared\Resource\CollectionResourceInterface;
+use Carthage\Application\Shared\Resource\PaginatedCollectionResource;
 use Carthage\Domain\MetricCollection\Repository\Summary\SummaryDataPointRepositoryInterface;
-use Carthage\Domain\MetricCollection\Resource\Summary\SummaryDataPointResource;
-use Carthage\Domain\Shared\Resource\CollectionResourceInterface;
-use Carthage\Domain\Shared\Resource\PaginatedCollectionResource;
 
 final readonly class GetSummaryDataPointCollectionQueryHandler implements QueryHandlerInterface
 {

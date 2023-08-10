@@ -6,10 +6,10 @@ namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Summary;
 
 use Carthage\Application\MetricCollection\Command\Summary\CreateSummaryCommand;
 use Carthage\Application\MetricCollection\Query\Summary\GetSummaryQuery;
+use Carthage\Application\MetricCollection\Resource\Summary\SummaryResource;
 use Carthage\Application\Shared\CommandBusInterface;
 use Carthage\Application\Shared\QueryBusInterface;
 use Carthage\Domain\MetricCollection\DataTransferObject\Summary\CreateSummary;
-use Carthage\Domain\MetricCollection\Resource\Summary\SummaryResource;
 use Carthage\Presentation\Shared\Server\HttpStatus;
 use Carthage\Presentation\Shared\Server\RequestMapperInterface;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;

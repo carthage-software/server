@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Carthage\Application\LogManagement\Query\Log;
 
+use Carthage\Application\LogManagement\Resource\Log\LogResource;
 use Carthage\Application\Shared\Query\QueryInterface;
 use Carthage\Domain\LogManagement\Enum\Log\Level;
-use Carthage\Domain\LogManagement\Resource\Log\LogResource;
 use Carthage\Domain\Shared\Criteria;
 use Carthage\Domain\Shared\Entity\Identity;
 

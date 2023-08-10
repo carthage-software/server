@@ -6,10 +6,10 @@ namespace Carthage\Presentation\LogManagement\Server\RequestHandler\Log;
 
 use Carthage\Application\LogManagement\Command\Log\CreateLogEntryCommand;
 use Carthage\Application\LogManagement\Query\Log\GetLogEntryQuery;
+use Carthage\Application\LogManagement\Resource\Log\LogEntryResource;
 use Carthage\Application\Shared\CommandBusInterface;
 use Carthage\Application\Shared\QueryBusInterface;
 use Carthage\Domain\LogManagement\DataTransferObject\Log\CreateLogEntry;
-use Carthage\Domain\LogManagement\Resource\Log\LogEntryResource;
 use Carthage\Presentation\Shared\Server\HttpStatus;
 use Carthage\Presentation\Shared\Server\RequestMapperInterface;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;

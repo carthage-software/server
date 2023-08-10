@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Carthage\Application\MetricCollection\QueryHandler\Histogram;
 
 use Carthage\Application\MetricCollection\Query\Histogram\GetHistogramQuery;
+use Carthage\Application\MetricCollection\Resource\Histogram\HistogramResource;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
 use Carthage\Domain\MetricCollection\Repository\Histogram\HistogramRepositoryInterface;
-use Carthage\Domain\MetricCollection\Resource\Histogram\HistogramResource;
 
 final readonly class GetHistogramQueryHandler implements QueryHandlerInterface
 {

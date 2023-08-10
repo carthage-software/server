@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Carthage\Application\MetricCollection\QueryHandler\Metric;
 
 use Carthage\Application\MetricCollection\Query\Metric\GetMetricCollectionQuery;
+use Carthage\Application\MetricCollection\Resource\Metric\MetricResource;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
+use Carthage\Application\Shared\Resource\CollectionResourceInterface;
+use Carthage\Application\Shared\Resource\PaginatedCollectionResource;
 use Carthage\Domain\MetricCollection\Repository\Metric\MetricRepositoryInterface;
-use Carthage\Domain\MetricCollection\Resource\Metric\MetricResource;
-use Carthage\Domain\Shared\Resource\CollectionResourceInterface;
-use Carthage\Domain\Shared\Resource\PaginatedCollectionResource;
 
 final readonly class GetMetricCollectionQueryHandler implements QueryHandlerInterface
 {

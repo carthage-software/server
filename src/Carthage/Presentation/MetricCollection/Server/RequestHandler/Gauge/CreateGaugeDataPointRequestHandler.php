@@ -6,10 +6,10 @@ namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Gauge;
 
 use Carthage\Application\MetricCollection\Command\Gauge\CreateGaugeDataPointCommand;
 use Carthage\Application\MetricCollection\Query\Gauge\GetGaugeDataPointQuery;
+use Carthage\Application\MetricCollection\Resource\Gauge\GaugeDataPointResource;
 use Carthage\Application\Shared\CommandBusInterface;
 use Carthage\Application\Shared\QueryBusInterface;
 use Carthage\Domain\MetricCollection\DataTransferObject\Gauge\CreateGaugeDataPoint;
-use Carthage\Domain\MetricCollection\Resource\Gauge\GaugeDataPointResource;
 use Carthage\Presentation\Shared\Server\HttpStatus;
 use Carthage\Presentation\Shared\Server\RequestMapperInterface;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;

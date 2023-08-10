@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Carthage\Infrastructure\Shared\Symfony;
 
-use Carthage\Domain\Shared\Resource\ResourceInterface;
+use Carthage\Application\Shared\Resource\ResourceInterface;
 use Carthage\Presentation\Shared\Server\HttpStatus;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseFactoryInterface as PsrResponseFactoryInterface;

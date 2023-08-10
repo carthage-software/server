@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Carthage\Application\MetricCollection\Query\Histogram;
 
+use Carthage\Application\MetricCollection\Resource\Histogram\HistogramResource;
 use Carthage\Application\Shared\Query\QueryInterface;
-use Carthage\Domain\MetricCollection\Resource\Histogram\HistogramResource;
 use Carthage\Domain\Shared\Criteria;
 use Carthage\Domain\Shared\Entity\Identity;
 

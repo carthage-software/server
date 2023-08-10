@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Carthage\Application\LogManagement\Query\Log;
 
+use Carthage\Application\LogManagement\Resource\Log\LogEntryResource;
 use Carthage\Application\Shared\Query\QueryInterface;
-use Carthage\Domain\LogManagement\Resource\Log\LogEntryResource;
 use Carthage\Domain\Shared\Criteria;
 use Carthage\Domain\Shared\Entity\Identity;
 

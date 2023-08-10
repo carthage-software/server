@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Carthage\Application\MetricCollection\QueryHandler\Metric;
 
 use Carthage\Application\MetricCollection\Query\Metric\GetMetricQuery;
+use Carthage\Application\MetricCollection\Resource\Metric\MetricResource;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
 use Carthage\Domain\MetricCollection\Repository\Metric\MetricRepositoryInterface;
-use Carthage\Domain\MetricCollection\Resource\Metric\MetricResource;
 
 final readonly class GetMetricQueryHandler implements QueryHandlerInterface
 {

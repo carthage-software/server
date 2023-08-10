@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Carthage\Application\LogManagement\QueryHandler\Log;
 
 use Carthage\Application\LogManagement\Query\Log\GetLogEntryQuery;
+use Carthage\Application\LogManagement\Resource\Log\LogEntryResource;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
 use Carthage\Domain\LogManagement\Repository\Log\LogEntryRepositoryInterface;
-use Carthage\Domain\LogManagement\Resource\Log\LogEntryResource;
 
 final readonly class GetLogEntryQueryHandler implements QueryHandlerInterface
 {

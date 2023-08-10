@@ -6,10 +6,10 @@ namespace Carthage\Presentation\MetricCollection\Server\RequestHandler\Histogram
 
 use Carthage\Application\MetricCollection\Command\Histogram\CreateHistogramCommand;
 use Carthage\Application\MetricCollection\Query\Histogram\GetHistogramQuery;
+use Carthage\Application\MetricCollection\Resource\Histogram\HistogramResource;
 use Carthage\Application\Shared\CommandBusInterface;
 use Carthage\Application\Shared\QueryBusInterface;
 use Carthage\Domain\MetricCollection\DataTransferObject\Histogram\CreateHistogram;
-use Carthage\Domain\MetricCollection\Resource\Histogram\HistogramResource;
 use Carthage\Presentation\Shared\Server\HttpStatus;
 use Carthage\Presentation\Shared\Server\RequestMapperInterface;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;

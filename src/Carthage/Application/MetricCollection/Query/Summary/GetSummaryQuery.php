@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Carthage\Application\MetricCollection\Query\Summary;
 
+use Carthage\Application\MetricCollection\Resource\Summary\SummaryResource;
 use Carthage\Application\Shared\Query\QueryInterface;
-use Carthage\Domain\MetricCollection\Resource\Summary\SummaryResource;
 use Carthage\Domain\Shared\Criteria;
 use Carthage\Domain\Shared\Entity\Identity;
 

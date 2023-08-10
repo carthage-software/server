@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Carthage\Application\MetricCollection\QueryHandler\Gauge;
 
 use Carthage\Application\MetricCollection\Query\Gauge\GetGaugeCollectionQuery;
+use Carthage\Application\MetricCollection\Resource\Gauge\GaugeResource;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
+use Carthage\Application\Shared\Resource\CollectionResourceInterface;
+use Carthage\Application\Shared\Resource\PaginatedCollectionResource;
 use Carthage\Domain\MetricCollection\Repository\Gauge\GaugeRepositoryInterface;
-use Carthage\Domain\MetricCollection\Resource\Gauge\GaugeResource;
-use Carthage\Domain\Shared\Resource\CollectionResourceInterface;
-use Carthage\Domain\Shared\Resource\PaginatedCollectionResource;
 
 final readonly class GetGaugeCollectionQueryHandler implements QueryHandlerInterface
 {

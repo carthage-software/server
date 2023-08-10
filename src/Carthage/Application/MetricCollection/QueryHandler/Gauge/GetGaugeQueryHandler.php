@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Carthage\Application\MetricCollection\QueryHandler\Gauge;
 
 use Carthage\Application\MetricCollection\Query\Gauge\GetGaugeQuery;
+use Carthage\Application\MetricCollection\Resource\Gauge\GaugeResource;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
 use Carthage\Domain\MetricCollection\Repository\Gauge\GaugeRepositoryInterface;
-use Carthage\Domain\MetricCollection\Resource\Gauge\GaugeResource;
 
 final readonly class GetGaugeQueryHandler implements QueryHandlerInterface
 {

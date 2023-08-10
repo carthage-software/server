@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Carthage\Presentation\Shared\Server;
 
-use Carthage\Domain\Shared\Resource\ResourceInterface;
+use Carthage\Application\Shared\Resource\ResourceInterface;
 use Psr\Http\Message\ResponseFactoryInterface as PsrResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 

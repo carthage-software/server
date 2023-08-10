@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Carthage\Application\MetricCollection\QueryHandler\Summary;
 
 use Carthage\Application\MetricCollection\Query\Summary\GetSummaryQuery;
+use Carthage\Application\MetricCollection\Resource\Summary\SummaryResource;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
 use Carthage\Domain\MetricCollection\Repository\Summary\SummaryRepositoryInterface;
-use Carthage\Domain\MetricCollection\Resource\Summary\SummaryResource;
 
 final readonly class GetSummaryQueryHandler implements QueryHandlerInterface
 {
