@@ -95,8 +95,8 @@ abstract readonly class MetricResource implements ItemResourceInterface
             'name' => $this->name,
             'description' => $this->description,
             'unit' => $this->unit,
-            'created_at' => $this->createdAt->format(DateTimeInterface::RFC3339_EXTENDED),
-            'updated_at' => $this->updatedAt->format(DateTimeInterface::RFC3339_EXTENDED),
+            'created_at' => $this->createdAt->format(DateTimeInterface::RFC3339),
+            'updated_at' => $this->updatedAt->format(DateTimeInterface::RFC3339),
         ];
     }
 }

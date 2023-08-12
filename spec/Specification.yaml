@@ -23,7 +23,7 @@ paths:
                                 $ref: "Shared/Resource.yaml#/components/schemas/Shared.PingResource"
     "/log-management/collect":
         post:
-            operationId: Collect
+            operationId: LogManagementCollect
             tags:
                 - Log Management
             summary: Collect Multiple Logs
@@ -37,13 +37,20 @@ paths:
                     description: The collection job was invalid
     "/log-management/log":
         get:
-            operationId: GetLogCollection
+            operationId: LogManagementGetLogCollection
             tags:
                 - Log Management
             summary: Get Log Collection
             description: Retrieve a collection of logs.
             parameters:
-                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogFilter"
+                - $ref: "Shared/Filter.yaml#/components/parameters/Shared.Pagination.Page"
+                - $ref: "Shared/Filter.yaml#/components/parameters/Shared.Pagination.ItemsPerPage"
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogFilter.Levels"
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogFilter.Contains"
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogFilter.From"
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogFilter.To"
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogFilter.Order"
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogFilter.SortBy"
             responses:
                 "200":
                     description: The log collection
@@ -54,7 +61,7 @@ paths:
                 "400":
                     description: The log filter is invalid
         post:
-            operationId: CreateLog
+            operationId: LogManagementCreateLog
             tags:
                 - Log Management
             summary: Create Log
@@ -72,7 +79,7 @@ paths:
                     description: The log data transfer object is invalid
     "/log-management/log/{identity}":
         delete:
-            operationId: DeleteLog
+            operationId: LogManagementDeleteLog
             tags:
                 - Log Management
             summary: Delete Log
@@ -85,7 +92,7 @@ paths:
                 "404":
                     description: The log was not found
         get:
-            operationId: GetLog
+            operationId: LogManagementGetLog
             tags:
                 - Log Management
             summary: Get Log
@@ -103,7 +110,7 @@ paths:
                     description: The log was not found
     "/log-management/log/namespace":
         get:
-            operationId: GetLogNamespaceCollection
+            operationId: LogManagementGetLogNamespaceCollection
             tags:
                 - Log Management
             summary: Get Log Namespace Collection
@@ -117,13 +124,19 @@ paths:
                                 $ref: "LogManagement/Log/Resource.yaml#/components/schemas/LogManagement.Log.LogNamespaceResource.CollectionResource"
     "/log-management/log/entry":
         get:
-            operationId: GetLogEntryCollection
+            operationId: LogManagementGetLogEntryCollection
             tags:
                 - Log Management
             summary: Get Log Entry Collection
             description: Retrieve a collection of log entries.
             parameters:
-                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogEntryFilter"
+                - $ref: "Shared/Filter.yaml#/components/parameters/Shared.Pagination.Page"
+                - $ref: "Shared/Filter.yaml#/components/parameters/Shared.Pagination.ItemsPerPage"
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogEntryFilter.LogIdentity"
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogEntryFilter.Before"
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogEntryFilter.After"
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogEntryFilter.Order"
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogEntryFilter.Source"
             responses:
                 "200":
                     description: The log entry collection
@@ -134,7 +147,7 @@ paths:
                 "400":
                     description: The log entry filter is invalid
         post:
-            operationId: CreateLogEntry
+            operationId: LogManagementCreateLogEntry
             tags:
                 - Log Management
             summary: Create Log Entry
@@ -154,7 +167,7 @@ paths:
                     description: The log was not found
     "/log-management/log/entry/tag":
         get:
-            operationId: GetLogEntryTagCollection
+            operationId: LogManagementGetLogEntryTagCollection
             tags:
                 - Log Management
             summary: Get Log Entry Tag Collection
@@ -168,7 +181,7 @@ paths:
                                 $ref: "LogManagement/Log/Resource.yaml#/components/schemas/LogManagement.Log.LogEntryTagResource.CollectionResource"
     "/log-management/log/entry/source":
         get:
-            operationId: GetLogEntrySourceCollection
+            operationId: LogManagementGetLogEntrySourceCollection
             tags:
                 - Log Management
             summary: Get Log Entry Source Collection
@@ -182,7 +195,7 @@ paths:
                                 $ref: "LogManagement/Log/Resource.yaml#/components/schemas/LogManagement.Log.LogEntrySourceResource.CollectionResource"
     "/log-management/log/entry/{identity}":
         get:
-            operationId: GetLogEntry
+            operationId: LogManagementGetLogEntry
             tags:
                 - Log Management
             summary: Get Log Entry
@@ -199,7 +212,7 @@ paths:
                 "404":
                     description: The log entry was not found
         delete:
-            operationId: DeleteLogEntry
+            operationId: LogManagementDeleteLogEntry
             tags:
                 - Log Management
             summary: Delete Log Entry
@@ -213,7 +226,7 @@ paths:
                     description: The log entry was not found
     "/log-management/log/collect":
         post:
-            operationId: CollectLog
+            operationId: LogManagementCollectLog
             tags:
                 - Log Management
             summary: Collect Log Entries
@@ -227,7 +240,7 @@ paths:
                     description: The log collection job was invalid
     "/log-management/log/statistic/entry-frequency-count/{frequency}":
         get:
-            operationId: GetLogEntryFrequencyCountCollection
+            operationId: LogManagementGetLogEntryFrequencyCountCollection
             tags:
                 - Log Management
             summary: Get Log Entry Frequency Count
@@ -243,7 +256,7 @@ paths:
                                 $ref: "LogManagement/Log/Statistics/Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogEntryFrequencyCountResource.CollectionResource"
     "/log-management/log/statistic/entry-source-frequency":
         get:
-            operationId: GetLogEntrySourceFrequencyCollection
+            operationId: LogManagementGetLogEntrySourceFrequencyCollection
             tags:
                 - Log Management
             summary: Get Log Entry Source Frequency
@@ -257,7 +270,7 @@ paths:
                                 $ref: "LogManagement/Log/Statistics/Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogEntrySourceFrequencyResource.CollectionResource"
     "/log-management/log/statistic/entry-tag-distribution":
         get:
-            operationId: GetLogEntryTagDistributionCollection
+            operationId: LogManagementGetLogEntryTagDistributionCollection
             tags:
                 - Log Management
             summary: Get Log Entry Tag Distribution
@@ -271,7 +284,7 @@ paths:
                                 $ref: "LogManagement/Log/Statistics/Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogEntryTagDistributionResource.CollectionResource"
     "/log-management/log/statistic/frequency-count/{frequency}":
         get:
-            operationId: GetLogFrequencyCountCollection
+            operationId: LogManagementGetLogFrequencyCountCollection
             tags:
                 - Log Management
             summary: Get Log Frequency Count
@@ -287,7 +300,7 @@ paths:
                                 $ref: "LogManagement/Log/Statistics/Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogFrequencyCountResource.CollectionResource"
     /log-management/log/statistic/level-statistics:
         get:
-            operationId: GetLogLevelStatisticsCollection
+            operationId: LogManagementGetLogLevelStatisticsCollection
             tags:
                 - Log Management
             summary: Get Log Level Statistics

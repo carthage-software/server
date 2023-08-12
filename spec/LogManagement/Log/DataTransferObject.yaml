@@ -59,9 +59,9 @@ components:
                 - $ref: "#/components/schemas/LogManagement.Log.CollectLogEntry"
                 - type: object
                   required:
-                      - logIdentity
+                      - log_identity
                   properties:
-                      logIdentity:
+                      log_identity:
                           type: string
                           format: uuid
                           description: The identity of the associated log.
@@ -88,7 +88,7 @@ components:
                 - context
                 - attributes
                 - tags
-                - occurredAt
+                - occurred_at
             properties:
                 source:
                     type: string
@@ -110,7 +110,7 @@ components:
                     type: array
                     items:
                         type: string
-                occurredAt:
+                occurred_at:
                     type: string
                     format: date-time
                     description: The timestamp indicating when the entry occurred.

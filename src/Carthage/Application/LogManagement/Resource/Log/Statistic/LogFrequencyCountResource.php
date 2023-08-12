@@ -46,7 +46,7 @@ final readonly class LogFrequencyCountResource implements ResourceInterface
     {
         return [
             '@type' => $this->getType(),
-            'date' => $this->date->format(DateTimeInterface::RFC3339_EXTENDED),
+            'date' => $this->date->format(DateTimeInterface::RFC3339),
             'count' => $this->count,
         ];
     }

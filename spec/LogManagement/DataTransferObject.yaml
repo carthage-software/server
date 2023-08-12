@@ -18,9 +18,9 @@ components:
             writeOnly: true
             additionalProperties: true
             required:
-                - collectLogs
+                - collect_logs
             properties:
-                collectLogs:
+                collect_logs:
                     type: array
                     items:
                         $ref: "Log/DataTransferObject.yaml#/components/schemas/LogManagement.Log.CollectLog"

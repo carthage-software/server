@@ -45,7 +45,7 @@ final readonly class PingResource implements ResourceInterface
         return [
             '@type' => $this->getType(),
             'quote' => $this->quote,
-            'time' => $this->time->format(DateTimeInterface::RFC3339_EXTENDED)
+            'time' => $this->time->format(DateTimeInterface::RFC3339)
         ];
     }
 }

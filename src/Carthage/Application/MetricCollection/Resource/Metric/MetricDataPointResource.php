@@ -70,11 +70,11 @@ abstract readonly class MetricDataPointResource implements ItemResourceInterface
             '@identity' => $this->getIdentity()->value,
             'metric_identity' => $this->metricIdentityIdentity->value,
             'source' => $this->source,
-            'start_at' => $this->startAt->format(DateTimeInterface::RFC3339_EXTENDED),
-            'end_at' => $this->endAt->format(DateTimeInterface::RFC3339_EXTENDED),
+            'start_at' => $this->startAt->format(DateTimeInterface::RFC3339),
+            'end_at' => $this->endAt->format(DateTimeInterface::RFC3339),
             'attributes' => $this->attributes,
-            'created_at' => $this->createdAt->format(DateTimeInterface::RFC3339_EXTENDED),
-            'updated_at' => $this->updatedAt->format(DateTimeInterface::RFC3339_EXTENDED),
+            'created_at' => $this->createdAt->format(DateTimeInterface::RFC3339),
+            'updated_at' => $this->updatedAt->format(DateTimeInterface::RFC3339),
         ];
     }
 }

@@ -85,10 +85,10 @@ final class LogResource implements ItemResourceInterface
             'namespace' => $this->namespace,
             'level' => $this->level->jsonSerialize(),
             'template' => $this->template,
-            'first_entry_occurred_at' => $this->firstEntryOccurredAt?->format(DateTimeInterface::RFC3339_EXTENDED),
-            'last_entry_occurred_at' => $this->lastEntryOccurredAt?->format(DateTimeInterface::RFC3339_EXTENDED),
-            'created_at' => $this->createdAt->format(DateTimeInterface::RFC3339_EXTENDED),
-            'updated_at' => $this->updatedAt->format(DateTimeInterface::RFC3339_EXTENDED),
+            'first_entry_occurred_at' => $this->firstEntryOccurredAt?->format(DateTimeInterface::RFC3339),
+            'last_entry_occurred_at' => $this->lastEntryOccurredAt?->format(DateTimeInterface::RFC3339),
+            'created_at' => $this->createdAt->format(DateTimeInterface::RFC3339),
+            'updated_at' => $this->updatedAt->format(DateTimeInterface::RFC3339),
         ];
     }
 }

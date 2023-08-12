@@ -90,9 +90,9 @@ final class LogEntryResource implements ItemResourceInterface
             'context' => $this->context,
             'attributes' => $this->attributes,
             'tags' => $this->tags,
-            'occurred_at' => $this->occurredAt->format(DateTimeInterface::RFC3339_EXTENDED),
-            'created_at' => $this->createdAt->format(DateTimeInterface::RFC3339_EXTENDED),
-            'updated_at' => $this->updatedAt->format(DateTimeInterface::RFC3339_EXTENDED),
+            'occurred_at' => $this->occurredAt->format(DateTimeInterface::RFC3339),
+            'created_at' => $this->createdAt->format(DateTimeInterface::RFC3339),
+            'updated_at' => $this->updatedAt->format(DateTimeInterface::RFC3339),
         ];
     }
 }

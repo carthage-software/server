@@ -7,76 +7,160 @@ info:
 paths: {}
 components:
     parameters:
-        LogManagement.Log.LogFilter:
-            name: LogManagement.Log.LogFilter
+        LogManagement.Log.LogFilter.Levels:
+            name: levels
             in: query
             required: false
             schema:
-                $ref: "#/components/schemas/LogManagement.Log.LogFilter"
-        LogManagement.Log.LogEntryFilter:
-            name: LogManagement.Log.LogEntryFilter
+                $ref: "#/components/schemas/LogManagement.Log.LogFilter.Levels"
+        LogManagement.Log.LogFilter.Contains:
+            name: contains
             in: query
             required: false
             schema:
-                $ref: "#/components/schemas/LogManagement.Log.LogEntryFilter"
+                $ref: "#/components/schemas/LogManagement.Log.LogFilter.Contains"
+        LogManagement.Log.LogFilter.From:
+            name: from
+            in: query
+            required: false
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.LogFilter.From"
+        LogManagement.Log.LogFilter.To:
+            name: to
+            in: query
+            required: false
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.LogFilter.To"
+        LogManagement.Log.LogFilter.Order:
+            name: order
+            in: query
+            required: false
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.LogFilter.Order"
+        LogManagement.Log.LogFilter.SortBy:
+            name: sort_by
+            in: query
+            required: false
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.LogFilter.SortBy"
+        LogManagement.Log.LogEntryFilter.LogIdentity:
+            name: log_identity
+            in: query
+            required: false
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.LogEntryFilter.LogIdentity"
+        LogManagement.Log.LogEntryFilter.Source:
+            name: source
+            in: query
+            required: false
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.LogEntryFilter.Source"
+        LogManagement.Log.LogEntryFilter.After:
+            name: after
+            in: query
+            required: false
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.LogEntryFilter.After"
+        LogManagement.Log.LogEntryFilter.Before:
+            name: before
+            in: query
+            required: false
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.LogEntryFilter.Before"
+        LogManagement.Log.LogEntryFilter.Order:
+            name: order
+            in: query
+            required: false
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.LogEntryFilter.Order"
     schemas:
-        LogManagement.Log.LogEntryFilter:
-            allOf:
-                - $ref: "../../Shared/Filter.yaml#/components/schemas/Shared.Pagination"
-                - type: object
-                  properties:
-                      logIdentity:
-                          type: string
-                          format: uuid
-                      source:
-                          type: string
-                      after:
-                          type: string
-                          format: date-time
-                      before:
-                          type: string
-                          format: date-time
-                      order:
-                          type: string
-                          enum:
-                              - ASC
-                              - DESC
-        LogManagement.Log.LogFilter:
-            allOf:
-                - $ref: "../../Shared/Filter.yaml#/components/schemas/Shared.Pagination"
-                - type: object
-                  properties:
-                      levels:
-                          type: array
-                          items:
-                              type: integer
-                              enum:
-                                  - 100
-                                  - 200
-                                  - 250
-                                  - 300
-                                  - 400
-                                  - 500
-                                  - 550
-                                  - 600
-                      contains:
-                          type: string
-                      from:
-                          type: string
-                          format: date-time
-                      to:
-                          type: string
-                          format: date-time
-                      sortBy:
-                          type: string
-                          enum:
-                              - createdAt
-                              - updatedAt
-                              - firstEntryOccurredAt
-                              - lastEntryOccurredAt
-                              - level
-                      order:
-                          type: string
-                          enum:
-                              - ASC
-                              - DESC
+        LogManagement.Log.LogEntryFilter.LogIdentity:
+            type: string
+            format: uuid
+            description: The universally unique identifier (UUID) representing a log in the system.
+            example: 00000000-0000-0000-0000-000000000000
+            nullable: true
+            default: null
+        LogManagement.Log.LogEntryFilter.Source:
+            type: string
+            description: The source of the log entry.
+            example: Carthage
+            nullable: true
+            default: null
+        LogManagement.Log.LogEntryFilter.After:
+            type: string
+            format: date-time
+            description: The date and time after which the log entry was created.
+            example: 2023-08-11T23:55:43.761+00:00
+            nullable: true
+            default: null
+        LogManagement.Log.LogEntryFilter.Before:
+            type: string
+            format: date-time
+            description: The date and time before which the log entry was created.
+            example: 2023-08-11T23:55:43.761+00:00
+            nullable: true
+            default: null
+        LogManagement.Log.LogEntryFilter.Order:
+            type: string
+            enum:
+                - ASC
+                - DESC
+            description: The order of the log entries.
+            example: ASC
+            default: DESC
+        LogManagement.Log.LogFilter.Levels:
+            type: array
+            items:
+                type: integer
+                enum:
+                    - 100
+                    - 200
+                    - 250
+                    - 300
+                    - 400
+                    - 500
+                    - 550
+                    - 600
+            description: The levels of the log entries.
+            example: [100, 200, 400, 500]
+            default: [100, 200, 250, 300, 400, 500, 550, 600]
+        LogManagement.Log.LogFilter.Contains:
+            type: string
+            description: The string that the log template must contain.
+            example: "Error"
+            nullable: true
+            default: null
+        LogManagement.Log.LogFilter.From:
+            type: string
+            format: date-time
+            description: The date and time after which the log occurred.
+            example: 2023-08-11T23:55:43.761+00:00
+            nullable: true
+            default: null
+        LogManagement.Log.LogFilter.To:
+            type: string
+            format: date-time
+            description: The date and time before which the log occurred.
+            example: 2023-08-11T23:55:43.761+00:00
+            nullable: true
+            default: null
+        LogManagement.Log.LogFilter.SortBy:
+            type: string
+            enum:
+                - createdAt
+                - updatedAt
+                - firstEntryOccurredAt
+                - lastEntryOccurredAt
+                - level
+            description: The field to sort the logs by.
+            example: createdAt
+            default: lastEntryOccurredAt
+        LogManagement.Log.LogFilter.Order:
+            type: string
+            enum:
+                - ASC
+                - DESC
+            description: The order of the logs.
+            default: DESC
+            example: ASCx
