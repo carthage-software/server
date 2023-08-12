@@ -55,28 +55,4 @@ final readonly class HistogramResource extends MetricResource
             $histogram->updatedAt,
         );
     }
-
-    /**
-     * @return array{
-     *      "type": non-empty-string,
-     *      "identity": non-empty-string,
-     *      "namespace": non-empty-string,
-     *      "name": non-empty-string,
-     *      "description": non-empty-string|null,
-     *      "unit": non-empty-string|null,
-     *      "created_at": non-empty-string,
-     *      "updated_at": non-empty-string,
-     *      "temporality": array{
-     *          "name": non-empty-string,
-     *          "value": non-empty-string,
-     *      },
-     *  }
-     */
-    public function jsonSerialize(): array
-    {
-        $result = $this->jsonSerializeMetric();
-        $result['temporality'] = $this->temporality->jsonSerialize();
-
-        return $result;
-    }
 }

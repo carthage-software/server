@@ -7,7 +7,6 @@ namespace Carthage\Application\LogManagement\Resource\Log\Statistic;
 use Carthage\Application\Shared\Resource\ResourceInterface;
 use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogFrequencyCount;
 use DateTimeImmutable;
-use DateTimeInterface;
 
 final readonly class LogFrequencyCountResource implements ResourceInterface
 {
@@ -17,8 +16,8 @@ final readonly class LogFrequencyCountResource implements ResourceInterface
      * @param positive-int $count
      */
     public function __construct(
-        private DateTimeImmutable $date,
-        private int $count,
+        public DateTimeImmutable $date,
+        public int $count,
     ) {
     }
 
@@ -33,21 +32,5 @@ final readonly class LogFrequencyCountResource implements ResourceInterface
     public function getType(): string
     {
         return self::TYPE;
-    }
-
-    /**
-     * @return array{
-     *      "type": non-empty-string,
-     *      "date": non-empty-string,
-     *      "count": positive-int,
-     *  }
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->getType(),
-            'date' => $this->date->format(DateTimeInterface::RFC3339),
-            'count' => $this->count,
-        ];
     }
 }

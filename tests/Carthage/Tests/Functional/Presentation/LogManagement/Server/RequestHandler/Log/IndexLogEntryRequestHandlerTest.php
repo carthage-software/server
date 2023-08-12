@@ -65,6 +65,6 @@ final class IndexLogEntryRequestHandlerTest extends FunctionalTestCase
         self::assertSame('message', $data['context']['message']);
         self::assertSame('attribute', $data['attributes']['attribute']);
         self::assertSame(['tag'], $data['tags']);
-        self::assertSame('2021-01-01T00:00:00.000+00:00', $data['occurred_at']);
+        self::assertSame('2021-01-01T00:00:00+00:00', $data['occurred_at']);
     }
 }

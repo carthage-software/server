@@ -14,7 +14,7 @@ final readonly class LogNamespaceResource implements ResourceInterface
      * @param non-empty-string $namespace
      */
     public function __construct(
-        private string $namespace,
+        public string $namespace,
     ) {
     }
 
@@ -29,19 +29,5 @@ final readonly class LogNamespaceResource implements ResourceInterface
     public function getType(): string
     {
         return self::TYPE;
-    }
-
-    /**
-     * @return array{
-     *   "type": non-empty-string,
-     *   "namespace": non-empty-string,
-     * }
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->getType(),
-            'namespace' => $this->namespace,
-        ];
     }
 }

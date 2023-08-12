@@ -73,32 +73,4 @@ final readonly class PaginatedCollectionResource implements CollectionResourceIn
     {
         return $this->items;
     }
-
-    /**
-     * @return array{
-     *     "type": non-empty-string,
-     *     "page": int,
-     *     "items_per_page": int,
-     *     "total_items": int,
-     *     "first": int,
-     *     "last": int,
-     *     "next": int|null,
-     *     "previous": int|null,
-     *     "items": iterable<T>,
-     * }
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => self::TYPE,
-            'page' => $this->page,
-            'items_per_page' => $this->itemsPerPage,
-            'total_items' => $this->totalItems,
-            'first' => $this->first,
-            'last' => $this->last,
-            'next' => $this->next,
-            'previous' => $this->previous,
-            'items' => $this->items,
-        ];
-    }
 }

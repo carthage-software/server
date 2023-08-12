@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Carthage\Application\Shared\Resource;
 
 use DateTimeImmutable;
-use DateTimeInterface;
 
 final readonly class PingResource implements ResourceInterface
 {
@@ -15,8 +14,8 @@ final readonly class PingResource implements ResourceInterface
      * @param non-empty-string $quote
      */
     public function __construct(
-        private string            $quote,
-        private DateTimeImmutable $time,
+        public string $quote,
+        public DateTimeImmutable $time,
     ) {
     }
 
@@ -31,21 +30,5 @@ final readonly class PingResource implements ResourceInterface
     public function getType(): string
     {
         return self::TYPE;
-    }
-
-    /**
-     * @return array{
-     *   "type": non-empty-string,
-     *   "quote": non-empty-string,
-     *   "time": non-empty-string,
-     * }
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->getType(),
-            'quote' => $this->quote,
-            'time' => $this->time->format(DateTimeInterface::RFC3339)
-        ];
     }
 }

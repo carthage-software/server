@@ -26,21 +26,4 @@ final readonly class GaugeResource extends MetricResource
             $gauge->updatedAt,
         );
     }
-
-    /**
-     * @return array{
-     *      "type": non-empty-string,
-     *      "identity": non-empty-string,
-     *      "namespace": non-empty-string,
-     *      "name": non-empty-string,
-     *      "description": non-empty-string|null,
-     *      "unit": non-empty-string|null,
-     *      "created_at": non-empty-string,
-     *      "updated_at": non-empty-string,
-     *  }
-     */
-    public function jsonSerialize(): array
-    {
-        return $this->jsonSerializeMetric();
-    }
 }

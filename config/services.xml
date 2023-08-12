@@ -38,6 +38,14 @@
             <argument type="service" id="serializer.name_converter.camel_case_to_snake_case"/>
         </service>
 
+        <service id="json_serializable_normalizer" class="Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer">
+            <tag name="serializer.normalizer"/>
+        </service>
+
+        <service id="backed_enum_normalizer" class="Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer">
+            <tag name="serializer.normalizer"/>
+        </service>
+
         <service id="Redis" class="Redis" lazy="true">
             <call method="connect">
                 <argument>%env(REDIS_HOST)%</argument>

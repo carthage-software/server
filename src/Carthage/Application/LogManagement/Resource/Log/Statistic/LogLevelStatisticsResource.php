@@ -16,9 +16,9 @@ final readonly class LogLevelStatisticsResource implements ResourceInterface
      * @param positive-int $count
      */
     public function __construct(
-        private Level $level,
-        private int $count,
-        private float $percentage,
+        public Level $level,
+        public int $count,
+        public float $percentage,
     ) {
     }
 
@@ -34,26 +34,5 @@ final readonly class LogLevelStatisticsResource implements ResourceInterface
     public function getType(): string
     {
         return self::TYPE;
-    }
-
-    /**
-     * @return array{
-     *   "type": non-empty-string,
-     *   "level": array{
-     *       "name": non-empty-string,
-     *       "value": positive-int,
-     *   },
-     *   "count": positive-int,
-     *   "percentage": float,
-     * }
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->getType(),
-            'level' => $this->level->jsonSerialize(),
-            'count' => $this->count,
-            'percentage' => $this->percentage,
-        ];
     }
 }

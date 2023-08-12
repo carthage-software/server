@@ -14,7 +14,6 @@ use Carthage\Domain\MetricCollection\Entity\Metric\Metric;
 use Carthage\Domain\MetricCollection\Entity\Summary\Summary;
 use Carthage\Domain\Shared\Entity\Identity;
 use DateTimeImmutable;
-use DateTimeInterface;
 use Psl\Type;
 
 /**
@@ -72,31 +71,5 @@ abstract readonly class MetricResource implements ItemResourceInterface
     public function getType(): string
     {
         return static::TYPE;
-    }
-
-    /**
-     * @return array{
-     *      "type": non-empty-string,
-     *      "identity": non-empty-string,
-     *      "namespace": non-empty-string,
-     *      "name": non-empty-string,
-     *      "description": non-empty-string|null,
-     *      "unit": non-empty-string|null,
-     *      "created_at": non-empty-string,
-     *      "updated_at": non-empty-string,
-     *  }
-     */
-    final protected function jsonSerializeMetric(): array
-    {
-        return [
-            'type' => $this->getType(),
-            'identity' => $this->identity->value,
-            'namespace' => $this->namespace,
-            'name' => $this->name,
-            'description' => $this->description,
-            'unit' => $this->unit,
-            'created_at' => $this->createdAt->format(DateTimeInterface::RFC3339),
-            'updated_at' => $this->updatedAt->format(DateTimeInterface::RFC3339),
-        ];
     }
 }

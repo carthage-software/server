@@ -16,8 +16,8 @@ final readonly class LogEntryTagDistributionResource implements ResourceInterfac
      * @param positive-int $count
      */
     public function __construct(
-        private string $tag,
-        private int $count,
+        public string $tag,
+        public int $count,
     ) {
     }
 
@@ -32,21 +32,5 @@ final readonly class LogEntryTagDistributionResource implements ResourceInterfac
     public function getType(): string
     {
         return self::TYPE;
-    }
-
-    /**
-     * @return array{
-     *      "type": non-empty-string,
-     *      "tag": non-empty-string,
-     *      "count": positive-int,
-     *  }
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->getType(),
-            'tag' => $this->tag,
-            'count' => $this->count,
-        ];
     }
 }

@@ -22,11 +22,10 @@ final class PingRequestHandlerTest extends FunctionalTestCase
         self::assertResponseFormatSame('json');
 
         $data = Json\typed($response->getContent() ?: '', Type\shape([
-            'ping' => Type\non_empty_string(),
+            'type' => Type\literal_scalar('ping'),
+            'quote' => Type\non_empty_string(),
             'time' => Type\non_empty_string(),
         ]));
-
-        self::assertSame('pong!', $data['ping']);
 
         $time = DateTimeImmutable::createFromFormat(DateTimeInterface::RFC3339, $data['time']);
 

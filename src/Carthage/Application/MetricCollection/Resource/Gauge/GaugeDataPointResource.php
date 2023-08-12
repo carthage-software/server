@@ -24,8 +24,17 @@ final readonly class GaugeDataPointResource extends MetricDataPointResource
      * @param non-empty-string $source - The source of the gauge data point
      * @param array<string, mixed> $attributes - The attributes of the gauge data point
      */
-    public function __construct(Identity $identity, Identity $metricIdentity, string $source, DateTimeImmutable $startAt, DateTimeImmutable $endAt, int|float $value, array $attributes, DateTimeImmutable $createdAt, DateTimeImmutable $updatedAt)
-    {
+    public function __construct(
+        Identity $identity,
+        Identity $metricIdentity,
+        string $source,
+        DateTimeImmutable $startAt,
+        DateTimeImmutable $endAt,
+        int|float $value,
+        array $attributes,
+        DateTimeImmutable $createdAt,
+        DateTimeImmutable $updatedAt
+    ) {
         parent::__construct($identity, $metricIdentity, $source, $startAt, $endAt, $attributes, $createdAt, $updatedAt);
 
         $this->value = $value;
@@ -44,27 +53,5 @@ final readonly class GaugeDataPointResource extends MetricDataPointResource
             $gaugeDataPoint->createdAt,
             $gaugeDataPoint->updatedAt,
         );
-    }
-
-    /**
-     * @return array{
-     *     "type": non-empty-string,
-     *     "identity": non-empty-string,
-     *     "metric_identity": non-empty-string,
-     *     "source": non-empty-string,
-     *     "start_at": non-empty-string,
-     *     "end_at": non-empty-string,
-     *     "attributes": array<string, mixed>,
-     *     "created_at": non-empty-string,
-     *     "updated_at": non-empty-string,
-     *     "value": int|float,
-     *  }
-     */
-    public function jsonSerialize(): array
-    {
-        $result = $this->jsonSerializeMetricDataPoint();
-        $result['value'] = $this->value;
-
-        return $result;
     }
 }

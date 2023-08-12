@@ -45,8 +45,9 @@ final class CreateLogRequestHandlerTest extends FunctionalTestCase
         self::assertSame($log['template'], $data['template']);
         self::assertNull($data['first_entry_occurred_at']);
         self::assertNull($data['last_entry_occurred_at']);
-        self::assertMatchesRegularExpression('/^20[2-9][0-9]-[0-1][0-9]-[0-3][0-9]T[0-5][0-9]:[0-5][0-9]:[0-5][0-9]\.[0-9]{3}\+00:00$/', $data['created_at']);
-        self::assertMatchesRegularExpression('/^20[2-9][0-9]-[0-1][0-9]-[0-3][0-9]T[0-5][0-9]:[0-5][0-9]:[0-5][0-9]\.[0-9]{3}\+00:00$/', $data['updated_at']);
+        // must match RFC3339
+        self::assertMatchesRegularExpression('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/', $data['created_at']);
+        self::assertMatchesRegularExpression('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/', $data['updated_at']);
     }
 
     public function testBadRequestDueToMissingInput(): void

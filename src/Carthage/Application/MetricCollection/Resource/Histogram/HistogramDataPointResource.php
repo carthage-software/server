@@ -84,40 +84,4 @@ final readonly class HistogramDataPointResource extends MetricDataPointResource
             $histogramDataPoint->updatedAt,
         );
     }
-
-    /**
-     * @return array{
-     *     "type": non-empty-string,
-     *     "identity": non-empty-string,
-     *     "metric_identity": non-empty-string,
-     *     "source": non-empty-string,
-     *     "start_at": non-empty-string,
-     *     "end_at": non-empty-string,
-     *     "attributes": array<string, mixed>,
-     *     "created_at": non-empty-string,
-     *     "updated_at": non-empty-string,
-     *     "lower_bound": int|float,
-     *     "upper_bound": int|float,
-     *     "count": int,
-     *     "summation": int|float,
-     *     "minimum": int|float,
-     *     "maximum": int|float,
-     *     "bucket_counts": array<int, int>,
-     *     "bucket_boundaries": array<int, int|float>,
-     *  }
-     */
-    public function jsonSerialize(): array
-    {
-        $result = $this->jsonSerializeMetricDataPoint();
-        $result['lower_bound'] = $this->lowerBound;
-        $result['upper_bound'] = $this->upperBound;
-        $result['count'] = $this->count;
-        $result['summation'] = $this->summation;
-        $result['minimum'] = $this->minimum;
-        $result['maximum'] = $this->maximum;
-        $result['bucket_counts'] = $this->bucketCounts;
-        $result['bucket_boundaries'] = $this->bucketBoundaries;
-
-        return $result;
-    }
 }

@@ -8,7 +8,6 @@ use Carthage\Application\Shared\Resource\ItemResourceInterface;
 use Carthage\Domain\LogManagement\Entity\Log\LogEntry;
 use Carthage\Domain\Shared\Entity\Identity;
 use DateTimeImmutable;
-use DateTimeInterface;
 
 final class LogEntryResource implements ItemResourceInterface
 {
@@ -62,37 +61,5 @@ final class LogEntryResource implements ItemResourceInterface
     public function getType(): string
     {
         return self::TYPE;
-    }
-
-    /**
-     * Serializes the resource to a JSON representation.
-     *
-     * @return array{
-     *      "type": non-empty-string,
-     *      "identity": non-empty-string,
-     *      "log_identity": non-empty-string,
-     *      "source": non-empty-string,
-     *      "context": array<string, mixed>,
-     *      "attributes": array<string, mixed>,
-     *      "tags": list<string>,
-     *      "occurred_at": non-empty-string,
-     *      "created_at": non-empty-string,
-     *      "updated_at": non-empty-string,
-     *  }
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->getType(),
-            'identity' => $this->identity->value,
-            'log_identity' => $this->logIdentity->value,
-            'source' => $this->source,
-            'context' => $this->context,
-            'attributes' => $this->attributes,
-            'tags' => $this->tags,
-            'occurred_at' => $this->occurredAt->format(DateTimeInterface::RFC3339),
-            'created_at' => $this->createdAt->format(DateTimeInterface::RFC3339),
-            'updated_at' => $this->updatedAt->format(DateTimeInterface::RFC3339),
-        ];
     }
 }

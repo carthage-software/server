@@ -16,9 +16,9 @@ final readonly class LogEntrySourceFrequencyResource implements ResourceInterfac
      * @param positive-int $count
      */
     public function __construct(
-        private string $source,
-        private int $count,
-        private float $percentage,
+        public string $source,
+        public int $count,
+        public float $percentage,
     ) {
     }
 
@@ -34,23 +34,5 @@ final readonly class LogEntrySourceFrequencyResource implements ResourceInterfac
     public function getType(): string
     {
         return self::TYPE;
-    }
-
-    /**
-     * @return array{
-     *      "type": non-empty-string,
-     *      "source": non-empty-string,
-     *      "count": positive-int,
-     *      "percentage": float,
-     *  }
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->getType(),
-            'source' => $this->source,
-            'count' => $this->count,
-            'percentage' => $this->percentage,
-        ];
     }
 }

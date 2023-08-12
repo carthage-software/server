@@ -9,7 +9,6 @@ use Carthage\Domain\LogManagement\Entity\Log\Log;
 use Carthage\Domain\LogManagement\Enum\Log\Level;
 use Carthage\Domain\Shared\Entity\Identity;
 use DateTimeImmutable;
-use DateTimeInterface;
 
 final class LogResource implements ItemResourceInterface
 {
@@ -59,36 +58,5 @@ final class LogResource implements ItemResourceInterface
     public function getType(): string
     {
         return self::TYPE;
-    }
-
-    /**
-     * @return array{
-     *      "type": non-empty-string,
-     *      "identity": non-empty-string,
-     *      "namespace": non-empty-string,
-     *      "level": array{
-     *          "name": non-empty-string,
-     *          "value": int,
-     *      },
-     *      "template": non-empty-string,
-     *      "first_entry_occurred_at": non-empty-string|null,
-     *      "last_entry_occurred_at": non-empty-string|null,
-     *      "created_at": non-empty-string,
-     *      "updated_at": non-empty-string,
-     *  }
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->getType(),
-            'identity' => $this->identity->value,
-            'namespace' => $this->namespace,
-            'level' => $this->level->jsonSerialize(),
-            'template' => $this->template,
-            'first_entry_occurred_at' => $this->firstEntryOccurredAt?->format(DateTimeInterface::RFC3339),
-            'last_entry_occurred_at' => $this->lastEntryOccurredAt?->format(DateTimeInterface::RFC3339),
-            'created_at' => $this->createdAt->format(DateTimeInterface::RFC3339),
-            'updated_at' => $this->updatedAt->format(DateTimeInterface::RFC3339),
-        ];
     }
 }

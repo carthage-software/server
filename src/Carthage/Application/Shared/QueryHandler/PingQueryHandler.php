@@ -6,8 +6,8 @@ namespace Carthage\Application\Shared\QueryHandler;
 
 use Carthage\Application\Shared\Query\PingQuery;
 use Carthage\Application\Shared\Resource\PingResource;
-use Psr\Clock\ClockInterface;
 use Psl\Iter;
+use Psr\Clock\ClockInterface;
 
 final readonly class PingQueryHandler implements QueryHandlerInterface
 {
@@ -26,7 +26,8 @@ final readonly class PingQueryHandler implements QueryHandlerInterface
 
     public function __construct(
         private ClockInterface $clock,
-    ) {}
+    ) {
+    }
 
     public function __invoke(PingQuery $query): PingResource
     {

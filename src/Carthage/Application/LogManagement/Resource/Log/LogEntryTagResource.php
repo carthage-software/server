@@ -14,7 +14,7 @@ final readonly class LogEntryTagResource implements ResourceInterface
      * @param non-empty-string $tag
      */
     public function __construct(
-        private string $tag,
+        public string $tag,
     ) {
     }
 
@@ -29,19 +29,5 @@ final readonly class LogEntryTagResource implements ResourceInterface
     public function getType(): string
     {
         return self::TYPE;
-    }
-
-    /**
-     * @return array{
-     *   "type": non-empty-string,
-     *   "tag": non-empty-string,
-     * }
-     */
-    public function jsonSerialize(): array
-    {
-        return [
-            'type' => $this->getType(),
-            'tag' => $this->tag,
-        ];
     }
 }
