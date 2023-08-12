@@ -25,7 +25,6 @@ components:
     schemas:
         LogManagement.Log.CreateLog:
             type: object
-            additionalProperties: true
             writeOnly: true
             required:
                 - namespace
@@ -55,19 +54,46 @@ components:
                     maxLength: 4096
                     description: The template used for formatting the log message.
         LogManagement.Log.CreateLogEntry:
-            allOf:
-                - $ref: "#/components/schemas/LogManagement.Log.CollectLogEntry"
-                - type: object
-                  required:
-                      - log_identity
-                  properties:
-                      log_identity:
-                          type: string
-                          format: uuid
-                          description: The identity of the associated log.
+            type: object
+            writeOnly: true
+            required:
+                - log_identity
+                - source
+                - context
+                - attributes
+                - tags
+                - occurred_at
+            properties:
+                log_identity:
+                    type: string
+                    format: uuid
+                    description: The identity of the associated log.
+                source:
+                    type: string
+                    minLength: 1
+                    maxLength: 128
+                    description: The source of the entry, indicating what part of the system the
+                        entry is from.
+                context:
+                    type: object
+                    additionalProperties: true
+                    description: The context of the entry, providing additional information to help
+                        understand the entry.
+                attributes:
+                    type: object
+                    additionalProperties: true
+                    description: The attributes of the entry, providing additional information not
+                        included in the main message.
+                tags:
+                    type: array
+                    items:
+                        type: string
+                occurred_at:
+                    type: string
+                    format: date-time
+                    description: The timestamp indicating when the entry occurred.
         LogManagement.Log.CollectLog:
             type: object
-            additionalProperties: true
             writeOnly: true
             required:
                 - log
@@ -81,7 +107,6 @@ components:
                         $ref: "#/components/schemas/LogManagement.Log.CollectLogEntry"
         LogManagement.Log.CollectLogEntry:
             type: object
-            additionalProperties: true
             writeOnly: true
             required:
                 - source

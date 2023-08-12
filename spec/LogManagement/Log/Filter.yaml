@@ -8,9 +8,11 @@ paths: {}
 components:
     parameters:
         LogManagement.Log.LogFilter.Levels:
-            name: levels
+            name: levels[]
             in: query
             required: false
+            style: form
+            explode: true
             schema:
                 $ref: "#/components/schemas/LogManagement.Log.LogFilter.Levels"
         LogManagement.Log.LogFilter.Contains:
