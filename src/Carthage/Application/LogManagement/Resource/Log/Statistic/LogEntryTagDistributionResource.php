@@ -36,7 +36,7 @@ final readonly class LogEntryTagDistributionResource implements ResourceInterfac
 
     /**
      * @return array{
-     *      "@type": non-empty-string,
+     *      "type": non-empty-string,
      *      "tag": non-empty-string,
      *      "count": positive-int,
      *  }
@@ -44,7 +44,7 @@ final readonly class LogEntryTagDistributionResource implements ResourceInterfac
     public function jsonSerialize(): array
     {
         return [
-            '@type' => $this->getType(),
+            'type' => $this->getType(),
             'tag' => $this->tag,
             'count' => $this->count,
         ];

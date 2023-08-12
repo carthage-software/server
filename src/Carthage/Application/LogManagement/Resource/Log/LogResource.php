@@ -63,8 +63,8 @@ final class LogResource implements ItemResourceInterface
 
     /**
      * @return array{
-     *      "@type": non-empty-string,
-     *      "@identity": non-empty-string,
+     *      "type": non-empty-string,
+     *      "identity": non-empty-string,
      *      "namespace": non-empty-string,
      *      "level": array{
      *          "name": non-empty-string,
@@ -80,8 +80,8 @@ final class LogResource implements ItemResourceInterface
     public function jsonSerialize(): array
     {
         return [
-            '@type' => $this->getType(),
-            '@identity' => $this->identity->value,
+            'type' => $this->getType(),
+            'identity' => $this->identity->value,
             'namespace' => $this->namespace,
             'level' => $this->level->jsonSerialize(),
             'template' => $this->template,

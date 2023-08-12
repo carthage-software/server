@@ -12,11 +12,11 @@ components:
             description: Resource representing the ping
             readOnly: true
             required:
-                - '@type'
+                - type
                 - ping
                 - time
             properties:
-                '@type':
+                type:
                     type: string
                     enum:
                         - ping

@@ -52,8 +52,8 @@ abstract readonly class MetricDataPointResource implements ItemResourceInterface
 
     /**
      * @return array{
-     *     "@type": non-empty-string,
-     *     "@identity": non-empty-string,
+     *     "type": non-empty-string,
+     *     "identity": non-empty-string,
      *     "metric_identity": non-empty-string,
      *     "source": non-empty-string,
      *     "start_at": non-empty-string,
@@ -66,8 +66,8 @@ abstract readonly class MetricDataPointResource implements ItemResourceInterface
     final protected function jsonSerializeMetricDataPoint(): array
     {
         return [
-            '@type' => $this->getType(),
-            '@identity' => $this->getIdentity()->value,
+            'type' => $this->getType(),
+            'identity' => $this->getIdentity()->value,
             'metric_identity' => $this->metricIdentityIdentity->value,
             'source' => $this->source,
             'start_at' => $this->startAt->format(DateTimeInterface::RFC3339),

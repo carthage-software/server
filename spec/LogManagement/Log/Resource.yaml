@@ -12,20 +12,20 @@ components:
             description: Resource representing a log.
             readOnly: true
             required:
-                - "@type"
-                - "@identity"
+                - type
+                - identity
                 - namespace
                 - level
                 - template
                 - created_at
                 - updated_at
             properties:
-                "@type":
+                type:
                     type: string
                     enum:
                         - log
                     description: Type of the resource.
-                "@identity":
+                identity:
                     type: string
                     format: uuid
                     description: Unique identity of the log.
@@ -91,39 +91,39 @@ components:
             description: Paginated collection of LogResource.
             readOnly: true
             required:
-                - "@type"
-                - "@page"
-                - "@items_per_page"
-                - "@total_items"
-                - "@first"
-                - "@last"
+                - type
+                - page
+                - items_per_page
+                - total_items
+                - first
+                - last
                 - items
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
                         - paginated_collection
-                "@page":
+                page:
                     type: integer
                     description: Current page number.
-                "@items_per_page":
+                items_per_page:
                     type: integer
                     description: Number of items per page.
-                "@total_items":
+                total_items:
                     type: integer
                     description: Total number of items.
-                "@first":
+                first:
                     type: integer
                     description: First item index.
-                "@last":
+                last:
                     type: integer
                     description: Last item index.
-                "@next":
+                next:
                     type: integer
                     nullable: true
                     description: Next page number, if available.
-                "@previous":
+                previous:
                     type: integer
                     nullable: true
                     description: Previous page number, if available.
@@ -137,8 +137,8 @@ components:
             description: Resource representing a log entry.
             readOnly: true
             required:
-                - "@type"
-                - "@identity"
+                - type
+                - identity
                 - log_identity
                 - source
                 - context
@@ -148,12 +148,12 @@ components:
                 - created_at
                 - updated_at
             properties:
-                "@type":
+                type:
                     type: string
                     enum:
                         - log_entry
                     description: Type of the resource.
-                "@identity":
+                identity:
                     type: string
                     format: uuid
                     description: Unique identity of the log entry.
@@ -196,39 +196,39 @@ components:
             description: Paginated collection of LogEntryResource.
             readOnly: true
             required:
-                - "@type"
-                - "@page"
-                - "@items_per_page"
-                - "@total_items"
-                - "@first"
-                - "@last"
+                - type
+                - page
+                - items_per_page
+                - total_items
+                - first
+                - last
                 - items
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
                         - paginated_collection
-                "@page":
+                page:
                     type: integer
                     description: Current page number.
-                "@items_per_page":
+                items_per_page:
                     type: integer
                     description: Number of items per page.
-                "@total_items":
+                total_items:
                     type: integer
                     description: Total number of items.
-                "@first":
+                first:
                     type: integer
                     description: First item index.
-                "@last":
+                last:
                     type: integer
                     description: Last item index.
-                "@next":
+                next:
                     type: integer
                     nullable: true
                     description: Next page number, if available.
-                "@previous":
+                previous:
                     type: integer
                     nullable: true
                     description: Previous page number, if available.
@@ -242,10 +242,10 @@ components:
             description: Resource representing a log entry source.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - source
             properties:
-                "@type":
+                type:
                     type: string
                     enum:
                         - log_entry_source
@@ -259,10 +259,10 @@ components:
             description: Collection of LogEntrySourceResource.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - items
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
@@ -277,10 +277,10 @@ components:
             description: Resource representing a log entry tag.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - tag
             properties:
-                "@type":
+                type:
                     type: string
                     enum:
                         - log_entry_tag
@@ -294,10 +294,10 @@ components:
             description: Collection of LogEntryTagResource.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - items
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
@@ -312,10 +312,10 @@ components:
             description: Resource representing a log namespace.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - namespace
             properties:
-                "@type":
+                type:
                     type: string
                     enum:
                         - log_namespace
@@ -329,10 +329,10 @@ components:
             description: Collection of LogNamespaceResource.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - items
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the collection.
                     enum:

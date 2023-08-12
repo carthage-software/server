@@ -37,7 +37,7 @@ final readonly class LogFrequencyCountResource implements ResourceInterface
 
     /**
      * @return array{
-     *      "@type": non-empty-string,
+     *      "type": non-empty-string,
      *      "date": non-empty-string,
      *      "count": positive-int,
      *  }
@@ -45,7 +45,7 @@ final readonly class LogFrequencyCountResource implements ResourceInterface
     public function jsonSerialize(): array
     {
         return [
-            '@type' => $this->getType(),
+            'type' => $this->getType(),
             'date' => $this->date->format(DateTimeInterface::RFC3339),
             'count' => $this->count,
         ];

@@ -48,8 +48,8 @@ final readonly class GaugeDataPointResource extends MetricDataPointResource
 
     /**
      * @return array{
-     *     "@type": non-empty-string,
-     *     "@identity": non-empty-string,
+     *     "type": non-empty-string,
+     *     "identity": non-empty-string,
      *     "metric_identity": non-empty-string,
      *     "source": non-empty-string,
      *     "start_at": non-empty-string,

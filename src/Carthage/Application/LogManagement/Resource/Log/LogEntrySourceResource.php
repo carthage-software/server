@@ -33,14 +33,14 @@ final readonly class LogEntrySourceResource implements ResourceInterface
 
     /**
      * @return array{
-     *   "@type": non-empty-string,
+     *   "type": non-empty-string,
      *   "source": non-empty-string,
      * }
      */
     public function jsonSerialize(): array
     {
         return [
-            '@type' => $this->getType(),
+            'type' => $this->getType(),
             'source' => $this->source,
         ];
     }

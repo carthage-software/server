@@ -12,11 +12,11 @@ components:
             description: Resource representing the frequency count of log entries.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - date
                 - count
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the resource.
                     enum:
@@ -34,10 +34,10 @@ components:
             description: Collection of LogEntryFrequencyCountResource.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - items
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
@@ -52,12 +52,12 @@ components:
             description: Resource representing the frequency count of log entries by source.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - source
                 - count
                 - percentage
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the resource.
                     enum:
@@ -81,10 +81,10 @@ components:
             description: Collection of LogEntrySourceFrequencyResource.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - items
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
@@ -99,11 +99,11 @@ components:
             description: Resource representing the distribution of log entries by tag.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - tag
                 - count
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the resource.
                     enum:
@@ -121,10 +121,10 @@ components:
             description: Collection of LogEntryTagDistributionResource.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - items
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
@@ -139,11 +139,11 @@ components:
             description: Resource representing the frequency count of logs.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - date
                 - count
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the resource.
                     enum:
@@ -161,10 +161,10 @@ components:
             description: Collection of LogFrequencyCountResource.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - items
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
@@ -179,12 +179,12 @@ components:
             description: Resource representing the statistics of logs by level.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - level
                 - count
                 - percentage
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the resource.
                     enum:
@@ -234,10 +234,10 @@ components:
             description: Collection of LogLevelStatisticsResource.
             readOnly: true
             required:
-                - "@type"
+                - type
                 - items
             properties:
-                "@type":
+                type:
                     type: string
                     description: Type identifier for the collection.
                     enum:

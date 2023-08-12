@@ -68,8 +68,8 @@ final class LogEntryResource implements ItemResourceInterface
      * Serializes the resource to a JSON representation.
      *
      * @return array{
-     *      "@type": non-empty-string,
-     *      "@identity": non-empty-string,
+     *      "type": non-empty-string,
+     *      "identity": non-empty-string,
      *      "log_identity": non-empty-string,
      *      "source": non-empty-string,
      *      "context": array<string, mixed>,
@@ -83,8 +83,8 @@ final class LogEntryResource implements ItemResourceInterface
     public function jsonSerialize(): array
     {
         return [
-            '@type' => $this->getType(),
-            '@identity' => $this->identity->value,
+            'type' => $this->getType(),
+            'identity' => $this->identity->value,
             'log_identity' => $this->logIdentity->value,
             'source' => $this->source,
             'context' => $this->context,

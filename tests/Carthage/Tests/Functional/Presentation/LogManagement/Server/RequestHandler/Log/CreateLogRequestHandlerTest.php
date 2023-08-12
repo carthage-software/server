@@ -25,8 +25,8 @@ final class CreateLogRequestHandlerTest extends FunctionalTestCase
         self::assertResponseFormatSame('json');
 
         $data = Json\typed($this->browser->getResponse()->getContent() ?: '', Type\shape([
-            '@type' => Type\non_empty_string(),
-            '@identity' => Type\non_empty_string(),
+            'type' => Type\non_empty_string(),
+            'identity' => Type\non_empty_string(),
             'namespace' => Type\non_empty_string(),
             'level' => Type\shape([
                 'value' => Type\int(),
@@ -39,7 +39,7 @@ final class CreateLogRequestHandlerTest extends FunctionalTestCase
             'updated_at' => Type\non_empty_string(),
         ]));
 
-        self::assertSame('log', $data['@type']);
+        self::assertSame('log', $data['type']);
         self::assertSame($log['namespace'], $data['namespace']);
         self::assertSame($log['level'], $data['level']['value']);
         self::assertSame($log['template'], $data['template']);

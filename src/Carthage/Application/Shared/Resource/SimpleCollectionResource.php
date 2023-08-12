@@ -66,14 +66,14 @@ final readonly class SimpleCollectionResource implements CollectionResourceInter
 
     /**
      * @return array{
-     *     "@type": non-empty-string,
+     *     "type": non-empty-string,
      *     "items": iterable<T>,
      * }
      */
     public function jsonSerialize(): array
     {
         return [
-            '@type' => self::TYPE,
+            'type' => self::TYPE,
             'items' => $this->items,
         ];
     }

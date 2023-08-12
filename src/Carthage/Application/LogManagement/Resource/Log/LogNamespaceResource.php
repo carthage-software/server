@@ -33,14 +33,14 @@ final readonly class LogNamespaceResource implements ResourceInterface
 
     /**
      * @return array{
-     *   "@type": non-empty-string,
+     *   "type": non-empty-string,
      *   "namespace": non-empty-string,
      * }
      */
     public function jsonSerialize(): array
     {
         return [
-            '@type' => $this->getType(),
+            'type' => $this->getType(),
             'namespace' => $this->namespace,
         ];
     }

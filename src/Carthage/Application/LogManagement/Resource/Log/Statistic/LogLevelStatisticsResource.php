@@ -38,7 +38,7 @@ final readonly class LogLevelStatisticsResource implements ResourceInterface
 
     /**
      * @return array{
-     *   "@type": non-empty-string,
+     *   "type": non-empty-string,
      *   "level": array{
      *       "name": non-empty-string,
      *       "value": positive-int,
@@ -50,7 +50,7 @@ final readonly class LogLevelStatisticsResource implements ResourceInterface
     public function jsonSerialize(): array
     {
         return [
-            '@type' => $this->getType(),
+            'type' => $this->getType(),
             'level' => $this->level->jsonSerialize(),
             'count' => $this->count,
             'percentage' => $this->percentage,

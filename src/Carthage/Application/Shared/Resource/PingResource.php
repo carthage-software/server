@@ -35,7 +35,7 @@ final readonly class PingResource implements ResourceInterface
 
     /**
      * @return array{
-     *   "@type": non-empty-string,
+     *   "type": non-empty-string,
      *   "quote": non-empty-string,
      *   "time": non-empty-string,
      * }
@@ -43,7 +43,7 @@ final readonly class PingResource implements ResourceInterface
     public function jsonSerialize(): array
     {
         return [
-            '@type' => $this->getType(),
+            'type' => $this->getType(),
             'quote' => $this->quote,
             'time' => $this->time->format(DateTimeInterface::RFC3339)
         ];

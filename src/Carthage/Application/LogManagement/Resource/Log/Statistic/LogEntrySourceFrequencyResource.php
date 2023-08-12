@@ -38,7 +38,7 @@ final readonly class LogEntrySourceFrequencyResource implements ResourceInterfac
 
     /**
      * @return array{
-     *      "@type": non-empty-string,
+     *      "type": non-empty-string,
      *      "source": non-empty-string,
      *      "count": positive-int,
      *      "percentage": float,
@@ -47,7 +47,7 @@ final readonly class LogEntrySourceFrequencyResource implements ResourceInterfac
     public function jsonSerialize(): array
     {
         return [
-            '@type' => $this->getType(),
+            'type' => $this->getType(),
             'source' => $this->source,
             'count' => $this->count,
             'percentage' => $this->percentage,

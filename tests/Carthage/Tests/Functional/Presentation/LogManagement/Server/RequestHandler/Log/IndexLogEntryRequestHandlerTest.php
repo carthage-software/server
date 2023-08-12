@@ -25,11 +25,11 @@ final class IndexLogEntryRequestHandlerTest extends FunctionalTestCase
         self::assertResponseFormatSame('json');
 
         $data = Json\typed($response->getContent() ?: '', Type\shape([
-            '@identity' => Type\non_empty_string(),
+            'identity' => Type\non_empty_string(),
         ], true));
 
         $response = $this->post('/log-management/log/entry', [
-            'log_identity' => $data['@identity'],
+            'log_identity' => $data['identity'],
             'source' => 'localhost',
             'context' => [
                 'listener' => 'listener',
@@ -45,7 +45,7 @@ final class IndexLogEntryRequestHandlerTest extends FunctionalTestCase
         self::assertResponseIsSuccessful();
 
         $data = Json\typed($response->getContent() ?: '', Type\shape([
-            '@identity' => Type\non_empty_string(),
+            'identity' => Type\non_empty_string(),
             'source' => Type\non_empty_string(),
             'context' => Type\shape([
                 'listener' => Type\non_empty_string(),

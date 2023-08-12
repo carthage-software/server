@@ -33,14 +33,14 @@ final readonly class LogEntryTagResource implements ResourceInterface
 
     /**
      * @return array{
-     *   "@type": non-empty-string,
+     *   "type": non-empty-string,
      *   "tag": non-empty-string,
      * }
      */
     public function jsonSerialize(): array
     {
         return [
-            '@type' => $this->getType(),
+            'type' => $this->getType(),
             'tag' => $this->tag,
         ];
     }

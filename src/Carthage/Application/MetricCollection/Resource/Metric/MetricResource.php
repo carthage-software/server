@@ -76,8 +76,8 @@ abstract readonly class MetricResource implements ItemResourceInterface
 
     /**
      * @return array{
-     *      "@type": non-empty-string,
-     *      "@identity": non-empty-string,
+     *      "type": non-empty-string,
+     *      "identity": non-empty-string,
      *      "namespace": non-empty-string,
      *      "name": non-empty-string,
      *      "description": non-empty-string|null,
@@ -89,8 +89,8 @@ abstract readonly class MetricResource implements ItemResourceInterface
     final protected function jsonSerializeMetric(): array
     {
         return [
-            '@type' => $this->getType(),
-            '@identity' => $this->identity->value,
+            'type' => $this->getType(),
+            'identity' => $this->identity->value,
             'namespace' => $this->namespace,
             'name' => $this->name,
             'description' => $this->description,
