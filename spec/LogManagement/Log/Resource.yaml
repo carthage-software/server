@@ -167,9 +167,11 @@ components:
                     description: Source of the log entry.
                 context:
                     type: object
+                    additionalProperties: true
                     description: Contextual information for the log entry.
                 attributes:
                     type: object
+                    additionalProperties: true
                     description: Attributes associated with the log entry.
                 tags:
                     type: array
