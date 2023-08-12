@@ -80,27 +80,23 @@ components:
             description: The universally unique identifier (UUID) representing a log in the system.
             example: 00000000-0000-0000-0000-000000000000
             nullable: true
-            default: null
         LogManagement.Log.LogEntryFilter.Source:
             type: string
             description: The source of the log entry.
-            example: Carthage
+            example: www1.example.com
             nullable: true
-            default: null
         LogManagement.Log.LogEntryFilter.After:
             type: string
             format: date-time
             description: The date and time after which the log entry was created.
             example: 2023-08-11T23:55:43.761+00:00
             nullable: true
-            default: null
         LogManagement.Log.LogEntryFilter.Before:
             type: string
             format: date-time
             description: The date and time before which the log entry was created.
             example: 2023-08-11T23:55:43.761+00:00
             nullable: true
-            default: null
         LogManagement.Log.LogEntryFilter.Order:
             type: string
             enum:
@@ -130,21 +126,18 @@ components:
             description: The string that the log template must contain.
             example: "Error"
             nullable: true
-            default: null
         LogManagement.Log.LogFilter.From:
             type: string
             format: date-time
             description: The date and time after which the log occurred.
             example: 2023-08-11T23:55:43.761+00:00
             nullable: true
-            default: null
         LogManagement.Log.LogFilter.To:
             type: string
             format: date-time
             description: The date and time before which the log occurred.
             example: 2023-08-11T23:55:43.761+00:00
             nullable: true
-            default: null
         LogManagement.Log.LogFilter.SortBy:
             type: string
             enum:
@@ -163,4 +156,4 @@ components:
                 - DESC
             description: The order of the logs.
             default: DESC
-            example: ASCx
+            example: ASC
