@@ -28,7 +28,7 @@ final class PingRequestHandlerTest extends FunctionalTestCase
 
         self::assertSame('pong!', $data['ping']);
 
-        $time = DateTimeImmutable::createFromFormat(DateTimeInterface::RFC3339_EXTENDED, $data['time']);
+        $time = DateTimeImmutable::createFromFormat(DateTimeInterface::RFC3339, $data['time']);
 
         self::assertInstanceOf(DateTimeImmutable::class, $time);
     }
