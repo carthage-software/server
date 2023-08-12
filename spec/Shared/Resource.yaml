@@ -12,9 +12,15 @@ components:
             description: Resource representing the ping
             readOnly: true
             required:
+                - '@type'
                 - ping
                 - time
             properties:
+                '@type':
+                    type: string
+                    enum:
+                        - ping
+                    description: Type of the resource.
                 quote:
                     type: string
                     description: A random quote from Hannibal, The Carthaginian General.
