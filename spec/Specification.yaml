@@ -1,0 +1,301 @@
+---
+openapi: 3.0.0
+info:
+    title: Carthage API
+    description: The API Specification for Carthage
+    version: 0.0.0
+paths:
+    "/ping":
+        get:
+            operationId: Ping
+            tags:
+                - Shared
+            summary: Retrieve the ping status
+            description: This endpoint is used to check the availability of the service. It
+                returns a random quote from Hannibal, The Carthaginian General, along
+                with the current time.
+            responses:
+                "200":
+                    description: Successful response containing the ping status
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "Shared/Resource.yaml#/components/schemas/Shared.PingResource"
+    "/log-management/collect":
+        post:
+            operationId: Collect
+            tags:
+                - Log Management
+            summary: Collect Multiple Logs
+            description: Collect multiple log entries, for multiple logs.
+            requestBody:
+                $ref: "LogManagement/DataTransferObject.yaml#/components/requestBodies/LogManagement.Collect"
+            responses:
+                "202":
+                    description: The collection job was accepted
+                "400":
+                    description: The collection job was invalid
+    "/log-management/log":
+        get:
+            operationId: GetLogCollection
+            tags:
+                - Log Management
+            summary: Get Log Collection
+            description: Retrieve a collection of logs.
+            parameters:
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogFilter"
+            responses:
+                "200":
+                    description: The log collection
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Resource.yaml#/components/schemas/LogManagement.Log.LogResource.PaginatedCollectionResource"
+                "400":
+                    description: The log filter is invalid
+        post:
+            operationId: CreateLog
+            tags:
+                - Log Management
+            summary: Create Log
+            description: Create a new log.
+            requestBody:
+                $ref: "LogManagement/Log/DataTransferObject.yaml#/components/requestBodies/LogManagement.Log.CreateLog"
+            responses:
+                "200":
+                    description: The log resource instance
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Resource.yaml#/components/schemas/LogManagement.Log.LogResource"
+                "400":
+                    description: The log data transfer object is invalid
+    "/log-management/log/{identity}":
+        delete:
+            operationId: DeleteLog
+            tags:
+                - Log Management
+            summary: Delete Log
+            description: Delete a log by identity.
+            parameters:
+                - $ref: "Shared/Parameter.yaml#/components/parameters/Shared.Identity"
+            responses:
+                "204":
+                    description: The log was deleted
+                "404":
+                    description: The log was not found
+        get:
+            operationId: GetLog
+            tags:
+                - Log Management
+            summary: Get Log
+            description: Get a log by its identity.
+            parameters:
+                - $ref: "Shared/Parameter.yaml#/components/parameters/Shared.Identity"
+            responses:
+                "200":
+                    description: The log resource instance
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Resource.yaml#/components/schemas/LogManagement.Log.LogResource"
+                "404":
+                    description: The log was not found
+    "/log-management/log/namespace":
+        get:
+            operationId: GetLogNamespaceCollection
+            tags:
+                - Log Management
+            summary: Get Log Namespace Collection
+            description: Retrieve a collection of log namespaces.
+            responses:
+                "200":
+                    description: The log namespace collection
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Resource.yaml#/components/schemas/LogManagement.Log.LogNamespaceResource.CollectionResource"
+    "/log-management/log/entry":
+        get:
+            operationId: GetLogEntryCollection
+            tags:
+                - Log Management
+            summary: Get Log Entry Collection
+            description: Retrieve a collection of log entries.
+            parameters:
+                - $ref: "LogManagement/Log/Filter.yaml#/components/parameters/LogManagement.Log.LogEntryFilter"
+            responses:
+                "200":
+                    description: The log entry collection
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Resource.yaml#/components/schemas/LogManagement.Log.LogEntryResource.PaginatedCollectionResource"
+                "400":
+                    description: The log entry filter is invalid
+        post:
+            operationId: CreateLogEntry
+            tags:
+                - Log Management
+            summary: Create Log Entry
+            description: Create a new log entry.
+            requestBody:
+                $ref: "LogManagement/Log/DataTransferObject.yaml#/components/requestBodies/LogManagement.Log.CreateLogEntry"
+            responses:
+                "200":
+                    description: The log entry resource instance
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Resource.yaml#/components/schemas/LogManagement.Log.LogEntryResource"
+                "400":
+                    description: The log entry was invalid
+                "404":
+                    description: The log was not found
+    "/log-management/log/entry/tag":
+        get:
+            operationId: GetLogEntryTagCollection
+            tags:
+                - Log Management
+            summary: Get Log Entry Tag Collection
+            description: Retrieve a collection of log entry tags.
+            responses:
+                "200":
+                    description: The log entry tag collection
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Resource.yaml#/components/schemas/LogManagement.Log.LogEntryTagResource.CollectionResource"
+    "/log-management/log/entry/source":
+        get:
+            operationId: GetLogEntrySourceCollection
+            tags:
+                - Log Management
+            summary: Get Log Entry Source Collection
+            description: Retrieve a collection of log entry sources.
+            responses:
+                "200":
+                    description: The log entry source collection
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Resource.yaml#/components/schemas/LogManagement.Log.LogEntrySourceResource.CollectionResource"
+    "/log-management/log/entry/{identity}":
+        get:
+            operationId: GetLogEntry
+            tags:
+                - Log Management
+            summary: Get Log Entry
+            description: Get a log entry by its identity.
+            parameters:
+                - $ref: "Shared/Parameter.yaml#/components/parameters/Shared.Identity"
+            responses:
+                "200":
+                    description: The log entry resource instance
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Resource.yaml#/components/schemas/LogManagement.Log.LogEntryResource"
+                "404":
+                    description: The log entry was not found
+        delete:
+            operationId: DeleteLogEntry
+            tags:
+                - Log Management
+            summary: Delete Log Entry
+            description: Delete a log entry by identity.
+            parameters:
+                - $ref: "Shared/Parameter.yaml#/components/parameters/Shared.Identity"
+            responses:
+                "204":
+                    description: The log entry was deleted
+                "404":
+                    description: The log entry was not found
+    "/log-management/log/collect":
+        post:
+            operationId: CollectLog
+            tags:
+                - Log Management
+            summary: Collect Log Entries
+            description: Collect log entries from a log.
+            requestBody:
+                $ref: "LogManagement/Log/DataTransferObject.yaml#/components/requestBodies/LogManagement.Log.CollectLog"
+            responses:
+                "202":
+                    description: The log collection job was accepted
+                "400":
+                    description: The log collection job was invalid
+    "/log-management/log/statistic/entry-frequency-count/{frequency}":
+        get:
+            operationId: GetLogEntryFrequencyCountCollection
+            tags:
+                - Log Management
+            summary: Get Log Entry Frequency Count
+            description: Get the frequency count of log entries.
+            parameters:
+                - $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.Frequency"
+            responses:
+                "200":
+                    description: The log entry frequency count
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Statistics/Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogEntryFrequencyCountResource.CollectionResource"
+    "/log-management/log/statistic/entry-source-frequency":
+        get:
+            operationId: GetLogEntrySourceFrequencyCollection
+            tags:
+                - Log Management
+            summary: Get Log Entry Source Frequency
+            description: Get the frequency count of log entry sources.
+            responses:
+                "200":
+                    description: The log entry source frequency
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Statistics/Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogEntrySourceFrequencyResource.CollectionResource"
+    "/log-management/log/statistic/entry-tag-distribution":
+        get:
+            operationId: GetLogEntryTagDistributionCollection
+            tags:
+                - Log Management
+            summary: Get Log Entry Tag Distribution
+            description: Get the distribution of log entry tags.
+            responses:
+                "200":
+                    description: The log entry tag distribution
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Statistics/Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogEntryTagDistributionResource.CollectionResource"
+    "/log-management/log/statistic/frequency-count/{frequency}":
+        get:
+            operationId: GetLogFrequencyCountCollection
+            tags:
+                - Log Management
+            summary: Get Log Frequency Count
+            description: Get the frequency count of logs.
+            parameters:
+                - $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.Frequency"
+            responses:
+                "200":
+                    description: The log frequency count
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Statistics/Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogFrequencyCountResource.CollectionResource"
+    /log-management/log/statistic/level-statistics:
+        get:
+            operationId: GetLogLevelStatisticsCollection
+            tags:
+                - Log Management
+            summary: Get Log Level Statistics
+            description: Get the statistics of log levels.
+            responses:
+                "200":
+                    description: The log level statistics
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "LogManagement/Log/Statistics/Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogLevelStatisticsResource.CollectionResource"

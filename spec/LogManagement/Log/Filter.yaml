@@ -1,0 +1,82 @@
+---
+openapi: 3.0.0
+info:
+    title: Carthage Log Management Log Filters
+    description: The filters for the log resources
+    version: 0.0.0
+paths: {}
+components:
+    parameters:
+        LogManagement.Log.LogFilter:
+            name: LogManagement.Log.LogFilter
+            in: query
+            required: false
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.LogFilter"
+        LogManagement.Log.LogEntryFilter:
+            name: LogManagement.Log.LogEntryFilter
+            in: query
+            required: false
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.LogEntryFilter"
+    schemas:
+        LogManagement.Log.LogEntryFilter:
+            allOf:
+                - $ref: "../../Shared/Filter.yaml#/components/schemas/Shared.Pagination"
+                - type: object
+                  properties:
+                      logIdentity:
+                          type: string
+                          format: uuid
+                      source:
+                          type: string
+                      after:
+                          type: string
+                          format: date-time
+                      before:
+                          type: string
+                          format: date-time
+                      order:
+                          type: string
+                          enum:
+                              - ASC
+                              - DESC
+        LogManagement.Log.LogFilter:
+            allOf:
+                - $ref: "../../Shared/Filter.yaml#/components/schemas/Shared.Pagination"
+                - type: object
+                  properties:
+                      levels:
+                          type: array
+                          items:
+                              type: integer
+                              enum:
+                                  - 100
+                                  - 200
+                                  - 250
+                                  - 300
+                                  - 400
+                                  - 500
+                                  - 550
+                                  - 600
+                      contains:
+                          type: string
+                      from:
+                          type: string
+                          format: date-time
+                      to:
+                          type: string
+                          format: date-time
+                      sortBy:
+                          type: string
+                          enum:
+                              - createdAt
+                              - updatedAt
+                              - firstEntryOccurredAt
+                              - lastEntryOccurredAt
+                              - level
+                      order:
+                          type: string
+                          enum:
+                              - ASC
+                              - DESC

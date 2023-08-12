@@ -1,0 +1,249 @@
+---
+openapi: 3.0.0
+info:
+    title: Carthage Log Management Log Statistics Resources
+    description: The resources for the log statistics
+    version: 1.0.0
+paths: {}
+components:
+    schemas:
+        LogManagement.Log.Statistics.LogEntryFrequencyCountResource:
+            type: object
+            description: Resource representing the frequency count of log entries.
+            readOnly: true
+            required:
+                - "@type"
+                - date
+                - count
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the resource.
+                    enum:
+                        - log_entry_frequency_count
+                date:
+                    type: string
+                    format: date-time
+                    description: Date associated with the frequency count.
+                count:
+                    type: integer
+                    minimum: 1
+                    description: Count of log entries for the specified date.
+        LogManagement.Log.Statistics.LogEntryFrequencyCountResource.CollectionResource:
+            type: object
+            description: Collection of LogEntryFrequencyCountResource.
+            readOnly: true
+            required:
+                - "@type"
+                - items
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the collection.
+                    enum:
+                        - simple_collection
+                items:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/LogManagement.Log.Statistics.LogEntryFrequencyCountResource"
+                    description: Array of LogEntryFrequencyCountResource.
+        LogManagement.Log.Statistics.LogEntrySourceFrequencyResource:
+            type: object
+            description: Resource representing the frequency count of log entries by source.
+            readOnly: true
+            required:
+                - "@type"
+                - source
+                - count
+                - percentage
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the resource.
+                    enum:
+                        - log_entry_source_frequency
+                source:
+                    type: string
+                    description: Source associated with the frequency count.
+                    minLength: 1
+                    maxLength: 128
+                count:
+                    type: integer
+                    description: Count of log entries for the specified source.
+                    minimum: 1
+                percentage:
+                    type: number
+                    description: Percentage of log entries for the specified source.
+                    minimum: 0
+                    maximum: 100
+        LogManagement.Log.Statistics.LogEntrySourceFrequencyResource.CollectionResource:
+            type: object
+            description: Collection of LogEntrySourceFrequencyResource.
+            readOnly: true
+            required:
+                - "@type"
+                - items
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the collection.
+                    enum:
+                        - simple_collection
+                items:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/LogManagement.Log.Statistics.LogEntrySourceFrequencyResource"
+                    description: Array of LogEntrySourceFrequencyResource.
+        LogManagement.Log.Statistics.LogEntryTagDistributionResource:
+            type: object
+            description: Resource representing the distribution of log entries by tag.
+            readOnly: true
+            required:
+                - "@type"
+                - tag
+                - count
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the resource.
+                    enum:
+                        - log_entry_tag_distribution
+                tag:
+                    type: string
+                    description: Tag associated with the distribution.
+                    minLength: 1
+                count:
+                    type: integer
+                    description: Count of log entries for the specified tag.
+                    minimum: 1
+        LogManagement.Log.Statistics.LogEntryTagDistributionResource.CollectionResource:
+            type: object
+            description: Collection of LogEntryTagDistributionResource.
+            readOnly: true
+            required:
+                - "@type"
+                - items
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the collection.
+                    enum:
+                        - simple_collection
+                items:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/LogManagement.Log.Statistics.LogEntryTagDistributionResource"
+                    description: Array of LogEntryTagDistributionResource.
+        LogManagement.Log.Statistics.LogFrequencyCountResource:
+            type: object
+            description: Resource representing the frequency count of logs.
+            readOnly: true
+            required:
+                - "@type"
+                - date
+                - count
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the resource.
+                    enum:
+                        - log_frequency_count
+                date:
+                    type: string
+                    description: Date associated with the frequency count.
+                    format: date-time
+                count:
+                    type: integer
+                    description: Count of logs for the specified date.
+                    minimum: 1
+        LogManagement.Log.Statistics.LogFrequencyCountResource.CollectionResource:
+            type: object
+            description: Collection of LogFrequencyCountResource.
+            readOnly: true
+            required:
+                - "@type"
+                - items
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the collection.
+                    enum:
+                        - simple_collection
+                items:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/LogManagement.Log.Statistics.LogFrequencyCountResource"
+                    description: Array of LogFrequencyCountResource.
+        LogManagement.Log.Statistics.LogLevelStatisticsResource:
+            type: object
+            description: Resource representing the statistics of logs by level.
+            readOnly: true
+            required:
+                - "@type"
+                - level
+                - count
+                - percentage
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the resource.
+                    enum:
+                        - log_level_statistics
+                level:
+                    type: object
+                    description: Level associated with the statistics.
+                    required:
+                        - name
+                        - value
+                    properties:
+                        name:
+                            type: string
+                            description: Name of the level.
+                            enum:
+                                - Debug
+                                - Info
+                                - Notice
+                                - Warning
+                                - Error
+                                - Critical
+                                - Alert
+                                - Emergency
+                        value:
+                            type: integer
+                            description: Value of the level.
+                            enum:
+                                - 100
+                                - 200
+                                - 250
+                                - 300
+                                - 400
+                                - 500
+                                - 550
+                                - 600
+                count:
+                    type: integer
+                    description: Count of logs for the specified level.
+                    minimum: 1
+                percentage:
+                    type: number
+                    description: Percentage of logs for the specified level.
+                    minimum: 0
+                    maximum: 100
+        LogManagement.Log.Statistics.LogLevelStatisticsResource.CollectionResource:
+            type: object
+            description: Collection of LogLevelStatisticsResource.
+            readOnly: true
+            required:
+                - "@type"
+                - items
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the collection.
+                    enum:
+                        - simple_collection
+                items:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/LogManagement.Log.Statistics.LogLevelStatisticsResource"
+                    description: Array of LogLevelStatisticsResource.

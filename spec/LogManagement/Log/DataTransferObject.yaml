@@ -1,0 +1,116 @@
+---
+openapi: 3.0.0
+info:
+    title: Carthage Log Management Log Data Transfer Objects
+    description: The data transfer objects for the log management logs
+    version: 0.0.0
+paths: {}
+components:
+    requestBodies:
+        LogManagement.Log.CreateLog:
+            content:
+                application/json:
+                    schema:
+                        $ref: "#/components/schemas/LogManagement.Log.CreateLog"
+        LogManagement.Log.CreateLogEntry:
+            content:
+                application/json:
+                    schema:
+                        $ref: "#/components/schemas/LogManagement.Log.CreateLogEntry"
+        LogManagement.Log.CollectLog:
+            content:
+                application/json:
+                    schema:
+                        $ref: "#/components/schemas/LogManagement.Log.CollectLog"
+    schemas:
+        LogManagement.Log.CreateLog:
+            type: object
+            additionalProperties: true
+            writeOnly: true
+            required:
+                - namespace
+                - level
+                - template
+            properties:
+                namespace:
+                    type: string
+                    minLength: 1
+                    maxLength: 64
+                    description: The namespace associated with the log.
+                level:
+                    type: integer
+                    enum:
+                        - 100
+                        - 200
+                        - 250
+                        - 300
+                        - 400
+                        - 500
+                        - 550
+                        - 600
+                    description: The severity level of the log.
+                template:
+                    type: string
+                    minLength: 1
+                    maxLength: 4096
+                    description: The template used for formatting the log message.
+        LogManagement.Log.CreateLogEntry:
+            allOf:
+                - $ref: "#/components/schemas/LogManagement.Log.CollectLogEntry"
+                - type: object
+                  required:
+                      - logIdentity
+                  properties:
+                      logIdentity:
+                          type: string
+                          format: uuid
+                          description: The identity of the associated log.
+        LogManagement.Log.CollectLog:
+            type: object
+            additionalProperties: true
+            writeOnly: true
+            required:
+                - log
+                - entries
+            properties:
+                log:
+                    $ref: "#/components/schemas/LogManagement.Log.CreateLog"
+                entries:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/LogManagement.Log.CollectLogEntry"
+        LogManagement.Log.CollectLogEntry:
+            type: object
+            additionalProperties: true
+            writeOnly: true
+            required:
+                - source
+                - context
+                - attributes
+                - tags
+                - occurredAt
+            properties:
+                source:
+                    type: string
+                    minLength: 1
+                    maxLength: 128
+                    description: The source of the entry, indicating what part of the system the
+                        entry is from.
+                context:
+                    type: object
+                    additionalProperties: true
+                    description: The context of the entry, providing additional information to help
+                        understand the entry.
+                attributes:
+                    type: object
+                    additionalProperties: true
+                    description: The attributes of the entry, providing additional information not
+                        included in the main message.
+                tags:
+                    type: array
+                    items:
+                        type: string
+                occurredAt:
+                    type: string
+                    format: date-time
+                    description: The timestamp indicating when the entry occurred.

@@ -1,0 +1,20 @@
+---
+openapi: 3.0.0
+info:
+    title: Carthage Shared Schemas
+    description: The schemas shared between all the contexts
+    version: 1.0.0
+paths: {}
+components:
+    schemas:
+        Shared.DateTime:
+            type: string
+            format: date-time
+            description: The date and time
+            example: 2023-08-11T23:55:43.761+00:00
+        Shared.Identity:
+            type: string
+            format: uuid
+            minLength: 1
+            description: The universally unique identifier (UUID) representing an identity
+                in the system.

@@ -1,0 +1,26 @@
+---
+openapi: 3.0.0
+info:
+    title: Carthage Log Management Data Transfer Objects
+    description: The data transfer objects for the log management
+    version: 0.0.0
+paths: {}
+components:
+    requestBodies:
+        LogManagement.Collect:
+            content:
+                application/json:
+                    schema:
+                        $ref: "#/components/schemas/LogManagement.Collect"
+    schemas:
+        LogManagement.Collect:
+            type: object
+            writeOnly: true
+            additionalProperties: true
+            required:
+                - collectLogs
+            properties:
+                collectLogs:
+                    type: array
+                    items:
+                        $ref: "Log/DataTransferObject.yaml#/components/schemas/LogManagement.Log.CollectLog"

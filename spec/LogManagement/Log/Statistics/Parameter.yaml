@@ -1,0 +1,28 @@
+---
+openapi: 3.0.0
+info:
+    title: Carthage Log Management Log Statistics Parameters
+    description: The parameters for the log statistics
+    version: 0.0.0
+paths: {}
+components:
+    parameters:
+        LogManagement.Log.Statistics.Frequency:
+            name: frequency
+            in: path
+            required: true
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.Statistics.Frequency"
+    schemas:
+        LogManagement.Log.Statistics.Frequency:
+            type: string
+            enum:
+                - yearly
+                - quarterly
+                - monthly
+                - weekly
+                - daily
+                - hourly
+            minLength: 1
+            description: The frequency for log statistics, specifying how the data should be
+                aggregated.

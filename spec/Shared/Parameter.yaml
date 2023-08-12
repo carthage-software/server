@@ -1,0 +1,15 @@
+---
+openapi: 3.0.0
+info:
+    title: Carthage Shared Parameters
+    description: The parameters for the shared resources
+    version: 0.0.0
+paths: {}
+components:
+    parameters:
+        Shared.Identity:
+            name: identity
+            in: path
+            required: true
+            schema:
+                $ref: "Schema.yaml#/components/schemas/Shared.Identity"

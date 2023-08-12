@@ -59,7 +59,7 @@ class Log extends Entity
      * It initializes a new message with a namespace, level, and message template.
      *
      * @param non-empty-string $namespace - The message namespace
-     * @param level $level - The message severity level
+     * @param Level $level - The message severity level
      * @param non-empty-string $template - The message template
      */
     public function __construct(string $namespace, Level $level, string $template)

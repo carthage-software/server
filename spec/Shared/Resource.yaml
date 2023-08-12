@@ -1,0 +1,23 @@
+---
+openapi: 3.0.0
+info:
+    title: Carthage Shared Resources
+    description: The resources for the Shared context
+    version: 1.0.0
+paths: {}
+components:
+    schemas:
+        Shared.PingResource:
+            type: object
+            description: Resource representing the ping
+            readOnly: true
+            required:
+                - ping
+                - time
+            properties:
+                quote:
+                    type: string
+                    description: A random quote from Hannibal, The Carthaginian General.
+                    example: I will either find a way, or make one.
+                time:
+                    $ref: "Schema.yaml#/components/schemas/Shared.DateTime"

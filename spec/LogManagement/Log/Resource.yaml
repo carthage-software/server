@@ -1,0 +1,342 @@
+---
+openapi: 3.0.0
+info:
+    title: Carthage Log Management Log Resources
+    description: The resources for the log
+    version: 1.0.0
+paths: {}
+components:
+    schemas:
+        LogManagement.Log.LogResource:
+            type: object
+            description: Resource representing a log.
+            readOnly: true
+            required:
+                - "@type"
+                - "@identity"
+                - namespace
+                - level
+                - template
+                - created_at
+                - updated_at
+            properties:
+                "@type":
+                    type: string
+                    enum:
+                        - log
+                    description: Type of the resource.
+                "@identity":
+                    type: string
+                    format: uuid
+                    description: Unique identity of the log.
+                namespace:
+                    type: string
+                    minLength: 1
+                    description: The namespace of the log.
+                level:
+                    type: object
+                    description: The log level.
+                    required:
+                        - name
+                        - value
+                    properties:
+                        name:
+                            type: string
+                            enum:
+                                - Debug
+                                - Info
+                                - Notice
+                                - Warning
+                                - Error
+                                - Critical
+                                - Alert
+                                - Emergency
+                            description: Name of the log level.
+                        value:
+                            type: integer
+                            enum:
+                                - 100
+                                - 200
+                                - 250
+                                - 300
+                                - 400
+                                - 500
+                                - 550
+                                - 600
+                            description: Value of the log level.
+                template:
+                    type: string
+                    minLength: 1
+                    description: The template for formatting the message.
+                first_entry_occurred_at:
+                    type: string
+                    format: date-time
+                    nullable: true
+                    description: Timestamp of the first entry occurrence, if available.
+                last_entry_occurred_at:
+                    type: string
+                    format: date-time
+                    nullable: true
+                    description: Timestamp of the last entry occurrence, if available.
+                created_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the log was created.
+                updated_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the log was last updated.
+        LogManagement.Log.LogResource.PaginatedCollectionResource:
+            type: object
+            description: Paginated collection of LogResource.
+            readOnly: true
+            required:
+                - "@type"
+                - "@page"
+                - "@items_per_page"
+                - "@total_items"
+                - "@first"
+                - "@last"
+                - items
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the collection.
+                    enum:
+                        - paginated_collection
+                "@page":
+                    type: integer
+                    description: Current page number.
+                "@items_per_page":
+                    type: integer
+                    description: Number of items per page.
+                "@total_items":
+                    type: integer
+                    description: Total number of items.
+                "@first":
+                    type: integer
+                    description: First item index.
+                "@last":
+                    type: integer
+                    description: Last item index.
+                "@next":
+                    type: integer
+                    nullable: true
+                    description: Next page number, if available.
+                "@previous":
+                    type: integer
+                    nullable: true
+                    description: Previous page number, if available.
+                items:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/LogManagement.Log.LogResource"
+                    description: Array of LogResource.
+        LogManagement.Log.LogEntryResource:
+            type: object
+            description: Resource representing a log entry.
+            readOnly: true
+            required:
+                - "@type"
+                - "@identity"
+                - log_identity
+                - source
+                - context
+                - attributes
+                - tags
+                - occurred_at
+                - created_at
+                - updated_at
+            properties:
+                "@type":
+                    type: string
+                    enum:
+                        - log_entry
+                    description: Type of the resource.
+                "@identity":
+                    type: string
+                    format: uuid
+                    description: Unique identity of the log entry.
+                log_identity:
+                    type: string
+                    format: uuid
+                    description: Identity of the associated log.
+                source:
+                    type: string
+                    minLength: 1
+                    description: Source of the log entry.
+                context:
+                    type: object
+                    description: Contextual information for the log entry.
+                attributes:
+                    type: object
+                    description: Attributes associated with the log entry.
+                tags:
+                    type: array
+                    items:
+                        type: string
+                        minLength: 1
+                    description: Tags associated with the log entry.
+                occurred_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the log entry occurred.
+                created_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the log entry was created.
+                updated_at:
+                    type: string
+                    format: date-time
+                    description: Timestamp when the log entry was last updated.
+        LogManagement.Log.LogEntryResource.PaginatedCollectionResource:
+            type: object
+            description: Paginated collection of LogEntryResource.
+            readOnly: true
+            required:
+                - "@type"
+                - "@page"
+                - "@items_per_page"
+                - "@total_items"
+                - "@first"
+                - "@last"
+                - items
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the collection.
+                    enum:
+                        - paginated_collection
+                "@page":
+                    type: integer
+                    description: Current page number.
+                "@items_per_page":
+                    type: integer
+                    description: Number of items per page.
+                "@total_items":
+                    type: integer
+                    description: Total number of items.
+                "@first":
+                    type: integer
+                    description: First item index.
+                "@last":
+                    type: integer
+                    description: Last item index.
+                "@next":
+                    type: integer
+                    nullable: true
+                    description: Next page number, if available.
+                "@previous":
+                    type: integer
+                    nullable: true
+                    description: Previous page number, if available.
+                items:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/LogManagement.Log.LogEntryResource"
+                    description: Array of LogEntryResource.
+        LogManagement.Log.LogEntrySourceResource:
+            type: object
+            description: Resource representing a log entry source.
+            readOnly: true
+            required:
+                - "@type"
+                - source
+            properties:
+                "@type":
+                    type: string
+                    enum:
+                        - log_entry_source
+                    description: Type of the resource.
+                source:
+                    type: string
+                    minLength: 1
+                    description: Source of the log entry.
+        LogManagement.Log.LogEntrySourceResource.CollectionResource:
+            type: object
+            description: Collection of LogEntrySourceResource.
+            readOnly: true
+            required:
+                - "@type"
+                - items
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the collection.
+                    enum:
+                        - simple_collection
+                items:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/LogManagement.Log.LogEntrySourceResource"
+                    description: Array of LogEntrySourceResource.
+        LogManagement.Log.LogEntryTagResource:
+            type: object
+            description: Resource representing a log entry tag.
+            readOnly: true
+            required:
+                - "@type"
+                - tag
+            properties:
+                "@type":
+                    type: string
+                    enum:
+                        - log_entry_tag
+                    description: Type of the resource.
+                tag:
+                    type: string
+                    minLength: 1
+                    description: Tag of the log entry.
+        LogManagement.Log.LogEntryTagResource.CollectionResource:
+            type: object
+            description: Collection of LogEntryTagResource.
+            readOnly: true
+            required:
+                - "@type"
+                - items
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the collection.
+                    enum:
+                        - simple_collection
+                items:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/LogManagement.Log.LogEntryTagResource"
+                    description: Array of LogEntryTagResource.
+        LogManagement.Log.LogNamespaceResource:
+            type: object
+            description: Resource representing a log namespace.
+            readOnly: true
+            required:
+                - "@type"
+                - namespace
+            properties:
+                "@type":
+                    type: string
+                    enum:
+                        - log_namespace
+                    description: Type of the resource.
+                namespace:
+                    type: string
+                    minLength: 1
+                    description: Namespace of the log.
+        LogManagement.Log.LogNamespaceResource.CollectionResource:
+            type: object
+            description: Collection of LogNamespaceResource.
+            readOnly: true
+            required:
+                - "@type"
+                - items
+            properties:
+                "@type":
+                    type: string
+                    description: Type identifier for the collection.
+                    enum:
+                        - simple_collection
+                items:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/LogManagement.Log.LogNamespaceResource"
+                    description: Array of LogNamespaceResource.
