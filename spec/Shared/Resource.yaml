@@ -4,7 +4,7 @@ info:
     title: Carthage Shared Resources
     description: The resources for the Shared context
     version: 1.0.0
-paths: {}
+paths: { }
 components:
     schemas:
         Shared.PingResource:

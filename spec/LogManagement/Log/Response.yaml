@@ -1,0 +1,101 @@
+---
+openapi: 3.0.0
+info:
+    title: Carthage Shared Schemas
+    description: The schemas shared between all the contexts
+    version: 1.0.0
+paths: { }
+components:
+    responses:
+        LogManagementGetLogCollection.Ok:
+            description: The log resource collection
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.LogResource.PaginatedCollectionResource"
+        LogManagementGetLogCollection.BadRequest:
+            description: The request is invalid
+
+        LogManagementCreateLog.Ok:
+            description: The log resource instance
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.LogResource"
+        LogManagementCreateLog.BadRequest:
+            description: The request is invalid
+        LogManagementCreateLog.Conflict:
+            description: The log already exists
+
+        LogManagementDeleteLog.NoContent:
+            description: The log resource instance
+        LogManagementDeleteLog.NotFound:
+            description: The log resource instance
+
+        LogManagementGetLog.Ok:
+            description: The log resource instance
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.LogResource"
+        LogManagementGetLog.NotFound:
+            description: The log resource instance
+
+        LogManagementGetLogNamespaceCollection.Ok:
+            description: The log namespace collection
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.LogNamespaceResource.CollectionResource"
+        LogManagementGetLogEntryCollection.Ok:
+            description: The log entry collection
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.LogEntryResource.PaginatedCollectionResource"
+        LogManagementGetLogEntryCollection.BadRequest:
+            description: The request is invalid
+
+        LogManagementCreateLogEntry.Ok:
+            description: The log entry resource instance
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.LogEntryResource"
+        LogManagementCreateLogEntry.BadRequest:
+            description: The request is invalid
+        LogManagementCreateLogEntry.NotFound:
+            description: The log was not found
+
+        LogManagementGetLogEntryTagCollection.Ok:
+            description: The log entry tag collection
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.LogEntryTagResource.CollectionResource"
+
+        LogManagementGetLogEntrySourceCollection.Ok:
+            description: The log entry source collection
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.LogEntrySourceResource.CollectionResource"
+
+        LogManagementGetLogEntry.Ok:
+            description: The log entry resource instance
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.LogEntryResource"
+        LogManagementGetLogEntry.NotFound:
+            description: The log entry was not found
+
+        LogManagementDeleteLogEntry.NoContent:
+            description: The log entry was deleted
+        LogManagementDeleteLogEntry.NotFound:
+            description: The log entry was not found
+
+        LogManagementCollectLog.Accepted:
+            description: The log collection request was accepted
+        LogManagementCollectLog.BadRequest:
+            description: The request is invalid

@@ -1,0 +1,39 @@
+---
+openapi: 3.0.0
+info:
+    title: Carthage Shared Schemas
+    description: The schemas shared between all the contexts
+    version: 1.0.0
+paths: { }
+components:
+    responses:
+        LogManagementGetLogEntryFrequencyCountCollection.Ok:
+            description: The log entry frequency count collection
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogEntryFrequencyCountResource.CollectionResource"
+        LogManagementGetLogEntrySourceFrequencyCollection.Ok:
+            description: The log entry source frequency collection
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogEntrySourceFrequencyResource.CollectionResource"
+        LogManagementGetLogEntryTagDistributionCollection.Ok:
+            description: The log entry tag distribution collection
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogEntryTagDistributionResource.CollectionResource"
+        LogManagementGetLogFrequencyCountCollection.Ok:
+            description: The log frequency count collection
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogFrequencyCountResource.CollectionResource"
+        LogManagementGetLogLevelStatisticsCollection.Ok:
+            description: The log level statistics collection
+            content:
+                application/json:
+                    schema:
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogLevelStatisticsResource.CollectionResource"

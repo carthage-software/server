@@ -4,7 +4,7 @@ info:
     title: Carthage Log Management Log Filters
     description: The filters for the log resources
     version: 0.0.0
-paths: {}
+paths: { }
 components:
     parameters:
         LogManagement.Log.LogFilter.Levels:
@@ -121,8 +121,8 @@ components:
                     - 550
                     - 600
             description: The levels of the log entries.
-            example: [100, 200, 400, 500]
-            default: [100, 200, 250, 300, 400, 500, 550, 600]
+            example: [ 100, 200, 400, 500 ]
+            default: [ 100, 200, 250, 300, 400, 500, 550, 600 ]
         LogManagement.Log.LogFilter.Contains:
             type: string
             description: The string that the log template must contain.

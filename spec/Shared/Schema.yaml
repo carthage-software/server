@@ -4,7 +4,7 @@ info:
     title: Carthage Shared Schemas
     description: The schemas shared between all the contexts
     version: 1.0.0
-paths: {}
+paths: { }
 components:
     schemas:
         Shared.DateTime:

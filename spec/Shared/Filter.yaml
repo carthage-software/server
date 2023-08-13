@@ -4,7 +4,7 @@ info:
     title: Carthage Shared Filters
     description: The filters for the shared resources
     version: 0.0.0
-paths: {}
+paths: { }
 components:
     parameters:
         Shared.Pagination.Page:
@@ -19,7 +19,7 @@ components:
             description: The number of items per page for pagination. Defaults to 20, with a maximum of 2000.
             in: query
             required: false
-            schema: 
+            schema:
                 $ref: "#/components/schemas/Shared.Pagination.ItemsPerPage"
     schemas:
         Shared.Pagination.Page:

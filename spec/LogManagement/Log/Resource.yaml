@@ -4,7 +4,7 @@ info:
     title: Carthage Log Management Log Resources
     description: The resources for the log
     version: 1.0.0
-paths: {}
+paths: { }
 components:
     schemas:
         LogManagement.Log.LogResource:

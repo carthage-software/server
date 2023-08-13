@@ -4,7 +4,7 @@ info:
     title: Carthage Log Management Log Statistics Parameters
     description: The parameters for the log statistics
     version: 0.0.0
-paths: {}
+paths: { }
 components:
     parameters:
         LogManagement.Log.Statistics.Frequency:
