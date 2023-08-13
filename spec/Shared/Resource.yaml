@@ -13,17 +13,17 @@ components:
             readOnly: true
             required:
                 - type
-                - ping
                 - time
+                - quote
             properties:
                 type:
                     type: string
                     enum:
                         - ping
                     description: Type of the resource.
+                time:
+                    $ref: "Schema.yaml#/components/schemas/Shared.DateTime"
                 quote:
                     type: string
                     description: A random quote from Hannibal, The Carthaginian General.
                     example: I will either find a way, or make one.
-                time:
-                    $ref: "Schema.yaml#/components/schemas/Shared.DateTime"
