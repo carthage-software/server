@@ -8,7 +8,7 @@ use Carthage\Application\LogManagement\Query\Log\Statistic\GetLogLevelStatistics
 use Carthage\Application\LogManagement\Resource\Log\Statistic\LogLevelStatisticsResource;
 use Carthage\Application\LogManagement\Service\Log\Statistic\LogStatisticService;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
-use Carthage\Application\Shared\Resource\SimpleCollectionResource;
+use Carthage\Application\Shared\Resource\CollectionResource;
 
 final readonly class GetLogLevelStatisticsCollectionQueryHandler implements QueryHandlerInterface
 {
@@ -18,13 +18,13 @@ final readonly class GetLogLevelStatisticsCollectionQueryHandler implements Quer
     }
 
     /**
-     * @return SimpleCollectionResource<LogLevelStatisticsResource>
+     * @return CollectionResource<LogLevelStatisticsResource>
      */
-    public function __invoke(GetLogLevelStatisticsCollectionQuery $query): SimpleCollectionResource
+    public function __invoke(GetLogLevelStatisticsCollectionQuery $query): CollectionResource
     {
         $logLevelStatistics = $this->logStatisticService->getLogPercentageByLevel();
 
-        return SimpleCollectionResource::fromItems(
+        return CollectionResource::fromItems(
             $logLevelStatistics,
             LogLevelStatisticsResource::fromLogLevelStatistics(...),
         );

@@ -8,7 +8,7 @@ use Carthage\Application\LogManagement\Query\Log\Statistic\GetLogEntryTagDistrib
 use Carthage\Application\LogManagement\Resource\Log\Statistic\LogEntryTagDistributionResource;
 use Carthage\Application\LogManagement\Service\Log\Statistic\LogEntryStatisticsService;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
-use Carthage\Application\Shared\Resource\SimpleCollectionResource;
+use Carthage\Application\Shared\Resource\CollectionResource;
 
 final readonly class GetLogEntryTagDistributionCollectionQueryHandler implements QueryHandlerInterface
 {
@@ -18,13 +18,13 @@ final readonly class GetLogEntryTagDistributionCollectionQueryHandler implements
     }
 
     /**
-     * @return SimpleCollectionResource<LogEntryTagDistributionResource>
+     * @return CollectionResource<LogEntryTagDistributionResource>
      */
-    public function __invoke(GetLogEntryTagDistributionCollectionQuery $query): SimpleCollectionResource
+    public function __invoke(GetLogEntryTagDistributionCollectionQuery $query): CollectionResource
     {
         $logEntryTagDistributions = $this->logEntryStatisticsService->getTagDistribution();
 
-        return SimpleCollectionResource::fromItems(
+        return CollectionResource::fromItems(
             $logEntryTagDistributions,
             LogEntryTagDistributionResource::fromLogEntryTagDistribution(...),
         );

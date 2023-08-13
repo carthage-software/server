@@ -6,11 +6,11 @@ namespace Carthage\Application\LogManagement\Query\Log;
 
 use Carthage\Application\LogManagement\Resource\Log\LogEntryResource;
 use Carthage\Application\Shared\Query\QueryInterface;
-use Carthage\Application\Shared\Resource\CollectionResourceInterface;
+use Carthage\Application\Shared\Resource\PaginatedCollectionResource;
 use Carthage\Domain\LogManagement\Filter\Log\LogEntryFilter;
 
 /**
- * @implements QueryInterface<CollectionResourceInterface<LogEntryResource>>
+ * @implements QueryInterface<PaginatedCollectionResource<LogEntryResource>>
  */
 final readonly class GetLogEntryCollectionQuery implements QueryInterface
 {

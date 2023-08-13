@@ -266,7 +266,7 @@ components:
                     type: string
                     description: Type identifier for the collection.
                     enum:
-                        - simple_collection
+                        - collection
                 items:
                     type: array
                     items:
@@ -301,7 +301,7 @@ components:
                     type: string
                     description: Type identifier for the collection.
                     enum:
-                        - simple_collection
+                        - collection
                 items:
                     type: array
                     items:
@@ -336,7 +336,7 @@ components:
                     type: string
                     description: Type identifier for the collection.
                     enum:
-                        - simple_collection
+                        - collection
                 items:
                     type: array
                     items:

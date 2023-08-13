@@ -7,8 +7,7 @@ namespace Carthage\Application\LogManagement\QueryHandler\Log;
 use Carthage\Application\LogManagement\Query\Log\GetLogEntrySourceCollectionQuery;
 use Carthage\Application\LogManagement\Resource\Log\LogEntrySourceResource;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
-use Carthage\Application\Shared\Resource\CollectionResourceInterface;
-use Carthage\Application\Shared\Resource\SimpleCollectionResource;
+use Carthage\Application\Shared\Resource\CollectionResource;
 use Carthage\Domain\LogManagement\Repository\Log\LogEntryRepositoryInterface;
 
 final readonly class GetLogEntrySourceCollectionQueryHandler implements QueryHandlerInterface
@@ -19,12 +18,12 @@ final readonly class GetLogEntrySourceCollectionQueryHandler implements QueryHan
     }
 
     /**
-     * @return CollectionResourceInterface<LogEntrySourceResource>
+     * @return CollectionResource<LogEntrySourceResource>
      */
-    public function __invoke(GetLogEntrySourceCollectionQuery $query): CollectionResourceInterface
+    public function __invoke(GetLogEntrySourceCollectionQuery $query): CollectionResource
     {
         $sources = $this->logEntryRepository->getUniqueSourcesFromLogEntries();
 
-        return SimpleCollectionResource::fromItems($sources, LogEntrySourceResource::fromSource(...));
+        return CollectionResource::fromItems($sources, LogEntrySourceResource::fromSource(...));
     }
 }

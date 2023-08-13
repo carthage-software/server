@@ -10,12 +10,10 @@ use Psl\Iter;
 
 /**
  * @template T of ResourceInterface
- *
- * @implements CollectionResourceInterface<T>
  */
-final readonly class SimpleCollectionResource implements CollectionResourceInterface
+final readonly class CollectionResource implements ResourceInterface
 {
-    private const TYPE = 'simple_collection';
+    private const TYPE = 'collection';
 
     /**
      * @param iterable<T> $items
@@ -32,9 +30,9 @@ final readonly class SimpleCollectionResource implements CollectionResourceInter
      * @param iterable<TFrom> $items
      * @param (Closure(TFrom): TInto) $mapper
      *
-     * @return static<TInto>
+     * @return self<TInto>
      */
-    public static function fromItems(iterable $items, Closure $mapper): CollectionResourceInterface
+    public static function fromItems(iterable $items, Closure $mapper): self
     {
         return new self(Iter\Iterator::from(
             /**
@@ -54,13 +52,5 @@ final readonly class SimpleCollectionResource implements CollectionResourceInter
     public function getType(): string
     {
         return self::TYPE;
-    }
-
-    /**
-     * @return iterable<T>
-     */
-    public function getItems(): iterable
-    {
-        return $this->items;
     }
 }

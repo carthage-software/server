@@ -7,7 +7,6 @@ namespace Carthage\Application\MetricCollection\QueryHandler\Histogram;
 use Carthage\Application\MetricCollection\Query\Histogram\GetHistogramCollectionQuery;
 use Carthage\Application\MetricCollection\Resource\Histogram\HistogramResource;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
-use Carthage\Application\Shared\Resource\CollectionResourceInterface;
 use Carthage\Application\Shared\Resource\PaginatedCollectionResource;
 use Carthage\Domain\MetricCollection\Repository\Histogram\HistogramRepositoryInterface;
 
@@ -19,9 +18,9 @@ final readonly class GetHistogramCollectionQueryHandler implements QueryHandlerI
     }
 
     /**
-     * @return CollectionResourceInterface<HistogramResource>
+     * @return PaginatedCollectionResource<HistogramResource>
      */
-    public function __invoke(GetHistogramCollectionQuery $query): CollectionResourceInterface
+    public function __invoke(GetHistogramCollectionQuery $query): PaginatedCollectionResource
     {
         $histogramPage = $this->histogramRepository->paginate($query->histogramFilter);
 

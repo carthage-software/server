@@ -6,11 +6,11 @@ namespace Carthage\Application\MetricCollection\Query\Metric;
 
 use Carthage\Application\MetricCollection\Resource\Metric\MetricResource;
 use Carthage\Application\Shared\Query\QueryInterface;
-use Carthage\Application\Shared\Resource\CollectionResourceInterface;
+use Carthage\Application\Shared\Resource\PaginatedCollectionResource;
 use Carthage\Domain\MetricCollection\Filter\Metric\MetricFilter;
 
 /**
- * @implements QueryInterface<CollectionResourceInterface<MetricResource>>
+ * @implements QueryInterface<PaginatedCollectionResource<MetricResource>>
  */
 final readonly class GetMetricCollectionQuery implements QueryInterface
 {

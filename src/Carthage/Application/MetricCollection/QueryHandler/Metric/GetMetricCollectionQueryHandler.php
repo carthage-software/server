@@ -7,7 +7,6 @@ namespace Carthage\Application\MetricCollection\QueryHandler\Metric;
 use Carthage\Application\MetricCollection\Query\Metric\GetMetricCollectionQuery;
 use Carthage\Application\MetricCollection\Resource\Metric\MetricResource;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
-use Carthage\Application\Shared\Resource\CollectionResourceInterface;
 use Carthage\Application\Shared\Resource\PaginatedCollectionResource;
 use Carthage\Domain\MetricCollection\Repository\Metric\MetricRepositoryInterface;
 
@@ -19,9 +18,9 @@ final readonly class GetMetricCollectionQueryHandler implements QueryHandlerInte
     }
 
     /**
-     * @return CollectionResourceInterface<MetricResource>
+     * @return PaginatedCollectionResource<MetricResource>
      */
-    public function __invoke(GetMetricCollectionQuery $query): CollectionResourceInterface
+    public function __invoke(GetMetricCollectionQuery $query): PaginatedCollectionResource
     {
         $metricPage = $this->metricRepository->paginate($query->metricFilter);
 

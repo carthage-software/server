@@ -7,7 +7,7 @@ namespace Carthage\Application\MetricCollection\Resource\Metric;
 use Carthage\Application\MetricCollection\Resource\Gauge\GaugeResource;
 use Carthage\Application\MetricCollection\Resource\Histogram\HistogramResource;
 use Carthage\Application\MetricCollection\Resource\Summary\SummaryResource;
-use Carthage\Application\Shared\Resource\ItemResourceInterface;
+use Carthage\Application\Shared\Resource\ResourceInterface;
 use Carthage\Domain\MetricCollection\Entity\Gauge\Gauge;
 use Carthage\Domain\MetricCollection\Entity\Histogram\Histogram;
 use Carthage\Domain\MetricCollection\Entity\Metric\Metric;
@@ -19,7 +19,7 @@ use Psl\Type;
 /**
  * The MetricResource class represents a metric in the system, designed for serialization.
  */
-abstract readonly class MetricResource implements ItemResourceInterface
+abstract readonly class MetricResource implements ResourceInterface
 {
     protected const TYPE = 'metric';
 
@@ -55,14 +55,6 @@ abstract readonly class MetricResource implements ItemResourceInterface
         return SummaryResource::fromSummary(
             Type\instance_of(Summary::class)->assert($metric),
         );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getIdentity(): Identity
-    {
-        return $this->identity;
     }
 
     /**

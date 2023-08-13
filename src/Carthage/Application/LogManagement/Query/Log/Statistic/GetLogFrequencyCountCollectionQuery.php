@@ -6,11 +6,11 @@ namespace Carthage\Application\LogManagement\Query\Log\Statistic;
 
 use Carthage\Application\LogManagement\Resource\Log\Statistic\LogFrequencyCountResource;
 use Carthage\Application\Shared\Query\QueryInterface;
-use Carthage\Application\Shared\Resource\CollectionResourceInterface;
+use Carthage\Application\Shared\Resource\CollectionResource;
 use Carthage\Domain\LogManagement\Enum\Log\Statistics\Frequency;
 
 /**
- * @implements QueryInterface<CollectionResourceInterface<LogFrequencyCountResource>>
+ * @implements QueryInterface<CollectionResource<LogFrequencyCountResource>>
  */
 final readonly class GetLogFrequencyCountCollectionQuery implements QueryInterface
 {

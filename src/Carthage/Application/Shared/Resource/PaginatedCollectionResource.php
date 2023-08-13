@@ -11,10 +11,8 @@ use Psl\Iter;
 
 /**
  * @template T of ResourceInterface
- *
- * @implements CollectionResourceInterface<T>
  */
-final readonly class PaginatedCollectionResource implements CollectionResourceInterface
+final readonly class PaginatedCollectionResource implements ResourceInterface
 {
     private const TYPE = 'paginated_collection';
 
@@ -64,13 +62,5 @@ final readonly class PaginatedCollectionResource implements CollectionResourceIn
     public function getType(): string
     {
         return self::TYPE;
-    }
-
-    /**
-     * @return iterable<T>
-     */
-    public function getItems(): iterable
-    {
-        return $this->items;
     }
 }

@@ -38,7 +38,7 @@ final class PingRequestHandlerTest extends TestCase
         );
 
         $queryBus = $this->createMock(QueryBusInterface::class);
-        $queryBus->expects(self::once())->method('ask')->willReturnCallback(static function (PingQuery $query): PingResource {
+        $queryBus->expects(self::once())->method('ask')->willReturnCallback(static function (PingQuery $_query): PingResource {
             return new PingResource('pong!', new DateTimeImmutable('2021-01-01 00:00:00'));
         });
 

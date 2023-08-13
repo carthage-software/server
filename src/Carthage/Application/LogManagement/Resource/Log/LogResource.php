@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Carthage\Application\LogManagement\Resource\Log;
 
-use Carthage\Application\Shared\Resource\ItemResourceInterface;
+use Carthage\Application\Shared\Resource\ResourceInterface;
 use Carthage\Domain\LogManagement\Entity\Log\Log;
 use Carthage\Domain\LogManagement\Enum\Log\Level;
 use Carthage\Domain\Shared\Entity\Identity;
 use DateTimeImmutable;
 
-final class LogResource implements ItemResourceInterface
+final class LogResource implements ResourceInterface
 {
     private const TYPE = 'log';
 
@@ -42,14 +42,6 @@ final class LogResource implements ItemResourceInterface
             $log->createdAt,
             $log->updatedAt,
         );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getIdentity(): Identity
-    {
-        return $this->identity;
     }
 
     /**

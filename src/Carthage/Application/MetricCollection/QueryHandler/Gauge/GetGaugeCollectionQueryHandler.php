@@ -7,7 +7,6 @@ namespace Carthage\Application\MetricCollection\QueryHandler\Gauge;
 use Carthage\Application\MetricCollection\Query\Gauge\GetGaugeCollectionQuery;
 use Carthage\Application\MetricCollection\Resource\Gauge\GaugeResource;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
-use Carthage\Application\Shared\Resource\CollectionResourceInterface;
 use Carthage\Application\Shared\Resource\PaginatedCollectionResource;
 use Carthage\Domain\MetricCollection\Repository\Gauge\GaugeRepositoryInterface;
 
@@ -19,9 +18,9 @@ final readonly class GetGaugeCollectionQueryHandler implements QueryHandlerInter
     }
 
     /**
-     * @return CollectionResourceInterface<GaugeResource>
+     * @return PaginatedCollectionResource<GaugeResource>
      */
-    public function __invoke(GetGaugeCollectionQuery $query): CollectionResourceInterface
+    public function __invoke(GetGaugeCollectionQuery $query): PaginatedCollectionResource
     {
         $gaugePage = $this->gaugeRepository->paginate($query->gaugeFilter);
 

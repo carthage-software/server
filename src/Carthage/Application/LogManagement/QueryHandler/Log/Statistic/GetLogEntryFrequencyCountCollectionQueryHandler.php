@@ -8,7 +8,7 @@ use Carthage\Application\LogManagement\Query\Log\Statistic\GetLogEntryFrequencyC
 use Carthage\Application\LogManagement\Resource\Log\Statistic\LogEntryFrequencyCountResource;
 use Carthage\Application\LogManagement\Service\Log\Statistic\LogEntryStatisticsService;
 use Carthage\Application\Shared\QueryHandler\QueryHandlerInterface;
-use Carthage\Application\Shared\Resource\SimpleCollectionResource;
+use Carthage\Application\Shared\Resource\CollectionResource;
 
 final readonly class GetLogEntryFrequencyCountCollectionQueryHandler implements QueryHandlerInterface
 {
@@ -18,13 +18,13 @@ final readonly class GetLogEntryFrequencyCountCollectionQueryHandler implements 
     }
 
     /**
-     * @return SimpleCollectionResource<LogEntryFrequencyCountResource>
+     * @return CollectionResource<LogEntryFrequencyCountResource>
      */
-    public function __invoke(GetLogEntryFrequencyCountCollectionQuery $query): SimpleCollectionResource
+    public function __invoke(GetLogEntryFrequencyCountCollectionQuery $query): CollectionResource
     {
         $logEntryCountByFrequencies = $this->logEntryStatisticsService->getLogEntryCountByFrequency($query->frequency);
 
-        return SimpleCollectionResource::fromItems(
+        return CollectionResource::fromItems(
             $logEntryCountByFrequencies,
             LogEntryFrequencyCountResource::fromLogEntryFrequencyCount(...),
         );

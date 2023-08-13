@@ -6,10 +6,10 @@ namespace Carthage\Application\LogManagement\Query\Log\Statistic;
 
 use Carthage\Application\LogManagement\Resource\Log\Statistic\LogLevelStatisticsResource;
 use Carthage\Application\Shared\Query\QueryInterface;
-use Carthage\Application\Shared\Resource\CollectionResourceInterface;
+use Carthage\Application\Shared\Resource\CollectionResource;
 
 /**
- * @implements QueryInterface<CollectionResourceInterface<LogLevelStatisticsResource>>
+ * @implements QueryInterface<CollectionResource<LogLevelStatisticsResource>>
  */
 final readonly class GetLogLevelStatisticsCollectionQuery implements QueryInterface
 {

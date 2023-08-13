@@ -6,11 +6,11 @@ namespace Carthage\Application\MetricCollection\Query\Gauge;
 
 use Carthage\Application\MetricCollection\Resource\Gauge\GaugeResource;
 use Carthage\Application\Shared\Query\QueryInterface;
-use Carthage\Application\Shared\Resource\CollectionResourceInterface;
+use Carthage\Application\Shared\Resource\PaginatedCollectionResource;
 use Carthage\Domain\MetricCollection\Filter\Gauge\GaugeFilter;
 
 /**
- * @implements QueryInterface<CollectionResourceInterface<GaugeResource>>
+ * @implements QueryInterface<PaginatedCollectionResource<GaugeResource>>
  */
 final readonly class GetGaugeCollectionQuery implements QueryInterface
 {
