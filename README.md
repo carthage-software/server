@@ -1,15 +1,14 @@
-# Carthage
+# Carthage Server
 
-Carthage is a comprehensive, all-in-one application monitoring, logging, error handling, and metrics collection
-solution. Utilizing Domain-Driven Design (DDD) and Hexagonal Architecture, Carthage focuses on providing a structured
-and modular platform to diagnose, manage, and learn from your application's behavior, performance, and operational data.
+## Overview
 
-## Bounded Contexts
+Carthage is an integrated solution that encompasses various critical aspects of application management, including log management, metrics collection, network monitoring, application health, error tracking, security monitoring, and system monitoring. This repository contains the source code and documentation for the server components of Carthage.
 
-Carthage is composed of several Bounded Contexts, each focusing on a specific domain. These contexts are isolated from
-each other to prevent coupling and ensure that the system remains modular and extensible.
+## Progress
 
-| Bounded Contexts    | Domain | Application | Infrastructure | Presentation | Tests | Documentation |
+The following table indicates the current progress across different bounded contexts:
+
+| Bounded Context     | Domain | Application | Infrastructure | Presentation | Tests | Documentation |
 |---------------------|--------|-------------|----------------|--------------|-------|---------------|
 | Shared              | ✅      | ✅           | ✅              | ✅            | ✅     | ❌             |
 | Log Management      | ✅      | ✅           | ✅              | ✅            | ⚠️    | ❌             |
@@ -20,6 +19,10 @@ each other to prevent coupling and ensure that the system remains modular and ex
 | Security Monitoring | ❌      | ❌           | ❌              | ❌            | ❌     | ❌             |
 | System Monitoring   | ❌      | ❌           | ❌              | ❌            | ❌     | ❌             |
 
-# License
+## License
 
-Carthage is proprietary software and is not licensed for public use. Please contact [Saif Eddin Gmati](https://github.com/azjezz)
+Carthage is open-source software, but it is not free to use. The software is provided under a proprietary license. For inquiries about usage, licensing, or collaboration, please contact [Saif Eddin Gmati](https://github.com/azjezz).
+
+---
+
+Thank you for your interest in Carthage!
