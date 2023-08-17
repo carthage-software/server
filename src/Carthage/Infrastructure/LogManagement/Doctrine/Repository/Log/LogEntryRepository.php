@@ -25,6 +25,8 @@ use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 #[AsAlias(LogEntryRepositoryInterface::class)]
 final class LogEntryRepository extends EntityRepository implements LogEntryRepositoryInterface
 {
+    private const STATISTIC_DATE_FORMAT = 'Y-m-d';
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, LogEntry::class);
@@ -77,25 +79,29 @@ final class LogEntryRepository extends EntityRepository implements LogEntryRepos
      *
      * @throws DatabaseException
      */
-    public function getMostFrequentSources(): array
+    public function getMostFrequentSources(DateTimeImmutable $from, DateTimeImmutable $to): array
     {
         $connection = $this->getEntityManager()->getConnection();
 
         $table = $this->getClassMetadata()->getTableName();
         $table = $connection->quoteIdentifier($table);
 
-        $query = "
+        $query = <<<SQL
             WITH total AS (
-                SELECT COUNT(*) AS total_count FROM $table
+                SELECT COUNT(*) AS total_count FROM $table WHERE occurred_at BETWEEN :from AND :to
             )
             SELECT source, COUNT(source) AS count, (COUNT(source) * 100.0 / total.total_count) AS percentage
             FROM $table, total
+            WHERE occurred_at BETWEEN :from AND :to
             GROUP BY source, total.total_count
             ORDER BY count DESC
-        ";
+        SQL;
 
         /** @var array<array-key, array{source: non-empty-string, count: string, percentage: string}> $result */
-        $result = $connection->executeQuery($query)->fetchAllAssociative();
+        $result = $connection->executeQuery($query, [
+            'from' => $from->format(self::STATISTIC_DATE_FORMAT),
+            'to' => $to->format(self::STATISTIC_DATE_FORMAT),
+        ])->fetchAllAssociative();
 
         return Vec\map($result, static fn (array $row): LogEntrySourceFrequency => new LogEntrySourceFrequency(
             Type\non_empty_string()->coerce($row['source']),
@@ -111,18 +117,28 @@ final class LogEntryRepository extends EntityRepository implements LogEntryRepos
      *
      * @return list<LogEntryTagDistribution>
      */
-    public function getTagDistribution(): array
+    public function getTagDistribution(DateTimeImmutable $from, DateTimeImmutable $to): array
     {
         $connection = $this->getEntityManager()->getConnection();
 
         $table = $this->getClassMetadata()->getTableName();
         $table = $connection->quoteIdentifier($table);
 
+        $query = <<<SQL
+            WITH tags_cte AS (
+                SELECT jsonb_array_elements_text(tags) AS tag FROM $table WHERE occurred_at BETWEEN :from AND :to
+            )
+            SELECT tag, COUNT(tag) AS count
+            FROM tags_cte
+            GROUP BY tag
+            ORDER BY count DESC
+        SQL;
+
         /** @var array<array-key, array{tag: string, count: string}> $result */
-        $result = $connection
-            ->executeQuery("SELECT tag, COUNT(tag) AS count FROM (SELECT jsonb_array_elements_text(tags) AS tag FROM $table) AS subquery GROUP BY tag ORDER BY count DESC")
-            ->fetchAllAssociative()
-        ;
+        $result = $connection->executeQuery($query, [
+            'from' => $from->format(self::STATISTIC_DATE_FORMAT),
+            'to' => $to->format(self::STATISTIC_DATE_FORMAT),
+        ])->fetchAllAssociative();
 
         return Vec\map($result, static fn (array $row): LogEntryTagDistribution => new LogEntryTagDistribution(
             Type\non_empty_string()->coerce($row['tag']),
@@ -138,7 +154,7 @@ final class LogEntryRepository extends EntityRepository implements LogEntryRepos
      *
      * @return list<LogEntryFrequencyCount>
      */
-    public function getLogEntryCountByFrequency(Frequency $frequency): array
+    public function getLogEntryCountByFrequency(Frequency $frequency, DateTimeImmutable $from, DateTimeImmutable $to): array
     {
         $connection = $this->getEntityManager()->getConnection();
 
@@ -154,9 +170,19 @@ final class LogEntryRepository extends EntityRepository implements LogEntryRepos
             Frequency::Yearly => 'year',
         };
 
+        $query = <<<SQL
+            SELECT date_trunc(:interval, occurred_at) AS date, COUNT(*) AS count
+            FROM $table
+            WHERE occurred_at BETWEEN :from AND :to
+            GROUP BY date
+            ORDER BY date ASC
+        SQL;
+
         /** @var array<array-key, array{date: string, count: string}> $result */
-        $result = $connection->executeQuery("SELECT date_trunc(:interval, occurred_at) AS date, COUNT(*) AS count FROM $table GROUP BY date ORDER BY date ASC", [
+        $result = $connection->executeQuery($query, [
             'interval' => $interval,
+            'from' => $from->format(self::STATISTIC_DATE_FORMAT),
+            'to' => $to->format(self::STATISTIC_DATE_FORMAT),
         ])->fetchAllAssociative();
 
         return Vec\map($result, static fn (array $row): LogEntryFrequencyCount => new LogEntryFrequencyCount(

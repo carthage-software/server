@@ -13,6 +13,18 @@ components:
             required: true
             schema:
                 $ref: "#/components/schemas/LogManagement.Log.Statistics.Frequency"
+        LogManagement.Log.Statistics.From:
+            name: from
+            in: path
+            required: true
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.Statistics.From"
+        LogManagement.Log.Statistics.To:
+            name: to
+            in: path
+            required: true
+            schema:
+                $ref: "#/components/schemas/LogManagement.Log.Statistics.To"
     schemas:
         LogManagement.Log.Statistics.Frequency:
             type: string
@@ -26,3 +38,13 @@ components:
             minLength: 1
             description: The frequency for log statistics, specifying how the data should be
                 aggregated.
+        LogManagement.Log.Statistics.From:
+            type: string
+            format: date
+            description: The start date for the log statistics.
+            example: 2020-01-01
+        LogManagement.Log.Statistics.To:
+            type: string
+            format: date
+            description: The end date for the log statistics.
+            example: 2020-01-10

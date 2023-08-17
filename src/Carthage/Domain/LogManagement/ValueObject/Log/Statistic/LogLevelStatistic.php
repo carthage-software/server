@@ -6,7 +6,7 @@ namespace Carthage\Domain\LogManagement\ValueObject\Log\Statistic;
 
 use Carthage\Domain\LogManagement\Enum\Log\Level;
 
-final readonly class LogLevelStatistics
+final readonly class LogLevelStatistic
 {
     /**
      * @param positive-int $count

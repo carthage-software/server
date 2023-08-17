@@ -3,43 +3,43 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing https://symfony.com/schema/routing/routing-1.0.xsd"
 >
-    <!-- GetLogEntryFrequencyCountCollectionRequestHandler -->
+    <!-- GetLogEntryFrequencyCountStatisticCollectionRequestHandler -->
     <route
-        id="log:statistic:get-log-entry-frequency-count-collection"
-        path="/log/statistic/entry-frequency-count/{frequency}"
+        id="log:statistic:get-log-entry-frequency-count-statistic-collection"
+        path="/log/statistic/entry-frequency-count/{frequency}/from/{from}/to/{to}"
         methods="GET"
-        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\Statistic\GetLogEntryFrequencyCountCollectionRequestHandler::handle"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\Statistic\GetLogEntryFrequencyCountStatisticCollectionRequestHandler::handle"
     />
 
-    <!-- GetLogEntrySourceFrequencyCollectionRequestHandler -->
+    <!-- GetLogEntrySourceFrequencyStatisticCollectionRequestHandler -->
     <route
-        id="log:statistic:get-log-entry-source-frequency-collection"
-        path="/log/statistic/entry-source-frequency"
+        id="log:statistic:get-log-entry-source-frequency-statistic-collection"
+        path="/log/statistic/entry-source-frequency/from/{from}/to/{to}"
         methods="GET"
-        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\Statistic\GetLogEntrySourceFrequencyCollectionRequestHandler::handle"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\Statistic\GetLogEntrySourceFrequencyStatisticCollectionRequestHandler::handle"
     />
 
-    <!-- GetLogEntryTagDistributionCollectionRequestHandler -->
+    <!-- GetLogEntryTagDistributionStatisticCollectionRequestHandler -->
     <route
-        id="log:statistic:get-log-entry-tag-distribution-collection"
-        path="/log/statistic/entry-tag-distribution"
+        id="log:statistic:get-log-entry-tag-distribution-statistic-collection"
+        path="/log/statistic/entry-tag-distribution/from/{from}/to/{to}"
         methods="GET"
-        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\Statistic\GetLogEntryTagDistributionCollectionRequestHandler::handle"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\Statistic\GetLogEntryTagDistributionStatisticCollectionRequestHandler::handle"
     />
 
-    <!-- GetLogFrequencyCountCollectionRequestHandler -->
+    <!-- GetLogFrequencyCountStatisticCollectionRequestHandler -->
     <route
-        id="log:statistic:get-log-frequency-count-collection"
-        path="/log/statistic/frequency-count/{frequency}"
+        id="log:statistic:get-log-frequency-count-statistic-collection"
+        path="/log/statistic/frequency-count/{frequency}/from/{from}/to/{to}"
         methods="GET"
-        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\Statistic\GetLogFrequencyCountCollectionRequestHandler::handle"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\Statistic\GetLogFrequencyCountStatisticCollectionRequestHandler::handle"
     />
 
-    <!-- GetLogLevelStatisticsCollectionRequestHandler -->
+    <!-- GetLogLevelStatisticStatisticCollectionRequestHandler -->
     <route
-        id="log:statistic:get-log-level-statistics-collection"
-        path="/log/statistic/level-statistics"
+        id="log:statistic:get-log-level-statistic-statistic-collection"
+        path="/log/statistic/level-statistics/from/{from}/to/{to}"
         methods="GET"
-        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\Statistic\GetLogLevelStatisticsCollectionRequestHandler::handle"
+        controller="Carthage\Presentation\LogManagement\Server\RequestHandler\Log\Statistic\GetLogLevelStatisticStatisticCollectionRequestHandler::handle"
     />
 </routes>

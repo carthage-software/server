@@ -6,11 +6,11 @@ namespace Carthage\Application\LogManagement\Resource\Log\Statistic;
 
 use Carthage\Application\Shared\Resource\ResourceInterface;
 use Carthage\Domain\LogManagement\Enum\Log\Level;
-use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogLevelStatistics;
+use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogLevelStatistic;
 
-final readonly class LogLevelStatisticsResource implements ResourceInterface
+final readonly class LogLevelStatisticResource implements ResourceInterface
 {
-    private const TYPE = 'log_level_statistics';
+    private const TYPE = 'log_level_statistic';
 
     /**
      * @param positive-int $count
@@ -22,7 +22,7 @@ final readonly class LogLevelStatisticsResource implements ResourceInterface
     ) {
     }
 
-    public static function fromLogLevelStatistics(LogLevelStatistics $logLevelStatistics): self
+    public static function fromLogLevelStatistics(LogLevelStatistic $logLevelStatistics): self
     {
         return new self(
             $logLevelStatistics->level,

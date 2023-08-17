@@ -9,7 +9,7 @@ use Carthage\Domain\LogManagement\Enum\Log\Level;
 use Carthage\Domain\LogManagement\Enum\Log\Statistics\Frequency;
 use Carthage\Domain\LogManagement\Repository\Log\LogRepositoryInterface;
 use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogFrequencyCount;
-use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogLevelStatistics;
+use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogLevelStatistic;
 use Carthage\Infrastructure\Shared\Doctrine\Repository\EntityRepository;
 use DateTimeImmutable;
 use Doctrine\DBAL\Exception as DatabaseException;
@@ -25,6 +25,8 @@ use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 #[AsAlias(LogRepositoryInterface::class)]
 final class LogRepository extends EntityRepository implements LogRepositoryInterface
 {
+    private const STATISTIC_DATE_FORMAT = 'Y-m-d';
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Log::class);
@@ -51,36 +53,35 @@ final class LogRepository extends EntityRepository implements LogRepositoryInter
     /**
      * @throws DatabaseException
      *
-     * @return list<LogLevelStatistics>
+     * @return list<LogLevelStatistic>
      */
-    public function getLogPercentageByLevel(): array
+    public function getLogPercentageByLevel(DateTimeImmutable $from, DateTimeImmutable $to): array
     {
         $connection = $this->getEntityManager()->getConnection();
         $table = $this->getClassMetadata()->getTableName();
         $table = $connection->quoteIdentifier($table);
 
-        $query = "
+        $query = <<<SQL
             WITH total_logs AS (
-                SELECT COUNT(*) AS total_count FROM $table
+                SELECT COUNT(*) AS total_count FROM $table WHERE created_at BETWEEN :from AND :to
             )
             SELECT level, COUNT(*) AS count, (COUNT(*) * 100.0 / total_logs.total_count) AS percentage
             FROM $table, total_logs
+            WHERE created_at BETWEEN :from AND :to
             GROUP BY level, total_logs.total_count
-        ";
+        SQL;
 
         /** @var list<array{level: string, count: string, percentage: string}> $result */
-        $result = $connection->executeQuery($query)->fetchAllAssociative();
+        $result = $connection->executeQuery($query, [
+            'from' => $from->format(self::STATISTIC_DATE_FORMAT),
+            'to' => $to->format(self::STATISTIC_DATE_FORMAT),
+        ])->fetchAllAssociative();
 
-        return Vec\map(
-            $result,
-            static fn (array $row): LogLevelStatistics => new LogLevelStatistics(
-                Level::from(
-                    Type\positive_int()->coerce($row['level']),
-                ),
-                Type\positive_int()->coerce($row['count']),
-                Type\float()->coerce($row['percentage']),
-            ),
-        );
+        return Vec\map($result, static fn (array $row): LogLevelStatistic => new LogLevelStatistic(
+            Type\backed_enum(Level::class)->coerce($row['level']),
+            Type\positive_int()->coerce($row['count']),
+            Type\float()->coerce($row['percentage']),
+        ));
     }
 
     /**
@@ -89,7 +90,7 @@ final class LogRepository extends EntityRepository implements LogRepositoryInter
      *
      * @return list<LogFrequencyCount>
      */
-    public function getLogCountByFrequency(Frequency $frequency): array
+    public function getLogCountByFrequency(Frequency $frequency, DateTimeImmutable $from, DateTimeImmutable $to): array
     {
         $connection = $this->getEntityManager()->getConnection();
         $table = $this->getClassMetadata()->getTableName();
@@ -104,10 +105,20 @@ final class LogRepository extends EntityRepository implements LogRepositoryInter
             Frequency::Yearly => 'year',
         };
 
-        $query = "SELECT date_trunc(:interval, created_at) AS date, COUNT(*) AS count FROM $table GROUP BY date ORDER BY date ASC";
+        $query = <<<SQL
+            SELECT date_trunc(:interval, created_at) AS date, COUNT(*) AS count
+            FROM $table
+            WHERE created_at BETWEEN :from AND :to
+            GROUP BY date
+            ORDER BY date ASC
+        SQL;
 
         /** @var list<array{date: string, count: string}> $result */
-        $result = $connection->executeQuery($query, ['interval' => $interval])->fetchAllAssociative();
+        $result = $connection->executeQuery($query, [
+            'interval' => $interval,
+            'from' => $from->format(self::STATISTIC_DATE_FORMAT),
+            'to' => $to->format(self::STATISTIC_DATE_FORMAT),
+        ])->fetchAllAssociative();
 
         return Vec\map($result, static fn (array $row): LogFrequencyCount => new LogFrequencyCount(
             new DateTimeImmutable(

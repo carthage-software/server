@@ -31,9 +31,9 @@ components:
                 application/json:
                     schema:
                         $ref: "Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogFrequencyCountResource.CollectionResource"
-        LogManagementGetLogLevelStatisticsCollection.Ok:
+        LogManagementGetLogLevelStatisticCollection.Ok:
             description: The log level statistics collection
             content:
                 application/json:
                     schema:
-                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogLevelStatisticsResource.CollectionResource"
+                        $ref: "Resource.yaml#/components/schemas/LogManagement.Log.Statistics.LogLevelStatisticResource.CollectionResource"

@@ -9,15 +9,17 @@ use Carthage\Domain\LogManagement\Repository\Log\LogEntryRepositoryInterface;
 use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogEntryFrequencyCount;
 use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogEntrySourceFrequency;
 use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogEntryTagDistribution;
+use DateTimeImmutable;
 use Psl\Str;
 use Psr\Cache\CacheItemPoolInterface;
 
 final readonly class LogEntryStatisticsService
 {
-    private const CACHE_TTL = 1800; // 30 minutes
-    private const MOST_FREQUENT_SOURCES_CACHE_KEY = 'most_frequent_sources';
-    private const TAG_DISTRIBUTION_CACHE_KEY = 'tag_distribution';
-    private const LOG_ENTRY_COUNT_CACHE_KEY_FORMAT = 'log_entry_count_%s';
+    private const CACHE_DATE_FORMAT = 'Y_m_d';
+    private const CACHE_TTL = 1800;
+    private const MOST_FREQUENT_SOURCES_CACHE_KEY_FORMAT = 'most_frequent_sources_%s_%s';
+    private const TAG_DISTRIBUTION_CACHE_KEY_FORMAT = 'tag_distribution_%s_%s';
+    private const LOG_ENTRY_COUNT_CACHE_KEY_FORMAT = 'log_entry_count_%s_%s_%s';
 
     public function __construct(
         private LogEntryRepositoryInterface $logEntryRepository,
@@ -30,12 +32,16 @@ final readonly class LogEntryStatisticsService
      *
      * @return list<LogEntrySourceFrequency> list of most frequent sources
      */
-    public function getMostFrequentSources(): array
+    public function getMostFrequentSources(DateTimeImmutable $from, DateTimeImmutable $to): array
     {
-        $logEntrySourceFrequenciesItems = $this->cacheItemPool->getItem(self::MOST_FREQUENT_SOURCES_CACHE_KEY);
+        $logEntrySourceFrequenciesItems = $this->cacheItemPool->getItem(Str\format(
+            self::MOST_FREQUENT_SOURCES_CACHE_KEY_FORMAT,
+            $from->format(self::CACHE_DATE_FORMAT),
+            $to->format(self::CACHE_DATE_FORMAT),
+        ));
 
         if (!$logEntrySourceFrequenciesItems->isHit()) {
-            $logEntrySourceFrequencies = $this->logEntryRepository->getMostFrequentSources();
+            $logEntrySourceFrequencies = $this->logEntryRepository->getMostFrequentSources($from, $to);
 
             $logEntrySourceFrequenciesItems->set($logEntrySourceFrequencies);
             $logEntrySourceFrequenciesItems->expiresAfter(self::CACHE_TTL);
@@ -52,12 +58,16 @@ final readonly class LogEntryStatisticsService
      *
      * @return list<LogEntryTagDistribution> list of tag distributions
      */
-    public function getTagDistribution(): array
+    public function getTagDistribution(DateTimeImmutable $from, DateTimeImmutable $to): array
     {
-        $logEntryTagDistributionsItem = $this->cacheItemPool->getItem(self::TAG_DISTRIBUTION_CACHE_KEY);
+        $logEntryTagDistributionsItem = $this->cacheItemPool->getItem(Str\format(
+            self::TAG_DISTRIBUTION_CACHE_KEY_FORMAT,
+            $from->format(self::CACHE_DATE_FORMAT),
+            $to->format(self::CACHE_DATE_FORMAT),
+        ));
 
         if (!$logEntryTagDistributionsItem->isHit()) {
-            $logEntryTagDistributions = $this->logEntryRepository->getTagDistribution();
+            $logEntryTagDistributions = $this->logEntryRepository->getTagDistribution($from, $to);
 
             $logEntryTagDistributionsItem->set($logEntryTagDistributions);
             $logEntryTagDistributionsItem->expiresAfter(self::CACHE_TTL);
@@ -76,14 +86,17 @@ final readonly class LogEntryStatisticsService
      *
      * @return list<LogEntryFrequencyCount> list of log entry frequency counts
      */
-    public function getLogEntryCountByFrequency(Frequency $frequency): array
+    public function getLogEntryCountByFrequency(Frequency $frequency, DateTimeImmutable $from, DateTimeImmutable $to): array
     {
-        $cacheKey = Str\format(self::LOG_ENTRY_COUNT_CACHE_KEY_FORMAT, $frequency->value);
-
-        $logEntryFrequencyCountsItem = $this->cacheItemPool->getItem($cacheKey);
+        $logEntryFrequencyCountsItem = $this->cacheItemPool->getItem(Str\format(
+            self::LOG_ENTRY_COUNT_CACHE_KEY_FORMAT,
+            $frequency->value,
+            $from->format(self::CACHE_DATE_FORMAT),
+            $to->format(self::CACHE_DATE_FORMAT),
+        ));
 
         if (!$logEntryFrequencyCountsItem->isHit()) {
-            $logEntryFrequencyCounts = $this->logEntryRepository->getLogEntryCountByFrequency($frequency);
+            $logEntryFrequencyCounts = $this->logEntryRepository->getLogEntryCountByFrequency($frequency, $from, $to);
 
             $logEntryFrequencyCountsItem->set($logEntryFrequencyCounts);
             $logEntryFrequencyCountsItem->expiresAfter(self::CACHE_TTL);

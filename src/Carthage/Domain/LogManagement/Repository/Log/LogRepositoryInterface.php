@@ -8,8 +8,9 @@ use Carthage\Domain\LogManagement\Entity\Log\Log;
 use Carthage\Domain\LogManagement\Enum\Log\Level;
 use Carthage\Domain\LogManagement\Enum\Log\Statistics\Frequency;
 use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogFrequencyCount;
-use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogLevelStatistics;
+use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogLevelStatistic;
 use Carthage\Domain\Shared\Repository\EntityRepositoryInterface;
+use DateTimeImmutable;
 
 /**
  * @extends EntityRepositoryInterface<Log>
@@ -42,9 +43,9 @@ interface LogRepositoryInterface extends EntityRepositoryInterface
     /**
      * Gets the percentage of logs for each log level.
      *
-     * @return list<LogLevelStatistics>
+     * @return list<LogLevelStatistic>
      */
-    public function getLogPercentageByLevel(): array;
+    public function getLogPercentageByLevel(DateTimeImmutable $from, DateTimeImmutable $to): array;
 
     /**
      * Gets the count of logs over a given time frequency.
@@ -53,5 +54,5 @@ interface LogRepositoryInterface extends EntityRepositoryInterface
      *
      * @return list<LogFrequencyCount>
      */
-    public function getLogCountByFrequency(Frequency $frequency): array;
+    public function getLogCountByFrequency(Frequency $frequency, DateTimeImmutable $from, DateTimeImmutable $to): array;
 }

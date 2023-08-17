@@ -10,6 +10,7 @@ use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogEntryFrequencyCou
 use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogEntrySourceFrequency;
 use Carthage\Domain\LogManagement\ValueObject\Log\Statistic\LogEntryTagDistribution;
 use Carthage\Domain\Shared\Repository\EntityRepositoryInterface;
+use DateTimeImmutable;
 
 /**
  * @extends EntityRepositoryInterface<LogEntry>
@@ -41,14 +42,14 @@ interface LogEntryRepositoryInterface extends EntityRepositoryInterface
      *
      * @return list<LogEntrySourceFrequency>
      */
-    public function getMostFrequentSources(): array;
+    public function getMostFrequentSources(DateTimeImmutable $from, DateTimeImmutable $to): array;
 
     /**
      * Gets the distribution of tags across log entries.
      *
      * @return list<LogEntryTagDistribution>
      */
-    public function getTagDistribution(): array;
+    public function getTagDistribution(DateTimeImmutable $from, DateTimeImmutable $to): array;
 
     /**
      * Gets the count of log entries over a given time frequency.
@@ -57,5 +58,5 @@ interface LogEntryRepositoryInterface extends EntityRepositoryInterface
      *
      * @return list<LogEntryFrequencyCount>
      */
-    public function getLogEntryCountByFrequency(Frequency $frequency): array;
+    public function getLogEntryCountByFrequency(Frequency $frequency, DateTimeImmutable $from, DateTimeImmutable $to): array;
 }

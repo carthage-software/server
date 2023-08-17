@@ -200,7 +200,7 @@ paths:
                     $ref: "LogManagement/Log/Response.yaml#/components/responses/LogManagementCollectLog.Accepted"
                 "400":
                     $ref: "LogManagement/Log/Response.yaml#/components/responses/LogManagementCollectLog.BadRequest"
-    "/log-management/log/statistic/entry-frequency-count/{frequency}":
+    "/log-management/log/statistic/entry-frequency-count/{frequency}/from/{from}/to/{to}":
         get:
             operationId: LogManagementGetLogEntryFrequencyCountCollection
             tags:
@@ -209,30 +209,38 @@ paths:
             description: Get the frequency count of log entries.
             parameters:
                 -   $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.Frequency"
+                -   $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.From"
+                -   $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.To"
             responses:
                 "200":
                     $ref: "LogManagement/Log/Statistics/Response.yaml#/components/responses/LogManagementGetLogEntryFrequencyCountCollection.Ok"
-    "/log-management/log/statistic/entry-source-frequency":
+    "/log-management/log/statistic/entry-source-frequency/from/{from}/to/{to}":
         get:
             operationId: LogManagementGetLogEntrySourceFrequencyCollection
             tags:
                 - Log Management
             summary: Get Log Entry Source Frequency
             description: Get the frequency count of log entry sources.
+            parameters:
+                -   $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.From"
+                -   $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.To"
             responses:
                 "200":
                     $ref: "LogManagement/Log/Statistics/Response.yaml#/components/responses/LogManagementGetLogEntrySourceFrequencyCollection.Ok"
-    "/log-management/log/statistic/entry-tag-distribution":
+    "/log-management/log/statistic/entry-tag-distribution/from/{from}/to/{to}":
         get:
             operationId: LogManagementGetLogEntryTagDistributionCollection
             tags:
                 - Log Management
             summary: Get Log Entry Tag Distribution
             description: Get the distribution of log entry tags.
+            parameters:
+                -   $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.From"
+                -   $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.To"
             responses:
                 "200":
                     $ref: "LogManagement/Log/Statistics/Response.yaml#/components/responses/LogManagementGetLogEntryTagDistributionCollection.Ok"
-    "/log-management/log/statistic/frequency-count/{frequency}":
+    "/log-management/log/statistic/frequency-count/{frequency}/from/{from}/to/{to}":
         get:
             operationId: LogManagementGetLogFrequencyCountCollection
             tags:
@@ -241,16 +249,21 @@ paths:
             description: Get the frequency count of logs.
             parameters:
                 -   $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.Frequency"
+                -   $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.From"
+                -   $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.To"
             responses:
                 "200":
                     $ref: "LogManagement/Log/Statistics/Response.yaml#/components/responses/LogManagementGetLogFrequencyCountCollection.Ok"
-    /log-management/log/statistic/level-statistics:
+    "/log-management/log/statistic/level-statistics/from/{from}/to/{to}":
         get:
-            operationId: LogManagementGetLogLevelStatisticsCollection
+            operationId: LogManagementGetLogLevelStatisticCollection
             tags:
                 - Log Management
             summary: Get Log Level Statistics
             description: Get the statistics of log levels.
+            parameters:
+                -   $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.From"
+                -   $ref: "LogManagement/Log/Statistics/Parameter.yaml#/components/parameters/LogManagement.Log.Statistics.To"
             responses:
                 "200":
-                    $ref: "LogManagement/Log/Statistics/Response.yaml#/components/responses/LogManagementGetLogLevelStatisticsCollection.Ok"
+                    $ref: "LogManagement/Log/Statistics/Response.yaml#/components/responses/LogManagementGetLogLevelStatisticCollection.Ok"

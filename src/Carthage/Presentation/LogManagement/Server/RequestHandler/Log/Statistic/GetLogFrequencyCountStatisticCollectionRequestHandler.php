@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Carthage\Presentation\LogManagement\Server\RequestHandler\Log\Statistic;
 
-use Carthage\Application\LogManagement\Query\Log\Statistic\GetLogFrequencyCountCollectionQuery;
+use Carthage\Application\LogManagement\Query\Log\Statistic\GetLogFrequencyCountStatisticCollectionQuery;
 use Carthage\Application\Shared\QueryBusInterface;
 use Carthage\Domain\LogManagement\Enum\Log\Statistics\Frequency;
 use Carthage\Presentation\Shared\Server\ResponseFactoryInterface;
+use DateTimeImmutable;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final readonly class GetLogFrequencyCountCollectionRequestHandler implements RequestHandlerInterface
+final readonly class GetLogFrequencyCountStatisticCollectionRequestHandler implements RequestHandlerInterface
 {
     public function __construct(
         private QueryBusInterface $queryBus,
@@ -24,11 +25,15 @@ final readonly class GetLogFrequencyCountCollectionRequestHandler implements Req
     {
         /** @var Frequency $frequency */
         $frequency = $request->getAttribute('frequency');
+        /** @var DateTimeImmutable $from */
+        $from = $request->getAttribute('from');
+        /** @var DateTimeImmutable $to */
+        $to = $request->getAttribute('to');
 
-        $logFrequencyCountCollectionResource = $this->queryBus->ask(
-            new GetLogFrequencyCountCollectionQuery($frequency)
+        $logFrequencyCountStatisticResource = $this->queryBus->ask(
+            new GetLogFrequencyCountStatisticCollectionQuery($frequency, $from, $to)
         );
 
-        return $this->responseFactory->createResourceResponse($logFrequencyCountCollectionResource);
+        return $this->responseFactory->createResourceResponse($logFrequencyCountStatisticResource);
     }
 }

@@ -35,13 +35,25 @@ components:
             readOnly: true
             required:
                 - type
+                - from
+                - to
                 - items
             properties:
                 type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
-                        - collection
+                        - statistic_collection
+                from:
+                    type: string
+                    format: date
+                    description: Start date for the collection.
+                    example: 2020-01-01
+                to:
+                    type: string
+                    format: date
+                    description: End date for the collection.
+                    example: 2020-01-10
                 items:
                     type: array
                     items:
@@ -82,13 +94,25 @@ components:
             readOnly: true
             required:
                 - type
+                - from
+                - to
                 - items
             properties:
                 type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
-                        - collection
+                        - statistic_collection
+                from:
+                    type: string
+                    format: date
+                    description: Start date for the collection.
+                    example: 2020-01-01
+                to:
+                    type: string
+                    format: date
+                    description: End date for the collection.
+                    example: 2020-01-10
                 items:
                     type: array
                     items:
@@ -122,13 +146,25 @@ components:
             readOnly: true
             required:
                 - type
+                - from
+                - to
                 - items
             properties:
                 type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
-                        - collection
+                        - statistic_collection
+                from:
+                    type: string
+                    format: date
+                    description: Start date for the collection.
+                    example: 2020-01-01
+                to:
+                    type: string
+                    format: date
+                    description: End date for the collection.
+                    example: 2020-01-10
                 items:
                     type: array
                     items:
@@ -162,19 +198,31 @@ components:
             readOnly: true
             required:
                 - type
+                - from
+                - to
                 - items
             properties:
                 type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
-                        - collection
+                        - statistic_collection
+                from:
+                    type: string
+                    format: date
+                    description: Start date for the collection.
+                    example: 2020-01-01
+                to:
+                    type: string
+                    format: date
+                    description: End date for the collection.
+                    example: 2020-01-10
                 items:
                     type: array
                     items:
                         $ref: "#/components/schemas/LogManagement.Log.Statistics.LogFrequencyCountResource"
                     description: Array of LogFrequencyCountResource.
-        LogManagement.Log.Statistics.LogLevelStatisticsResource:
+        LogManagement.Log.Statistics.LogLevelStatisticResource:
             type: object
             description: Resource representing the statistics of logs by level.
             readOnly: true
@@ -188,7 +236,7 @@ components:
                     type: string
                     description: Type identifier for the resource.
                     enum:
-                        - log_level_statistics
+                        - log_level_statistic
                 level:
                     type: object
                     description: Level associated with the statistics.
@@ -229,21 +277,33 @@ components:
                     description: Percentage of logs for the specified level.
                     minimum: 0
                     maximum: 100
-        LogManagement.Log.Statistics.LogLevelStatisticsResource.CollectionResource:
+        LogManagement.Log.Statistics.LogLevelStatisticResource.CollectionResource:
             type: object
-            description: Collection of LogLevelStatisticsResource.
+            description: Collection of LogLevelStatisticResource.
             readOnly: true
             required:
                 - type
+                - from
+                - to
                 - items
             properties:
                 type:
                     type: string
                     description: Type identifier for the collection.
                     enum:
-                        - collection
+                        - statistic_collection
+                from:
+                    type: string
+                    format: date
+                    description: Start date for the collection.
+                    example: 2020-01-01
+                to:
+                    type: string
+                    format: date
+                    description: End date for the collection.
+                    example: 2020-01-10
                 items:
                     type: array
                     items:
-                        $ref: "#/components/schemas/LogManagement.Log.Statistics.LogLevelStatisticsResource"
-                    description: Array of LogLevelStatisticsResource.
+                        $ref: "#/components/schemas/LogManagement.Log.Statistics.LogLevelStatisticResource"
+                    description: Array of LogLevelStatisticResource.
